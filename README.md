@@ -9,7 +9,7 @@
 ## 🚀 在线访问体验
 
 > 本项目通过 GitHub Pages 托管，点击即可在全屏模式下动手探索：
-> 🔗 **https://chrisqiao2023.github.io/kids-science-lab/**
+> 🔗 **https://chrisqiao2024.github.io/kids-science-lab/**
 
 ---
 
