@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>少儿科学互动实验室 | Kids Science Lab</title>
-  <meta name="description" content="SpaceX 启发式少儿科学互动实验室：46 个趣味物理、数学几何、三角函数、太空 3D 与量子复杂系统探索任务，免安装即开即玩。">
+  <title>薪钰AI CODING梦工厂 | 乔薪钰的 46 个自然语言互动宇宙</title>
+  <meta name="description" content="薪钰AI CODING梦工厂：小学四年级学生乔薪钰在教练 Chris Qiao 协同下，基于《AI进化十步法》少儿实战训练营打造的 46 个自然语言科学互动程序。">
   
   <!-- 免费开源可商用字体（零版权隐患） -->
   <!-- 中文：思源宋体 (Noto Serif SC) -->
@@ -102,82 +102,134 @@
       color: var(--cyan-telemetry);
     }
 
-    /* 主视觉区 (Hero Section) */
+    /* 主视觉区 (Hero Section) 双栏黄金布局 */
     .hero {
       max-width: 1320px;
       margin: 0 auto;
-      padding: 64px 24px 32px;
-      text-align: center;
+      padding: 44px 24px 24px;
       position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .hero-left {
+      text-align: left;
     }
 
     .hero-eyebrow {
       font-family: var(--font-mono);
-      font-size: 13px;
-      letter-spacing: 3px;
+      font-size: 11px;
+      letter-spacing: 2px;
       color: var(--cyan-telemetry);
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 6px 16px;
+      gap: 8px;
+      padding: 5px 12px;
       border-radius: 4px;
       background: rgba(56, 189, 248, 0.06);
       border: 1px solid rgba(56, 189, 248, 0.25);
     }
 
-    /* 中文主标题：采用思源宋体特粗，彰显太空科幻文学与探索浪漫 */
+    /* 中文主标题：思源宋体精细调整，告别粗大，呈现高级探索质感 */
     h1.hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(34px, 5.5vw, 62px);
-      font-weight: 900;
+      font-size: clamp(24px, 3.2vw, 38px);
+      font-weight: 700;
       letter-spacing: 1px;
-      line-height: 1.25;
-      margin-bottom: 20px;
+      line-height: 1.3;
+      margin-bottom: 12px;
       background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+      text-shadow: 0 0 25px rgba(255, 255, 255, 0.12);
     }
 
     .hero-sub {
       font-family: var(--font-serif);
-      font-size: clamp(16px, 2.2vw, 21px);
+      font-size: 14.5px;
       color: #94a3b8;
-      max-width: 760px;
-      margin: 0 auto 16px;
+      margin-bottom: 16px;
       font-weight: 500;
       line-height: 1.6;
     }
 
-    .hero-manifesto {
+    /* 造梦三步方程式 (The Dream Formula) */
+    .dream-formula {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 6px;
+      padding: 9px 12px;
+      margin-bottom: 18px;
       font-family: var(--font-mono);
-      font-size: 13px;
-      color: #64748b;
-      letter-spacing: 1px;
-      max-width: 680px;
-      margin: 0 auto 36px;
-      border-left: 2px solid var(--cyan-telemetry);
-      padding-left: 12px;
-      text-align: left;
-      display: inline-block;
+      font-size: 11px;
+      color: #cbd5e1;
     }
 
-    /* 遥测参数仪表板 (SpaceX Telemetry Stats) */
+    .formula-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .formula-step strong {
+      color: var(--cyan-telemetry);
+    }
+
+    .formula-arrow {
+      color: #64748b;
+    }
+
+    /* 方法论引导小横条 */
+    .methodology-link-bar {
+      margin-bottom: 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .methodology-link-bar a {
+      color: #38bdf8;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 5px 12px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .methodology-link-bar a:hover {
+      background: #38bdf8;
+      color: #000;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+    }
+
+    /* 遥测参数仪表板 (SpaceX Telemetry Stats) - 调小更精致 */
     .telemetry-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
-      max-width: 980px;
-      margin: 0 auto 40px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
     }
 
     .telemetry-stat {
       background: rgba(15, 23, 42, 0.65);
       border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 14px 18px;
+      border-radius: 4px;
+      padding: 8px 10px;
       text-align: left;
       position: relative;
       overflow: hidden;
@@ -188,35 +240,32 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 3px;
+      width: 2px;
       height: 100%;
       background: var(--cyan-telemetry);
-      opacity: 0.7;
+      opacity: 0.8;
     }
 
     .stat-label {
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 1.5px;
+      font-size: 10px;
+      letter-spacing: 1px;
       color: var(--text-dim);
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .stat-value {
       font-family: var(--font-mono);
-      font-size: 20px;
+      font-size: 14px;
       font-weight: 700;
       color: #fff;
     }
 
     /* 操作控制台 (Search & Surprise) */
     .console-bar {
-      max-width: 980px;
-      margin: 0 auto 36px;
       display: flex;
-      gap: 12px;
-      padding: 0 10px;
+      gap: 10px;
     }
 
     .console-search {
@@ -226,60 +275,163 @@
 
     .console-search input {
       width: 100%;
-      height: 52px;
+      height: 44px;
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 0 20px 0 48px;
+      border-radius: 4px;
+      padding: 0 16px 0 42px;
       color: #fff;
       font-family: var(--font-mono);
-      font-size: 14px;
+      font-size: 12.5px;
       outline: none;
       transition: all 0.2s;
     }
 
     .console-search input:focus {
       border-color: var(--cyan-telemetry);
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.25);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
       background: rgba(15, 23, 42, 0.98);
     }
 
     .search-glyph {
       position: absolute;
-      left: 18px;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--cyan-telemetry);
       font-family: var(--font-mono);
-      font-size: 15px;
+      font-size: 13px;
       opacity: 0.8;
     }
 
     .btn-launch-random {
-      height: 52px;
-      padding: 0 26px;
-      border-radius: 6px;
+      height: 44px;
+      padding: 0 20px;
+      border-radius: 4px;
       background: linear-gradient(135deg, #0284c7, #2563eb);
       color: #fff;
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 1px;
       border: 1px solid rgba(255, 255, 255, 0.2);
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-transform: uppercase;
-      box-shadow: 0 4px 20px rgba(2, 132, 199, 0.35);
+      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
       transition: all 0.2s;
       white-space: nowrap;
     }
 
     .btn-launch-random:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 26px rgba(2, 132, 199, 0.6);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.55);
       background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+    }
+
+    /* 右侧：纽约客封面风父子乘组科技海报卡片 (Crew Dossier) */
+    .crew-dossier-card {
+      background: rgba(10, 15, 26, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(56, 189, 248, 0.12);
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      text-align: left;
+    }
+
+    .crew-dossier-card:hover {
+      border-color: rgba(56, 189, 248, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .crew-dossier-card::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid var(--cyan-telemetry);
+      border-left: 2px solid var(--cyan-telemetry);
+      pointer-events: none;
+    }
+
+    .crew-dossier-card::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      border-bottom: 2px solid var(--cyan-telemetry);
+      border-right: 2px solid var(--cyan-telemetry);
+      pointer-events: none;
+    }
+
+    .dossier-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cyan-telemetry);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .dossier-img-wrap {
+      width: 100%;
+      height: 340px;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+
+    .dossier-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .crew-dossier-card:hover .dossier-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .dossier-footer {
+      margin-top: 12px;
+      font-family: var(--font-serif);
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .dossier-names {
+      font-family: var(--font-serif);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .dossier-role {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--cyan-telemetry);
+      letter-spacing: 1px;
     }
 
     /* 测控舱段切换栏 (Flight Stage Navigation) */
@@ -437,31 +589,31 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* 卡片标题：思源宋体 */
+    /* 卡片标题：思源宋体精细调整，告别傻大粗 */
     .pod-title {
       font-family: var(--font-serif);
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 700;
       color: #ffffff;
-      line-height: 1.35;
-      margin-bottom: 6px;
+      line-height: 1.4;
+      margin-bottom: 5px;
       letter-spacing: 0.5px;
     }
 
     .pod-concept {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11px;
       color: #7dd3fc;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       letter-spacing: 0.5px;
     }
 
     .pod-desc {
       font-family: var(--font-serif);
-      font-size: 13.5px;
+      font-size: 12.5px;
       color: #cbd5e1;
-      line-height: 1.65;
-      margin-bottom: 16px;
+      line-height: 1.6;
+      margin-bottom: 14px;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
@@ -472,13 +624,13 @@
     /* 启发造物工具行 (Tool & Methodology Line) */
     .pod-tool-meta {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 10.5px;
       color: #64748b;
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 4px;
-      padding: 8px 10px;
-      margin-bottom: 18px;
+      padding: 6px 9px;
+      margin-bottom: 14px;
       line-height: 1.5;
     }
 
@@ -555,6 +707,16 @@
     }
 
     /* 响应式适配 */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .telemetry-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 768px) {
       .telemetry-ticker {
         font-size: 10px;
@@ -564,13 +726,17 @@
         display: none;
       }
       .hero {
-        padding: 40px 16px 20px;
+        padding: 30px 16px 16px;
       }
       .console-bar {
         flex-direction: column;
       }
       .pod-grid {
         grid-template-columns: 1fr;
+      }
+      .methodology-banner > div {
+        grid-template-columns: 1fr !important;
+        text-align: center;
       }
     }
   </style>
@@ -580,61 +746,107 @@
   <!-- 顶部遥测状态栏 -->
   <div class="telemetry-ticker">
     <div class="ticker-left">
-      <span><span class="status-dot"></span> ORBITAL SIMULATION READY</span>
+      <span><span class="status-dot"></span> XINYU'S AI CODING DREAM FACTORY</span>
       <span class="ticker-highlight">NODE // STARSHIP-LAB-V2</span>
     </div>
     <div class="ticker-right">
+      <a href="book.html" style="color: var(--cyan-telemetry); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+        <span>//</span> 《AI进化十步法》底层引擎 ↗
+      </a>
       <span>MODULES: 46/46 VERIFIED</span>
       <span>RUNTIME: CLIENT-SIDE HTML5</span>
       <span>COORDINATES: GZ-CANTON</span>
     </div>
   </div>
 
-  <!-- Hero 英雄主视觉 -->
+  <!-- Hero 英雄主视觉 (双栏黄金布局) -->
   <header class="hero">
-    <div class="hero-eyebrow">
-      <span>//</span> JUNIOR SCIENTIFIC MISSION CONTROL
-    </div>
+    <div class="hero-grid">
+      <!-- 左栏：控制台与造梦宣言 -->
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span>//</span> XINYU'S AI CODING DREAM FACTORY · MISSION CONTROL
+        </div>
 
-    <h1 class="hero-title">把想象力，变成可运行的宇宙。</h1>
-    
-    <p class="hero-sub">
-      SpaceX 用火箭拓展人类的物理边界；你用代码与数学规则，在屏幕上创造自己的世界。
-    </p>
+        <h1 class="hero-title">薪钰AI CODING梦工厂</h1>
+        
+        <p class="hero-sub">
+          四年级少年的 46 个自然语言互动宇宙。只要孩子能把脑中的奇想用语言清晰表达，就能借助 AI 将它变成屏幕上可运行的真实世界。
+        </p>
 
-    <div class="hero-manifesto">
-      > 面向中小学生的一人一世界造物展馆：先描述一个世界，再拆出角色、规则、轨道、状态与反馈。
-    </div>
+        <!-- 造梦三步方程式 (启发其他家长与孩子) -->
+        <div class="dream-formula">
+          <span class="formula-step"><strong>① 乔薪钰提出奇想</strong></span>
+          <span class="formula-arrow">➔</span>
+          <span class="formula-step"><strong>② 自然语言描述规则</strong></span>
+          <span class="formula-arrow">➔</span>
+          <span class="formula-step"><strong>③ AI 编译 · 父亲协同成真</strong></span>
+        </div>
 
-    <!-- 航天级参数遥测看板 -->
-    <div class="telemetry-grid">
-      <div class="telemetry-stat">
-        <div class="stat-label">Active Modules</div>
-        <div class="stat-value">46 任务舱</div>
-      </div>
-      <div class="telemetry-stat">
-        <div class="stat-label">Core Sciences</div>
-        <div class="stat-value">6 大前沿领域</div>
-      </div>
-      <div class="telemetry-stat">
-        <div class="stat-label">Engineering Stack</div>
-        <div class="stat-value">Three.js / SVG</div>
-      </div>
-      <div class="telemetry-stat">
-        <div class="stat-label">Deployment</div>
-        <div class="stat-value">零安装 · 全端秒开</div>
-      </div>
-    </div>
+        <!-- 底层方法论链接条 -->
+        <div class="methodology-link-bar">
+          <a href="book.html">
+            <span>📖</span> 底层方法论支撑：源自《AI进化十步法》少儿实战训练营 ➔ 查看新书与方法
+          </a>
+        </div>
 
-    <!-- 搜索与随机启动控制台 -->
-    <div class="console-bar">
-      <div class="console-search">
-        <span class="search-glyph">&gt;_</span>
-        <input type="text" id="searchInput" placeholder="检索任务指令（例如：重力、无人机、开普勒、黑洞、水波、齿轮...）" oninput="handleSearch()">
+        <!-- 航天级参数遥测看板 (小巧精致版) -->
+        <div class="telemetry-grid">
+          <div class="telemetry-stat">
+            <div class="stat-label">Active Pods</div>
+            <div class="stat-value">46 任务舱</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="stat-label">Core Sciences</div>
+            <div class="stat-value">6 大前沿领域</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="stat-label">Stack</div>
+            <div class="stat-value">Three.js / SVG</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="stat-label">Deployment</div>
+            <div class="stat-value">纯端 · 即开即玩</div>
+          </div>
+        </div>
+
+        <!-- 搜索与随机启动控制台 -->
+        <div class="console-bar">
+          <div class="console-search">
+            <span class="search-glyph">&gt;_</span>
+            <input type="text" id="searchInput" placeholder="检索任务指令（例如：重力、无人机、开普勒、黑洞、水波、齿轮...）" oninput="handleSearch()">
+          </div>
+          <button class="btn-launch-random" onclick="openRandomDemo()">
+            <span>🚀</span> 随机启动任务舱
+          </button>
+        </div>
       </div>
-      <button class="btn-launch-random" onclick="openRandomDemo()">
-        <span>🚀</span> 随机启动任务舱
-      </button>
+
+      <!-- 右栏：纽约客封面风父子乘组科技海报卡片 -->
+      <div class="hero-right">
+        <div class="crew-dossier-card">
+          <div class="dossier-header">
+            <span>● CREW ACTIVE // 任务乘组</span>
+            <span>A FATHER-SON JOURNEY</span>
+          </div>
+          <div class="dossier-img-wrap">
+            <img src="assets/father-son-cover.jpg" alt="NEW YORKER PROFILES: A FATHER-SON JOURNEY (乔薪钰与 Chris Qiao)">
+          </div>
+          <div class="dossier-footer">
+            <div class="dossier-names">
+              <span>乔薪钰 (XinYu Qiao)</span>
+              <span class="dossier-role">CREATOR // 小学四年级 · 10岁</span>
+            </div>
+            <div class="dossier-names" style="margin-top: 4px;">
+              <span>Chris Qiao</span>
+              <span class="dossier-role">CO-PILOT // 中小学生 AI CODING 教练</span>
+            </div>
+            <p style="margin-top: 6px; font-size: 11.5px; color: #94a3b8; font-family: var(--font-serif);">
+              “孩子负责无限的奇思与探索，教练负责拆解规则与协同护航。”
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -670,12 +882,45 @@
     <div class="pod-grid" id="podGrid"></div>
   </main>
 
-  <!-- 底部说明与版权 -->
+  <!-- 底层方法论与新书启发横幅 (Methodology Spotlight Banner) -->
+  <section class="methodology-banner" style="max-width: 1320px; margin: 20px auto 40px; padding: 0 24px;">
+    <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(10, 15, 26, 0.95) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 24px 28px; display: grid; grid-template-columns: 110px 1fr auto; gap: 24px; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+      <div style="border-radius: 4px; overflow: hidden; box-shadow: 0 6px 16px rgba(0,0,0,0.7);">
+        <img src="assets/book-front.jpg" alt="AI进化十步法" style="width: 100%; height: auto; display: block;">
+      </div>
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; color: var(--cyan-telemetry); margin-bottom: 4px;">
+          // METHODOLOGY ENGINE · 底层方法论与成长阶梯
+        </div>
+        <h3 style="font-family: var(--font-serif); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px;">
+          《AI进化十步法 —— 从零代码小白到超级个体》
+        </h3>
+        <p style="font-family: var(--font-serif); font-size: 12.5px; color: #94a3b8; line-height: 1.6; margin-bottom: 6px;">
+          著者：乔瑞、刘铭文 著 · 澳門科學出版社 出版。本书及配套的“AI进化十步法实战训练营”，正是乔薪钰能以自然语言跨越编程门槛、独立构建 46 个互动宇宙的方法底座。
+        </p>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: #64748b;">
+          核心哲学：完成比完美更重要 · 让孩子的想象力借 AI 成为现实生产力
+        </div>
+      </div>
+      <div>
+        <a href="book.html" style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 4px; background: rgba(56, 189, 248, 0.15); border: 1px solid var(--cyan-telemetry); color: #fff; text-decoration: none; font-family: var(--font-mono); font-size: 12px; font-weight: 600; white-space: nowrap; transition: all 0.2s;" onmouseover="this.style.background='#38bdf8'; this.style.color='#000';" onmouseout="this.style.background='rgba(56, 189, 248, 0.15)'; this.style.color='#fff';">
+          了解新书与训练营 ➔
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部说明与联合版权 -->
   <footer>
-    <p class="footer-quote">“把一个想法，拆成可以被验证的规则与可以被交互的代码。”</p>
-    <p>JUNIOR STARSHIP MISSION CONTROL · 乔瑞 AI CODING 启发系列</p>
-    <p style="margin-top: 8px; color: #475569;">
-      TYPOGRAPHY: 思源宋体 (SOURCE HAN SERIF) & JETBRAINS MONO & INTER · 开源免费商用协议
+    <p class="footer-quote">“每个孩子都是天生的造梦者；自然语言与 AI 是把梦境编译为现实的钥匙。”</p>
+    <p style="color: #cbd5e1; font-weight: 600; margin-bottom: 6px; font-size: 13px;">
+      © 2026 薪钰AI CODING梦工厂 (XinYu's AI Coding Dream Factory) · 乔薪钰 & Chris Qiao 联合版权所有
+    </p>
+    <p style="max-width: 860px; margin: 0 auto 10px; font-family: var(--font-serif); font-size: 12px; color: #94a3b8; line-height: 1.65;">
+      本站展示的 46 个科学互动仿真世界，由小学四年级学生乔薪钰构思、在中小学生 AI Coding 教练 Chris Qiao 协同下，基于《AI进化十步法》少儿实战训练营方法论、通过自然语言 AI Coding 探索完成。未经许可不得商用。
+    </p>
+    <p style="color: #475569; font-size: 11px;">
+      TYPOGRAPHY: 思源宋体 (SOURCE HAN SERIF) & JETBRAINS MONO & INTER · 开源免费商用协议 · GZ-CANTON
     </p>
   </footer>
 

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>《AI进化十步法》与少儿实战训练营 | 薪钰AI CODING梦工厂底层方法论</title>
+  <meta name="description" content="乔瑞、刘铭文新书《AI进化十步法——从零代码小白到超级个体》与中小学生 AI Coding 实战训练营方法论全景介绍。">
+
+  <!-- 字体体系：思源宋体 (Noto Serif SC) + JetBrains Mono + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --space-black: #000000;
+      --space-card: rgba(10, 15, 26, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.1);
+      --border-highlight: rgba(56, 189, 248, 0.5);
+      --cyan-telemetry: #38bdf8;
+      --text-pure: #ffffff;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --font-serif: 'Noto Serif SC', "Source Han Serif SC", "Songti SC", serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--space-black);
+      color: var(--text-pure);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      line-height: 1.65;
+      font-size: 14px;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 90% 40%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #020408 0%, #000000 100%);
+      background-attachment: fixed;
+    }
+
+    /* 顶部导航导轨 */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .nav-back {
+      color: var(--cyan-telemetry);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 4px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.06);
+      transition: all 0.2s;
+    }
+
+    .nav-back:hover {
+      background: var(--cyan-telemetry);
+      color: #000;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+    }
+
+    .nav-tag {
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* 眉标 */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--cyan-telemetry);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 标题采用更小巧精致的思源宋体 */
+    h1.page-title {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3.2vw, 36px);
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-subtitle {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 820px;
+      margin-bottom: 36px;
+    }
+
+    /* 书籍展示画廊：双栏展示封面与封底 */
+    .book-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    .book-card {
+      background: var(--space-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 20px;
+      position: relative;
+      transition: all 0.25s;
+    }
+
+    .book-card:hover {
+      border-color: var(--border-highlight);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.12);
+    }
+
+    .book-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: var(--cyan-telemetry);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 8px;
+    }
+
+    .book-img-wrapper {
+      width: 100%;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .book-img-wrapper img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease;
+    }
+
+    .book-card:hover .book-img-wrapper img {
+      transform: scale(1.02);
+    }
+
+    .book-caption {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* 书籍与训练营核心信息区 */
+    .section-block {
+      background: var(--space-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 32px 28px;
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '//';
+      font-family: var(--font-mono);
+      color: var(--cyan-telemetry);
+      font-size: 16px;
+    }
+
+    /* 十步法阶梯可视化网格 */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .step-node {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 14px;
+      position: relative;
+    }
+
+    .step-node-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cyan-telemetry);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .step-node-name {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .step-node-desc {
+      font-family: var(--font-serif);
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* 名家评语网格 */
+    .endorse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .endorse-card {
+      background: rgba(15, 23, 42, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-left: 2px solid var(--cyan-telemetry);
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .endorse-author {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .endorse-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .endorse-text {
+      font-family: var(--font-serif);
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* 训练营实战理念与少儿案例 */
+    .bootcamp-box {
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: linear-gradient(180deg, rgba(56, 189, 248, 0.08) 0%, rgba(10, 15, 26, 0.9) 100%);
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 36px;
+    }
+
+    .bootcamp-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bootcamp-desc {
+      font-family: var(--font-serif);
+      font-size: 13.5px;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .bootcamp-quote {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan-telemetry);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 4px;
+      padding: 12px 16px;
+      line-height: 1.6;
+    }
+
+    /* 底部声明 */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 40px 20px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    .footer-links {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: var(--cyan-telemetry);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .book-gallery {
+        grid-template-columns: 1fr;
+      }
+      .book-img-wrapper {
+        height: 380px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-back">
+      <span>←</span> 返回 薪钰AI CODING梦工厂
+    </a>
+    <div class="nav-tag">
+      <span>METHODOLOGY // 《AI进化十步法》底层方法论</span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="eyebrow">// FOUNDATION & METHODOLOGY</div>
+    <h1 class="page-title">《AI进化十步法》与实战训练营</h1>
+    <p class="page-subtitle">
+      从零代码小白到超级个体 —— 为什么一个 10 岁四年级的小学生，能通过自然语言构建出 46 个运行自如的科学宇宙？答案就在这套源自实践的成长方法论中。
+    </p>
+
+    <!-- 书籍双展柜 -->
+    <div class="book-gallery">
+      <div class="book-card">
+        <div class="book-badge">
+          <span>FRONT COVER // 封面实拍</span>
+          <span>澳門科學出版社</span>
+        </div>
+        <div class="book-img-wrapper">
+          <img src="assets/book-front.jpg" alt="AI进化十步法 封面实拍">
+        </div>
+        <div class="book-caption">
+          <strong>《AI进化十步法 —— 从零代码小白到超级个体》</strong><br>
+          著者：乔瑞、刘铭文 著 · 掌握 AI 时代的成长方法论
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-badge">
+          <span>BACK COVER // 封底实拍</span>
+          <span>ISBN 978-99996-58-12-6</span>
+        </div>
+        <div class="book-img-wrapper">
+          <img src="assets/book-back.jpg" alt="AI进化十步法 封底实拍">
+        </div>
+        <div class="book-caption">
+          <strong>赠阅 同进步 共进化</strong><br>
+          汇集学界、业界与商界领袖深度评语，破除技术门槛，将 AI 拆解为普通人可落地的行动路径。
+        </div>
+      </div>
+    </div>
+
+    <!-- 新书导读与核心主旨 -->
+    <div class="section-block">
+      <h2 class="section-title">新书立意：把“知道”跨越为“做完”</h2>
+      <p style="font-family: var(--font-serif); font-size: 13.5px; color: #cbd5e1; line-height: 1.8; margin-bottom: 16px;">
+        在 AI 浪潮中，普通人与中小学生的焦虑往往源于“看不懂”和“跟不上”。本书摒弃晦涩的技术术语，贴合日常实践，专为零基础学习者引路。
+        通过清晰步骤助力众人借 AI 赋能成长、淬炼本领，成就超级个体。全书情理兼具，不分年龄阅历，皆可躬身研学。
+      </p>
+      <div style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan-telemetry); background: rgba(0,0,0,0.4); padding: 10px 14px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.06);">
+        核心心法：从真实场景出发 · 完成比完美更重要 · 用自然语言做思维编译器
+      </div>
+    </div>
+
+    <!-- 十步阶梯图谱 -->
+    <div class="section-block">
+      <h2 class="section-title">十步进化阶梯全景图谱</h2>
+      <p style="font-family: var(--font-serif); font-size: 13px; color: #94a3b8; margin-bottom: 16px;">
+        从认知觉醒到超级个体，拾级而上的十个成长里程碑：
+      </p>
+      
+      <div class="steps-grid">
+        <div class="step-node">
+          <div class="step-node-num">STEP 01</div>
+          <div class="step-node-name">认知升级</div>
+          <div class="step-node-desc">突破思维藩篱，理解人机协同的本质</div>
+        </div>
+        <div class="step-node-num-node step-node">
+          <div class="step-node-num">STEP 02</div>
+          <div class="step-node-name">工具赋能</div>
+          <div class="step-node-desc">掌握现代智能工具，组建自己的数字工坊</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-num">STEP 03</div>
+          <div class="step-node-name">提问有力</div>
+          <div class="step-node-desc">精准表达需求，用清晰逻辑定义目标边界</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-num">STEP 04</div>
+          <div class="step-node-name">信息管理</div>
+          <div class="step-node-desc">搭建知识库与上下文流，过滤噪声淬炼真知</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-num">STEP 05</div>
+          <div class="step-node-name">内容创作</div>
+          <div class="step-node-desc">从输入转向输出，生成高价值文案与多媒体</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-num">STEP 06</div>
+          <div class="step-node-name">效率跃升</div>
+          <div class="step-node-desc">工作流自动化，成倍放大个人产出效能</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-num">STEP 07</div>
+          <div class="step-node-name">深度洞察</div>
+          <div class="step-node-desc">透过现象看本质，构建专属领域分析模型</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-num">STEP 08</div>
+          <div class="step-node-name">价值链接</div>
+          <div class="step-node-desc">融入产业与社会需求，让成果产生真实回响</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-num">STEP 09</div>
+          <div class="step-node-name">影响力构建</div>
+          <div class="step-node-desc">作品集与个人 IP 沉淀，赢得广泛信任</div>
+        </div>
+        <div class="step-node">
+          <div class="step-node-num">STEP 10</div>
+          <div class="step-node-name">超级个体</div>
+          <div class="step-node-desc">一人即团队，持续自我进化与价值跃迁</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 少儿实战训练营专栏 -->
+    <div class="bootcamp-box">
+      <div class="bootcamp-title">
+        <span>🚀</span> 中小学生 AI Coding 实战训练营：让孩子的想象力落地
+      </div>
+      <p class="bootcamp-desc">
+        “薪钰AI CODING梦工厂”正是这套方法论在少儿教育中的鲜活样本。在 Chris Qiao 教练举办的<strong>《AI进化十步法实战训练营》</strong>中，孩子们不需要提前背诵晦涩的代码语法，训练营的核心在于培养两项终身受益的能力：<br>
+        <strong>1. 结构化的想象力</strong>：能不能把一个有趣的科学现象或科幻脑洞，拆解为角色、轨道、重力与互动反馈？<br>
+        <strong>2. 精确的自然语言表达</strong>：能不能用清晰的中文指令，指挥 AI 工具将设想转化为运行自如的 HTML5、Canvas 或 3D 页面？
+      </p>
+      <div class="bootcamp-quote">
+        > 乔薪钰（小学四年级 · 10岁）：“以前我觉得写网页必须是大人的事，但在爸爸的训练营里，我只要把我脑子里想的重力球、黑洞、小行星画下来并说出来，代码就真的跑起来了！”
+      </div>
+    </div>
+
+    <!-- 名家与读者评语 -->
+    <div class="section-block">
+      <h2 class="section-title">各界专家与推荐序精选</h2>
+      <div class="endorse-grid">
+        <div class="endorse-card">
+          <div class="endorse-author">徐枢</div>
+          <div class="endorse-title">广东省北京大学校友会会长</div>
+          <div class="endorse-text">
+            “愿世人破除年岁桎梏，顺势而为，勤学精进，在智能时代步履不停、向阳成长，实现自我进阶与人生新境。”
+          </div>
+        </div>
+        <div class="endorse-card">
+          <div class="endorse-author">许珊</div>
+          <div class="endorse-title">儒兴科技董事长、中山大学岭南学院董事会主席</div>
+          <div class="endorse-text">
+            “书中强调的‘从真实场景出发’和‘完成比完美更重要’，正是企业数字化转型最需要的务实精神。”
+          </div>
+        </div>
+        <div class="endorse-card">
+          <div class="endorse-author">袁冈</div>
+          <div class="endorse-title">中山大学岭南学院数字经济专业硕士项目执行主任</div>
+          <div class="endorse-text">
+            “从非技术背景学习者的真实需求出发，将复杂的 AI 学习拆解为清晰、可实践的进阶路径。”
+          </div>
+        </div>
+        <div class="endorse-card">
+          <div class="endorse-author">陈丙一</div>
+          <div class="endorse-title">金域医学服务总监</div>
+          <div class="endorse-text">
+            “可贵之处是不讲高深理论，而是把 AI 能力训练拆成了普通人能模仿、能交付、能变现的行动路径。”
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部声明 -->
+  <footer>
+    <p>© 2026 薪钰AI CODING梦工厂 (XinYu's AI Coding Dream Factory) · 乔薪钰 & Chris Qiao 联合版权所有</p>
+    <p style="margin-top: 6px; color: #475569;">
+      METHODOLOGY BASE: 《AI进化十步法 —— 从零代码小白到超级个体》（乔瑞、刘铭文 著 · 澳門科學出版社）
+    </p>
+    <div class="footer-links">
+      <a href="index.html">← 返回 46 任务舱主展馆</a>
+      <a href="index.html#podGrid">浏览科学模块</a>
+    </div>
+  </footer>
+
+</body>
+</html>
