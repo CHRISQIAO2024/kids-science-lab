@@ -883,7 +883,129 @@
       .pod-card { min-width: 0; overflow-wrap: anywhere; }
       .pod-meta-bar { flex-wrap: wrap; gap: 8px; }
     }
-  </style>
+      .crew-dossier-card {
+      background: rgba(10, 15, 26, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(56, 189, 248, 0.12);
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      text-align: left;
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .crew-dossier-card:hover {
+      border-color: rgba(56, 189, 248, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .crew-dossier-card::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid var(--accent-sky);
+      border-left: 2px solid var(--accent-sky);
+      pointer-events: none;
+    }
+
+    .crew-dossier-card::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      border-bottom: 2px solid var(--accent-sky);
+      border-right: 2px solid var(--accent-sky);
+      pointer-events: none;
+    }
+
+    .dossier-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-sky);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .dossier-img-wrap {
+      width: 100%;
+      aspect-ratio: 764 / 1024;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+
+    .dossier-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .crew-dossier-card:hover .dossier-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .dossier-footer {
+      margin-top: 12px;
+      font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .dossier-names {
+      font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .dossier-role {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--accent-sky);
+      letter-spacing: 1px;
+    }
+
+
+    .container { max-width:1320px; padding-top:44px; }
+    .hero-grid { grid-template-columns:1.2fr 0.8fr; gap:36px; align-items:center; }
+    .hero-main { background:none; border:none; padding:0; box-shadow:none; backdrop-filter:none; }
+    .hero-title { font-family:"Noto Serif SC", "Songti SC", SimSun, serif; font-size:clamp(24px,3.2vw,38px); letter-spacing:1px; line-height:1.3; }
+    .hero-subtitle { font-family:"Noto Serif SC", "Songti SC", SimSun, serif; font-size:14.5px; }
+    .hero-prefix { display:inline-flex; font-size:11px; letter-spacing:2px; padding:5px 12px; border:1px solid rgba(56,189,248,.25); border-radius:4px; background:rgba(56,189,248,.06); }
+    .workflow-pill { display:flex; border-radius:6px; padding:9px 12px; font-size:11px; margin-bottom:18px; }
+    .hero-main .stats-grid { gap:8px; margin:18px 0 20px; }
+    .hero-main .stat-card { padding:8px 10px; border-radius:4px; }
+    .hero-main .stat-label { font-size:10px; }
+    .hero-main .stat-value { font-size:15px; color:#fff; }
+    .hero-console { display:flex; gap:10px; }
+    .hero-console .search-box { min-width:0; }
+    .hero-console .btn-random { flex-shrink:0; }
+    @media(max-width:960px) { .hero-grid { grid-template-columns:minmax(0,1fr); } }
+    @media(max-width:680px) { .hero-console { flex-wrap:wrap; } .dossier-names,.dossier-header { flex-wrap:wrap; gap:5px; } .hero-grid { gap:24px; } }
+
+</style>
 </head>
 <body>
 
@@ -906,7 +1028,7 @@
     <section class="hero-grid">
       <div class="hero-main">
         <div class="hero-prefix">// XINYU'S AI CODING DREAM FACTORY · MISSION CONTROL · 108 INTERACTIVE PODS</div>
-        <h1 class="hero-title">薪钰AI CODING梦工厂 · 全学段科学实验室</h1>
+        <h1 class="hero-title">薪钰AI CODING梦工厂</h1>
         <p class="hero-subtitle">
           将四年级少年的 <strong>42 个自然语言奇想宇宙</strong> 与 <strong>中学·大学阶段的 66 个数理化核心科学原理舱</strong> 全面合流归类（总计 108 个互动任务舱）。从少儿直觉实验出发，一键贯通至微积分、麦克斯韦电磁场、玻尔兹曼熵与量子波函数。
         </p>
@@ -916,29 +1038,6 @@
         <div class="method-note">
           <span>📖 底层方法论支撑：源自《AI进化十步法》少儿与青少年实战训练营 🚀 <a href="https://chrisqiao2024.github.io/kids-science-lab/book.html" target="_blank">查看新书与方法 ↗</a></span>
         </div>
-      </div>
-
-      <div class="hero-crew">
-        <div>
-          <div class="crew-header">
-            <span>● CREW ACTIVE // 任务乘组 · A FATHER-SON JOURNEY</span>
-            <span>108 PODS ONLINE</span>
-          </div>
-          <div style="display:flex;gap:14px;align-items:center;margin:10px 0 12px;">
-            <img src="https://chrisqiao2024.github.io/kids-science-lab/assets/father-son-cover.jpg" alt="乔薪钰 & Chris Qiao" style="width:84px;height:84px;border-radius:10px;object-fit:cover;border:1px solid rgba(56,189,248,0.4);" onerror="this.style.display='none'" />
-            <div style="font-size:12.5px;display:flex;flex-direction:column;gap:6px;">
-              <div><strong style="color:#FFF;font-size:14px;">乔薪钰 (XinYu Qiao)</strong><br><span style="color:#38BDF8;font-family:var(--font-mono);font-size:11px;">CREATOR // 小学四年级 · 42个少儿奇想舱主创</span></div>
-              <div><strong style="color:#FFF;font-size:14px;">Chris Qiao (乔瑞)</strong><br><span style="color:#38BDF8;font-family:var(--font-mono);font-size:11px;">CO-PILOT // AI CODING教练 · 66个中大原理舱架构</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="crew-quote">
-          “孩子负责无限的奇想与探索，教练负责拆解规则与协同护航——从小学四年级直通大学殿堂。”
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. Stat Badges Grid -->
     <section class="stats-grid">
       <div class="stat-card">
         <span class="stat-label">ACTIVE PODS // 现役总任务舱</span>
@@ -957,6 +1056,40 @@
         <span class="stat-value">纯端 · 即开即玩</span>
       </div>
     </section>
+<div class="hero-console">      <div class="search-box">
+        <span class="search-prefix">&gt;_</span>
+        <input type="text" id="search-input" class="search-input" placeholder="检索 108 个任务舱指令（例如：重力、黑洞、无人机、牛顿、拉格朗日、麦克斯韦、熵增、双缝、薛定谔、傅里叶、化学平衡...）" />
+      </div><button class="btn-random" id="btn-random-pod">🚀 随机启动任务舱</button></div>
+      </div>
+
+      <div class="hero-right">
+        <div class="crew-dossier-card">
+          <div class="dossier-header">
+            <span>● CREW ACTIVE // 任务乘组</span>
+            <span>A FATHER-SON JOURNEY</span>
+          </div>
+          <div class="dossier-img-wrap">
+            <img src="assets/father-son-cover.jpg" alt="NEW YORKER PROFILES: A FATHER-SON JOURNEY (乔薪钰与 Chris Qiao)">
+          </div>
+          <div class="dossier-footer">
+            <div class="dossier-names">
+              <span>乔薪钰 (XinYu Qiao)</span>
+              <span class="dossier-role">CREATOR // 小学四年级 · 10岁</span>
+            </div>
+            <div class="dossier-names" style="margin-top: 4px;">
+              <span>Chris Qiao</span>
+              <span class="dossier-role">CO-PILOT // 中小学生 AI CODING 教练</span>
+            </div>
+            <p style="margin-top: 6px; font-size: 11.5px; color: #94a3b8; font-family: var(--font-serif);">
+              “孩子负责无限的奇思与探索，教练负责拆解规则与协同护航。”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Stat Badges Grid -->
+
 
     <!-- Classification Mode Bar -->
     <section class="action-bar" style="background:rgba(15,23,42,0.82);padding:10px 14px;border-radius:12px;border:1px solid rgba(56,189,248,0.26);justify-content:space-between;">
@@ -967,16 +1100,13 @@
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
         <button class="btn-view-toggle" id="btn-toggle-view">📋 切换 108 舱矩阵总表</button>
-        <button class="btn-random" id="btn-random-pod">🚀 随机启动任务舱</button>
+        
       </div>
     </section>
 
     <!-- 4. Search & Stage Filter Bar -->
     <section class="action-bar">
-      <div class="search-box">
-        <span class="search-prefix">&gt;_</span>
-        <input type="text" id="search-input" class="search-input" placeholder="检索 108 个任务舱指令（例如：重力、黑洞、无人机、牛顿、拉格朗日、麦克斯韦、熵增、双缝、薛定谔、傅里叶、化学平衡...）" />
-      </div>
+
       <div class="stage-group" id="stage-filter-group">
         <button class="stage-btn active" data-stage="ALL">全部学段 108</button>
         <button class="stage-btn" data-stage="少儿奇想">🌱 少儿奇想 42</button>
