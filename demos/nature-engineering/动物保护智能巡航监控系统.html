@@ -1,0 +1,483 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>云野守护｜动物保护智能巡航监控系统</title>
+  <meta name="description" content="利用无人机巡航与动物追踪芯片，实现低成本、易使用的野生动物保护监控演示系统。" />
+  <style>
+    :root {
+      --bg: #06110f;
+      --panel: rgba(8, 27, 23, 0.78);
+      --panel-strong: rgba(8, 27, 23, 0.94);
+      --line: rgba(143, 242, 199, 0.17);
+      --green: #62f2b0;
+      --green-2: #21c983;
+      --cyan: #73dbe8;
+      --amber: #ffcc70;
+      --red: #ff6f68;
+      --text: #ecfff7;
+      --muted: #8cb5a6;
+      --shadow: 0 20px 70px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    body {
+      font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% 18%, rgba(31, 121, 89, .22), transparent 42%),
+        var(--bg);
+    }
+    button { font: inherit; }
+    #scene { position: fixed; inset: 0; }
+    #scene canvas { display: block; width: 100%; height: 100%; }
+
+    .vignette, .grid-noise {
+      position: fixed; inset: 0; pointer-events: none; z-index: 2;
+    }
+    .vignette { box-shadow: inset 0 0 180px 35px rgba(0,0,0,.58); }
+    .grid-noise {
+      opacity: .14;
+      background-image: linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
+    }
+
+    .topbar {
+      position: fixed; z-index: 5; left: 22px; right: 22px; top: 18px;
+      height: 66px; padding: 0 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      border: 1px solid var(--line); border-radius: 17px;
+      background: linear-gradient(90deg, rgba(7,27,22,.92), rgba(7,27,22,.60));
+      box-shadow: var(--shadow); backdrop-filter: blur(18px);
+    }
+    .brand { display: flex; align-items: center; gap: 13px; min-width: 0; }
+    .brand-mark {
+      width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px;
+      color: #042116; font-weight: 900; background: linear-gradient(145deg, #a4ffd4, #35d58d);
+      box-shadow: 0 0 30px rgba(72, 230, 157, .25);
+    }
+    .brand h1 { margin: 0; font-size: 17px; letter-spacing: .08em; }
+    .brand p { margin: 3px 0 0; font-size: 10px; color: var(--muted); letter-spacing: .15em; text-transform: uppercase; }
+    .top-status { display: flex; align-items: center; gap: 22px; font-size: 11px; color: var(--muted); }
+    .top-status b { color: var(--text); font-size: 13px; }
+    .online { display: flex; align-items: center; gap: 7px; color: var(--green); }
+    .online::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgba(98,242,176,.11); animation: blink 1.8s infinite; }
+
+    .side {
+      position: fixed; z-index: 5; top: 100px; bottom: 22px; width: 290px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .side.left { left: 22px; }
+    .side.right { right: 22px; }
+    .panel {
+      border: 1px solid var(--line); border-radius: 16px; padding: 16px;
+      background: var(--panel); backdrop-filter: blur(18px); box-shadow: var(--shadow);
+    }
+    .panel-title { margin: 0 0 14px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; letter-spacing: .12em; color: #c8f5e3; }
+    .panel-title small { font-size: 9px; font-weight: 400; color: var(--muted); letter-spacing: .06em; }
+
+    .primary-stat { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .stat { padding: 12px; border-radius: 13px; background: rgba(119, 231, 181, .055); border: 1px solid rgba(119, 231, 181, .08); }
+    .stat span { font-size: 10px; color: var(--muted); }
+    .stat strong { display: block; margin-top: 5px; font-size: 22px; line-height: 1; }
+    .stat strong em { font-style: normal; color: var(--green); font-size: 11px; font-weight: 500; margin-left: 3px; }
+
+    .animals { flex: 1; min-height: 0; overflow: auto; scrollbar-width: thin; scrollbar-color: rgba(98,242,176,.3) transparent; }
+    .animal-card {
+      width: 100%; display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 10px;
+      margin-bottom: 8px; padding: 10px; color: var(--text); text-align: left; cursor: pointer;
+      border: 1px solid transparent; border-radius: 12px; background: rgba(255,255,255,.035);
+      transition: .22s ease;
+    }
+    .animal-card:hover, .animal-card.active { transform: translateX(3px); background: rgba(98,242,176,.09); border-color: rgba(98,242,176,.22); }
+    .animal-icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 10px; background: rgba(98,242,176,.1); font-size: 20px; }
+    .animal-info b { display: block; font-size: 12px; }
+    .animal-info small { color: var(--muted); font-size: 9px; }
+    .animal-vital { text-align: right; }
+    .animal-vital b { font-size: 12px; color: var(--green); }
+    .animal-vital small { display: block; font-size: 9px; color: var(--muted); }
+
+    .drone-row { display: flex; align-items: center; gap: 12px; }
+    .drone-orb { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 50%; font-size: 22px; color: var(--green); border: 1px solid rgba(98,242,176,.28); background: rgba(98,242,176,.07); box-shadow: inset 0 0 20px rgba(98,242,176,.06); }
+    .drone-data { flex: 1; }
+    .drone-data div { display: flex; justify-content: space-between; margin: 4px 0; color: var(--muted); font-size: 10px; }
+    .drone-data b { color: var(--text); font-weight: 600; }
+    .battery { height: 4px; margin-top: 8px; overflow: hidden; border-radius: 10px; background: rgba(255,255,255,.08); }
+    .battery i { display: block; height: 100%; width: 87%; border-radius: inherit; background: linear-gradient(90deg, var(--green-2), var(--green)); box-shadow: 0 0 10px var(--green); }
+
+    .chart { height: 102px; position: relative; overflow: hidden; }
+    .chart-grid { position: absolute; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0, transparent 24px, rgba(255,255,255,.055) 25px); }
+    #heart-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    #heart-line { fill: none; stroke: var(--green); stroke-width: 2; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 5px rgba(98,242,176,.65)); }
+    .heart-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 7px; }
+    .heart-head strong { font-size: 27px; }
+    .heart-head strong em { font-size: 10px; font-style: normal; color: var(--muted); font-weight: 400; }
+    .heart-head span { font-size: 10px; color: var(--green); }
+
+    .features { display: grid; gap: 8px; }
+    .feature { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 9px; padding: 9px; border-radius: 11px; background: rgba(255,255,255,.032); }
+    .feature-icon { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 9px; color: var(--green); background: rgba(98,242,176,.09); }
+    .feature b { display: block; font-size: 11px; }
+    .feature small { font-size: 8px; color: var(--muted); }
+    .feature-tag { padding: 3px 7px; border-radius: 9px; color: var(--green); background: rgba(98,242,176,.08); font-size: 8px; }
+
+    .controls {
+      position: fixed; z-index: 6; left: 50%; bottom: 22px; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 8px; padding: 8px;
+      border: 1px solid var(--line); border-radius: 16px; background: var(--panel-strong); box-shadow: var(--shadow); backdrop-filter: blur(18px);
+    }
+    .control-btn { border: 0; border-radius: 10px; padding: 10px 13px; color: var(--muted); background: transparent; cursor: pointer; transition: .2s ease; }
+    .control-btn:hover { color: white; background: rgba(255,255,255,.06); }
+    .control-btn.primary { color: #042116; background: linear-gradient(135deg, #9dffd0, #45dc96); font-weight: 800; min-width: 112px; }
+    .control-btn.primary:hover { filter: brightness(1.08); }
+
+    .scene-label {
+      position: fixed; z-index: 3; left: 50%; top: 110px; transform: translateX(-50%);
+      pointer-events: none; text-align: center; text-shadow: 0 3px 20px rgba(0,0,0,.85);
+    }
+    .scene-label .eyebrow { color: var(--green); font-size: 9px; letter-spacing: .35em; }
+    .scene-label h2 { margin: 7px 0 4px; font-size: clamp(20px, 2.1vw, 34px); letter-spacing: .12em; }
+    .scene-label p { margin: 0; color: rgba(226,255,243,.68); font-size: 10px; letter-spacing: .12em; }
+
+    .alert {
+      position: fixed; z-index: 9; left: 50%; top: 92px; transform: translate(-50%, -20px); padding: 10px 15px;
+      opacity: 0; pointer-events: none; border-radius: 12px; border: 1px solid rgba(255,111,104,.32); color: #ffd9d6;
+      background: rgba(77, 18, 17, .9); box-shadow: 0 10px 35px rgba(0,0,0,.3); transition: .25s ease;
+      font-size: 11px;
+    }
+    .alert.show { opacity: 1; transform: translate(-50%, 0); }
+    .demo-note { position: fixed; z-index: 5; right: 31px; bottom: 5px; color: rgba(207,237,225,.35); font-size: 8px; letter-spacing: .08em; }
+
+    @keyframes blink { 50% { opacity: .45; } }
+    @media (max-width: 1040px) {
+      .side { width: 250px; }
+      .side.left { left: 12px; } .side.right { right: 12px; }
+      .topbar { left: 12px; right: 12px; }
+      .top-status .hide-small { display: none; }
+    }
+    @media (max-width: 760px) {
+      html, body { overflow: auto; background: #071612; }
+      #scene { height: 66vh; position: fixed; }
+      .topbar { height: 58px; top: 10px; }
+      .brand h1 { font-size: 13px; } .brand p { display: none; }
+      .top-status { gap: 9px; } .top-status > div:not(.online) { display: none; }
+      .scene-label { top: 84px; width: 100%; }
+      .scene-label p { display: none; }
+      .side { position: absolute; top: 61vh; bottom: auto; width: calc(100% - 24px); left: 12px !important; right: auto !important; }
+      .side.right { top: calc(61vh + 570px); padding-bottom: 100px; }
+      .controls { bottom: 12px; width: calc(100% - 24px); justify-content: center; }
+      .control-btn { padding: 10px 9px; font-size: 11px; }
+      .demo-note { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="scene" aria-label="三维无人机巡航保护区场景"></div>
+  <div class="grid-noise"></div><div class="vignette"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">巡</div>
+      <div><h1>云野守护 · 智能巡航系统</h1><p>Wildlife Intelligent Patrol System</p></div>
+    </div>
+    <div class="top-status">
+      <div class="hide-small">保护区 <b>秦岭东部 · A03</b></div>
+      <div class="hide-small">气象 <b>18℃ / 微风</b></div>
+      <div class="online">系统在线</div>
+      <div id="clock">--:--:--</div>
+    </div>
+  </header>
+
+  <div class="scene-label">
+    <div class="eyebrow">天空之眼 · 守护自然</div>
+    <h2>无人值守智能巡航中</h2>
+    <p>无人机巡航 × 追踪芯片 × 生命体征预警</p>
+  </div>
+
+  <aside class="side left">
+    <section class="panel">
+      <h3 class="panel-title">今日巡护概况 <small>实时更新</small></h3>
+      <div class="primary-stat">
+        <div class="stat"><span>已巡航里程</span><strong id="distance">12.8<em>km</em></strong></div>
+        <div class="stat"><span>在册动物</span><strong>128<em>只</em></strong></div>
+        <div class="stat"><span>识别准确率</span><strong>97.6<em>%</em></strong></div>
+        <div class="stat"><span>今日人工投入</span><strong>0<em>人次</em></strong></div>
+      </div>
+    </section>
+    <section class="panel animals">
+      <h3 class="panel-title">动物追踪芯片 <small>4 个可视目标</small></h3>
+      <div id="animal-list"></div>
+    </section>
+    <section class="panel">
+      <h3 class="panel-title">巡航设备 <small>国产低空平台</small></h3>
+      <div class="drone-row">
+        <div class="drone-orb">⌁</div>
+        <div class="drone-data">
+          <div><span>云雀 X1 无人机</span><b>巡航中</b></div>
+          <div><span>电量 / 信号</span><b>87% / -42dBm</b></div>
+          <div class="battery"><i></i></div>
+        </div>
+      </div>
+    </section>
+  </aside>
+
+  <aside class="side right">
+    <section class="panel">
+      <h3 class="panel-title">生命体征 <small id="selected-id">QL-027</small></h3>
+      <div class="heart-head"><strong><span id="heart-number">72</span><em> BPM</em></strong><span id="health-state">● 状态正常</span></div>
+      <div class="chart"><div class="chart-grid"></div><svg id="heart-svg" viewBox="0 0 260 100" preserveAspectRatio="none"><polyline id="heart-line" points="0,55 20,54 30,52 36,58 42,18 49,82 57,48 75,54 100,54 118,52 124,58 130,22 137,79 145,49 165,54 190,54 207,53 214,58 220,24 227,78 236,50 260,54" /></svg></div>
+      <div class="primary-stat" style="margin-top:10px">
+        <div class="stat"><span>体温</span><strong style="font-size:17px"><span id="temperature">38.2</span><em>℃</em></strong></div>
+        <div class="stat"><span>芯片电量</span><strong style="font-size:17px"><span id="chip-battery">91</span><em>%</em></strong></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3 class="panel-title">国产化适配方案 <small>自主可控</small></h3>
+      <div class="features">
+        <div class="feature"><div class="feature-icon">芯</div><div><b>国产飞控与芯片</b><small>本地算法，数据不出域</small></div><span class="feature-tag">国产</span></div>
+        <div class="feature"><div class="feature-icon">网</div><div><b>北斗 + 国产通信</b><small>山地弱网仍可断点巡航</small></div><span class="feature-tag">可靠</span></div>
+        <div class="feature"><div class="feature-icon">云</div><div><b>国产系统与平台</b><small>支持本地化私有部署</small></div><span class="feature-tag">安全</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3 class="panel-title">轻量部署 <small>低成本方案</small></h3>
+      <div class="features">
+        <div class="feature"><div class="feature-icon">1</div><div><b>一键启动</b><small>预设航线，自动返航</small></div><span class="feature-tag">简单</span></div>
+        <div class="feature"><div class="feature-icon">24</div><div><b>全天候值守</b><small>降低重复人工巡山成本</small></div><span class="feature-tag">省力</span></div>
+        <div class="feature"><div class="feature-icon">¥</div><div><b>模块化采购</b><small>按保护区规模逐步扩容</small></div><span class="feature-tag">低成本</span></div>
+      </div>
+    </section>
+  </aside>
+
+  <nav class="controls" aria-label="巡航控制">
+    <button class="control-btn primary" id="patrol-btn">Ⅱ 暂停巡航</button>
+    <button class="control-btn" id="view-btn">◉ 切换视角</button>
+    <button class="control-btn" id="route-btn">⌁ 航线显示</button>
+    <button class="control-btn" id="alert-btn">⚠ 模拟预警</button>
+  </nav>
+  <div class="alert" id="alert">⚠ QL-027 心率偏高，巡航无人机正在前往复核</div>
+  <div class="demo-note">概念演示系统 · 页面数据均为模拟数据</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script>
+    (() => {
+      'use strict';
+
+      const animals = [
+        { id:'QL-027', name:'秦岭羚牛', icon:'♞', heart:72, temp:38.2, battery:91, color:0x62f2b0, pos:[-7, .38, 2.8] },
+        { id:'HJ-014', name:'金丝猴', icon:'●', heart:88, temp:37.6, battery:78, color:0x73dbe8, pos:[4.7, .65, 3.8] },
+        { id:'MX-063', name:'梅花鹿', icon:'♧', heart:64, temp:38.5, battery:84, color:0xffcc70, pos:[7.4, .36, -2.8] },
+        { id:'SZ-009', name:'朱鹮', icon:'⌁', heart:126, temp:40.1, battery:69, color:0xff9ca0, pos:[-2.8, 1.55, -6.5] }
+      ];
+      let selected = 0;
+      let running = true;
+      let routeVisible = true;
+      let alertMode = false;
+      let viewMode = 0;
+      let progress = 0;
+      let distance = 12.8;
+
+      const list = document.getElementById('animal-list');
+      animals.forEach((a, index) => {
+        const button = document.createElement('button');
+        button.className = 'animal-card' + (index === 0 ? ' active' : '');
+        button.innerHTML = `<span class="animal-icon">${a.icon}</span><span class="animal-info"><b>${a.name}</b><small>${a.id} · 定位正常</small></span><span class="animal-vital"><b>${a.heart} BPM</b><small>电量 ${a.battery}%</small></span>`;
+        button.addEventListener('click', () => selectAnimal(index));
+        list.appendChild(button);
+      });
+
+      function selectAnimal(index) {
+        selected = index;
+        const a = animals[index];
+        document.querySelectorAll('.animal-card').forEach((el, i) => el.classList.toggle('active', i === index));
+        document.getElementById('selected-id').textContent = a.id;
+        document.getElementById('heart-number').textContent = a.heart;
+        document.getElementById('temperature').textContent = a.temp.toFixed(1);
+        document.getElementById('chip-battery').textContent = a.battery;
+        document.getElementById('health-state').textContent = '● 状态正常';
+        document.getElementById('health-state').style.color = 'var(--green)';
+        alertMode = false;
+        updateAnimalHighlights();
+      }
+
+      function updateClock() {
+        document.getElementById('clock').textContent = new Date().toLocaleTimeString('zh-CN', {hour12:false});
+      }
+      updateClock(); setInterval(updateClock, 1000);
+
+      if (!window.THREE) {
+        document.getElementById('scene').innerHTML = '<div style="display:grid;place-items:center;height:100%;color:#9ad6bd">Three.js 加载失败，请连接网络后刷新页面。</div>';
+        return;
+      }
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x06110f);
+      scene.fog = new THREE.FogExp2(0x07130f, 0.025);
+
+      const camera = new THREE.PerspectiveCamera(46, innerWidth / innerHeight, 0.1, 100);
+      camera.position.set(15, 11.5, 18);
+      const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:false, powerPreference:'high-performance' });
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      renderer.setSize(innerWidth, innerHeight);
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      document.getElementById('scene').appendChild(renderer.domElement);
+
+      scene.add(new THREE.HemisphereLight(0xbdeedd, 0x0c1912, 1.3));
+      const sun = new THREE.DirectionalLight(0xc8ffe4, 1.25);
+      sun.position.set(-8, 18, 10); sun.castShadow = true;
+      sun.shadow.mapSize.set(1024,1024); sun.shadow.camera.left = -18; sun.shadow.camera.right = 18; sun.shadow.camera.top = 18; sun.shadow.camera.bottom = -18;
+      scene.add(sun);
+
+      const terrainGeo = new THREE.PlaneGeometry(45, 45, 40, 40);
+      const p = terrainGeo.attributes.position;
+      for (let i=0; i<p.count; i++) {
+        const x=p.getX(i), y=p.getY(i);
+        const z = Math.sin(x*.42)*.36 + Math.cos(y*.35)*.26 + Math.sin((x+y)*.7)*.12 - Math.exp(-(x*x+y*y)/80)*.45;
+        p.setZ(i,z);
+      }
+      terrainGeo.computeVertexNormals();
+      const terrain = new THREE.Mesh(terrainGeo, new THREE.MeshStandardMaterial({color:0x153a2a, roughness:.95, metalness:.02}));
+      terrain.rotation.x = -Math.PI/2; terrain.receiveShadow = true; scene.add(terrain);
+
+      const trunkMat = new THREE.MeshStandardMaterial({color:0x493f28, roughness:1});
+      const leafMats = [0x1a5b38,0x216c42,0x2c7448].map(c => new THREE.MeshStandardMaterial({color:c, roughness:.9}));
+      const trunkGeo = new THREE.CylinderGeometry(.08,.13,.65,6);
+      const crownGeo = new THREE.ConeGeometry(.48,1.35,7);
+      const rand = (seed) => { const x=Math.sin(seed*999)*43758.5453; return x-Math.floor(x); };
+      for(let i=0;i<125;i++){
+        let x=(rand(i+2)-.5)*38, z=(rand(i+44)-.5)*38;
+        if(Math.abs(x)<2.5 && Math.abs(z)<2.5) x += 4;
+        const s=.65+rand(i+81)*.9;
+        const tree = new THREE.Group();
+        const trunk = new THREE.Mesh(trunkGeo,trunkMat); trunk.position.y=.32;
+        const crown = new THREE.Mesh(crownGeo,leafMats[i%3]); crown.position.y=1.15; crown.castShadow=true;
+        tree.add(trunk,crown); tree.scale.setScalar(s); tree.position.set(x,0,z); scene.add(tree);
+      }
+
+      const pad = new THREE.Mesh(new THREE.CylinderGeometry(1.75,1.75,.12,48), new THREE.MeshStandardMaterial({color:0x122a24, metalness:.45, roughness:.55}));
+      pad.position.y=.08; pad.receiveShadow=true; scene.add(pad);
+      const padRing = new THREE.Mesh(new THREE.RingGeometry(1.15,1.3,48), new THREE.MeshBasicMaterial({color:0x62f2b0,transparent:true,opacity:.45,side:THREE.DoubleSide}));
+      padRing.rotation.x=-Math.PI/2; padRing.position.y=.15; scene.add(padRing);
+      const hBar1 = new THREE.Mesh(new THREE.BoxGeometry(1.35,.04,.18), new THREE.MeshBasicMaterial({color:0x62f2b0}));
+      const hBar2=hBar1.clone(); hBar1.position.y=hBar2.position.y=.17; hBar2.rotation.y=Math.PI/2; scene.add(hBar1,hBar2);
+
+      function makeDrone(){
+        const g=new THREE.Group();
+        const dark=new THREE.MeshStandardMaterial({color:0x172a27,metalness:.75,roughness:.25});
+        const green=new THREE.MeshStandardMaterial({color:0x62f2b0,emissive:0x174a35,metalness:.4});
+        const body=new THREE.Mesh(new THREE.BoxGeometry(1.05,.28,.65),dark); body.castShadow=true; g.add(body);
+        const dome=new THREE.Mesh(new THREE.SphereGeometry(.25,16,8,0,Math.PI*2,0,Math.PI/2),green); dome.position.y=.13; g.add(dome);
+        const armGeo=new THREE.BoxGeometry(1.75,.07,.08);
+        const a1=new THREE.Mesh(armGeo,dark), a2=a1.clone(); a1.rotation.y=Math.PI/4; a2.rotation.y=-Math.PI/4; g.add(a1,a2);
+        g.userData.rotors=[];
+        [[.62,.62],[-.62,.62],[.62,-.62],[-.62,-.62]].forEach(([x,z])=>{
+          const rotor=new THREE.Mesh(new THREE.BoxGeometry(.78,.025,.065),new THREE.MeshBasicMaterial({color:0xb7ffe0,transparent:true,opacity:.72}));
+          rotor.position.set(x,.08,z); g.add(rotor); g.userData.rotors.push(rotor);
+        });
+        const cam=new THREE.Mesh(new THREE.SphereGeometry(.14,12,8),new THREE.MeshStandardMaterial({color:0x0a1110,metalness:.8})); cam.position.set(0,-.22,.28); g.add(cam);
+        const scan=new THREE.Mesh(new THREE.ConeGeometry(1.3,4.2,32,1,true),new THREE.MeshBasicMaterial({color:0x62f2b0,transparent:true,opacity:.045,side:THREE.DoubleSide,depthWrite:false}));
+        scan.position.y=-2.25; scan.rotation.x=Math.PI; g.add(scan);
+        g.scale.setScalar(.86); return g;
+      }
+      const drone=makeDrone(); scene.add(drone);
+
+      const routePts=[[-8,5,-5],[-2,6,-8],[6,5.2,-6],[9,5,0],[6,5.8,6],[-2,5.1,8],[-9,5.5,4],[-11,5,-1]].map(v=>new THREE.Vector3(...v));
+      const routeCurve=new THREE.CatmullRomCurve3(routePts,true,'catmullrom',.42);
+      const routeGeo=new THREE.TubeGeometry(routeCurve,180,.028,5,true);
+      const route=new THREE.Mesh(routeGeo,new THREE.MeshBasicMaterial({color:0x62f2b0,transparent:true,opacity:.38})); scene.add(route);
+      const routeDots=[];
+      for(let i=0;i<24;i++){
+        const dot=new THREE.Mesh(new THREE.SphereGeometry(.055,8,8),new THREE.MeshBasicMaterial({color:0xb8ffda}));
+        dot.position.copy(routeCurve.getPoint(i/24)); scene.add(dot); routeDots.push(dot);
+      }
+
+      const animalGroups=[];
+      function animalShape(color,type){
+        const g=new THREE.Group(), mat=new THREE.MeshStandardMaterial({color,roughness:.75});
+        const body=new THREE.Mesh(new THREE.SphereGeometry(.34,12,8),mat); body.scale.set(1.45,.85,.75); body.castShadow=true; g.add(body);
+        const head=new THREE.Mesh(new THREE.SphereGeometry(.2,10,7),mat); head.position.set(.46,.18,0); g.add(head);
+        if(type===3){ g.rotation.z=-.2; const wing=new THREE.Mesh(new THREE.BoxGeometry(.65,.04,.22),mat); wing.position.set(-.1,.05,0); wing.rotation.y=.4; g.add(wing); }
+        else { for(const z of [-.18,.18]) for(const x of [-.24,.23]) { const leg=new THREE.Mesh(new THREE.CylinderGeometry(.035,.03,.35,5),mat); leg.position.set(x,-.35,z); g.add(leg); } }
+        return g;
+      }
+      animals.forEach((a,i)=>{
+        const group=new THREE.Group(); group.position.set(...a.pos);
+        const shape=animalShape(a.color,i); group.add(shape);
+        const ring=new THREE.Mesh(new THREE.RingGeometry(.58,.65,32),new THREE.MeshBasicMaterial({color:a.color,transparent:true,opacity:.8,side:THREE.DoubleSide}));
+        ring.rotation.x=-Math.PI/2; ring.position.y=-.3; group.add(ring);
+        const beacon=new THREE.Mesh(new THREE.CylinderGeometry(.018,.018,2.3,6),new THREE.MeshBasicMaterial({color:a.color,transparent:true,opacity:.35})); beacon.position.y=.85; group.add(beacon);
+        const pulse=new THREE.Mesh(new THREE.RingGeometry(.14,.18,24),new THREE.MeshBasicMaterial({color:a.color,transparent:true,opacity:.9,side:THREE.DoubleSide})); pulse.rotation.x=-Math.PI/2; pulse.position.y=1.95; group.add(pulse); group.userData={ring,pulse,shape};
+        scene.add(group); animalGroups.push(group);
+      });
+
+      function updateAnimalHighlights(){
+        animalGroups.forEach((g,i)=>{
+          g.userData.ring.material.opacity=i===selected?1:.35;
+          g.userData.ring.scale.setScalar(i===selected?1.35:1);
+        });
+      }
+      updateAnimalHighlights();
+
+      const starsGeo=new THREE.BufferGeometry(), starData=[];
+      for(let i=0;i<160;i++) starData.push((rand(i+300)-.5)*60, 8+rand(i+700)*18, (rand(i+500)-.5)*60);
+      starsGeo.setAttribute('position',new THREE.Float32BufferAttribute(starData,3));
+      scene.add(new THREE.Points(starsGeo,new THREE.PointsMaterial({color:0xb6fadd,size:.04,transparent:true,opacity:.42})));
+
+      const patrolBtn=document.getElementById('patrol-btn');
+      patrolBtn.addEventListener('click',()=>{ running=!running; patrolBtn.textContent=running?'Ⅱ 暂停巡航':'▶ 继续巡航'; });
+      document.getElementById('route-btn').addEventListener('click',()=>{ routeVisible=!routeVisible; route.visible=routeVisible; routeDots.forEach(d=>d.visible=routeVisible); });
+      document.getElementById('view-btn').addEventListener('click',()=>{ viewMode=(viewMode+1)%3; });
+      document.getElementById('alert-btn').addEventListener('click',()=>{
+        alertMode=!alertMode;
+        const state=document.getElementById('health-state'), toast=document.getElementById('alert');
+        if(alertMode){ state.textContent='● 心率异常'; state.style.color='var(--red)'; document.getElementById('heart-number').textContent=118; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),3200); }
+        else selectAnimal(selected);
+      });
+
+      const clock=new THREE.Clock();
+      function animate(){
+        requestAnimationFrame(animate);
+        const t=clock.getElapsedTime();
+        if(running){ progress=(progress+.00072)%1; distance+=.00028; document.getElementById('distance').innerHTML=distance.toFixed(1)+'<em>km</em>'; }
+        const dp=routeCurve.getPoint(progress), ahead=routeCurve.getPoint((progress+.008)%1);
+        drone.position.copy(dp); drone.lookAt(ahead); drone.userData.rotors.forEach((r,i)=>r.rotation.y=t*(i%2?28:-28));
+        drone.position.y+=Math.sin(t*2.4)*.09;
+        animalGroups.forEach((g,i)=>{
+          const s=1+((Math.sin(t*2.1+i)+1)*.18); g.userData.pulse.scale.setScalar(s); g.userData.pulse.material.opacity=.7-(s-1)*1.3;
+          if(i===3) g.userData.shape.position.y=Math.sin(t*1.7)*.13;
+        });
+        padRing.rotation.z=t*.18;
+        const target=viewMode===1?drone.position:new THREE.Vector3(0,1,0);
+        let desired;
+        if(viewMode===0) desired=new THREE.Vector3(Math.sin(t*.07)*17,10.5,Math.cos(t*.07)*17);
+        else if(viewMode===1) desired=drone.position.clone().add(new THREE.Vector3(4.5,3.2,5.5));
+        else desired=new THREE.Vector3(0,24,.1);
+        camera.position.lerp(desired,.018); camera.lookAt(target);
+        renderer.render(scene,camera);
+      }
+      animate();
+
+      setInterval(()=>{
+        if(!alertMode){
+          const a=animals[selected], variation=Math.round(Math.sin(Date.now()/1200)*2);
+          document.getElementById('heart-number').textContent=a.heart+variation;
+          const line=document.getElementById('heart-line'); line.style.transform=`translateY(${variation*.25}px)`;
+        }
+      },900);
+
+      addEventListener('resize',()=>{
+        camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
+        renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+      });
+    })();
+  </script>
+<a href="../../index.html" class="kids-lab-back-float" style="position:fixed;bottom:20px;left:20px;z-index:999999;background:rgba(15,23,42,0.88);backdrop-filter:blur(10px);color:#f8fafc;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);display:inline-flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.background='#6366f1'" onmouseout="this.style.transform='none';this.style.background='rgba(15,23,42,0.88)'">🏠 返回实验展馆</a>
+</body>
+</html>

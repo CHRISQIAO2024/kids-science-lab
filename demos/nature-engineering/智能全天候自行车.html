@@ -1,0 +1,438 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>未来骑行实验室｜智能全天候自行车</title>
+  <style>
+    :root {
+      --ink: #eaf7ff;
+      --muted: #8ca6b8;
+      --cyan: #4de7ff;
+      --orange: #ff9f43;
+      --panel: rgba(8, 19, 32, .78);
+      --line: rgba(145, 211, 235, .18);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      color: var(--ink);
+      background: #050b12;
+      font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+    }
+    #scene { position: fixed; inset: 0; }
+    #scene::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 65% 42%, transparent 0 18%, rgba(3, 8, 14, .08) 55%, rgba(3, 8, 14, .7) 100%);
+    }
+    .brand {
+      position: fixed;
+      top: 28px;
+      left: 34px;
+      z-index: 5;
+    }
+    .brand small {
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .28em;
+    }
+    .brand h1 {
+      margin: 7px 0 0;
+      font-size: clamp(22px, 3vw, 40px);
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .brand h1 span { color: var(--cyan); }
+    .status {
+      position: fixed;
+      top: 34px;
+      right: 34px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      color: #b9d2e0;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(6, 15, 25, .62);
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+    }
+    .status i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #68ffb5;
+      box-shadow: 0 0 12px #68ffb5;
+    }
+    .panel {
+      position: fixed;
+      z-index: 6;
+      left: 34px;
+      bottom: 38px;
+      width: min(380px, calc(100vw - 68px));
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, .35);
+      backdrop-filter: blur(16px);
+    }
+    .eyebrow {
+      display: flex;
+      justify-content: space-between;
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .15em;
+    }
+    .feature-title { margin: 9px 0 5px; font-size: 20px; }
+    .feature-copy { margin: 0 0 15px; min-height: 42px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    button {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 11px 8px;
+      color: #b7ccda;
+      background: rgba(255,255,255,.035);
+      cursor: pointer;
+      transition: .22s ease;
+      font: inherit;
+      font-size: 12px;
+    }
+    button:hover, button:focus-visible { color: white; border-color: rgba(77, 231, 255, .62); outline: none; transform: translateY(-1px); }
+    button.active { color: #031019; border-color: var(--cyan); background: var(--cyan); box-shadow: 0 0 22px rgba(77, 231, 255, .24); font-weight: 800; }
+    .drive { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 8px; }
+    .drive button { padding: 9px 6px; }
+    .hint {
+      position: fixed;
+      right: 34px;
+      bottom: 38px;
+      z-index: 5;
+      color: #6f8797;
+      font-size: 11px;
+      letter-spacing: .08em;
+    }
+    .copyright {
+      position: fixed;
+      z-index: 5;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      color: rgba(190, 214, 225, .35);
+      white-space: nowrap;
+      font-size: 9px;
+    }
+    .watermark {
+      position: fixed;
+      z-index: 4;
+      top: 72px;
+      right: 34px;
+      color: rgba(77, 231, 255, .36);
+      font-size: 11px;
+      letter-spacing: .12em;
+    }
+    @media (max-width: 680px) {
+      .brand { top: 18px; left: 18px; }
+      .brand h1 { font-size: 23px; }
+      .status { top: 18px; right: 18px; padding: 7px 9px; }
+      .status span { display: none; }
+      .watermark { top: 54px; right: 18px; font-size: 9px; }
+      .panel { left: 14px; bottom: 25px; width: calc(100vw - 28px); padding: 14px; }
+      .hint, .copyright { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="scene"></div>
+  <header class="brand">
+    <small>FUTURE MOBILITY LAB</small>
+    <h1>智能<span>全天候</span>自行车</h1>
+  </header>
+  <div class="status"><i></i><span>3D 实时系统运行中</span></div>
+  <div class="watermark">AI进化十步法实战训练营</div>
+
+  <section class="panel" aria-label="功能演示控制台">
+    <div class="eyebrow"><span id="featureNo">FEATURE 01</span><span id="modeLabel">自动巡演</span></div>
+    <h2 class="feature-title" id="featureTitle">全天候防晒 · 防雨</h2>
+    <p class="feature-copy" id="featureCopy">智能顶棚自动展开，晴天隔离强光，雨天形成骑行保护舱。</p>
+    <div class="features">
+      <button class="feature active" data-feature="0">01 防晒防雨</button>
+      <button class="feature" data-feature="1">02 防锈链条</button>
+      <button class="feature" data-feature="2">03 双向行驶</button>
+    </div>
+    <div class="drive">
+      <button id="backward">← 向后倒退</button>
+      <button id="stop">暂停</button>
+      <button id="forward">向前行驶 →</button>
+    </div>
+  </section>
+  <div class="hint">拖动旋转 · 滚轮缩放 · 点击按钮演示</div>
+  <div class="copyright">本课件版权归作者所有，未经授权请勿转载、摘录或用于其他商业用途。</div>
+
+  <script type="importmap">
+    {"imports":{"three":"https://unpkg.com/three@0.164.1/build/three.module.js","three/addons/":"https://unpkg.com/three@0.164.1/examples/jsm/"}}
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const host = document.getElementById('scene');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x050b12);
+    scene.fog = new THREE.FogExp2(0x050b12, 0.035);
+
+    const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, .1, 100);
+    camera.position.set(8.5, 4.7, 9.5);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+    host.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 1.7, 0);
+    controls.enableDamping = true;
+    controls.minDistance = 5;
+    controls.maxDistance = 16;
+    controls.maxPolarAngle = Math.PI * .49;
+
+    scene.add(new THREE.HemisphereLight(0x92dcff, 0x17202c, 2.1));
+    const key = new THREE.DirectionalLight(0xffffff, 3.2);
+    key.position.set(4, 8, 5);
+    key.castShadow = true;
+    scene.add(key);
+    const rim = new THREE.PointLight(0x19d9ff, 35, 18);
+    rim.position.set(-4, 3, -3);
+    scene.add(rim);
+
+    const floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(40, 40),
+      new THREE.MeshStandardMaterial({ color: 0x07111b, roughness: .78, metalness: .18 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    scene.add(floor);
+    const grid = new THREE.GridHelper(40, 40, 0x1d6a7d, 0x102b38);
+    grid.material.opacity = .25;
+    grid.material.transparent = true;
+    scene.add(grid);
+
+    const bike = new THREE.Group();
+    bike.rotation.y = -.18;
+    scene.add(bike);
+
+    const dark = new THREE.MeshStandardMaterial({ color: 0x111c25, metalness: .82, roughness: .25 });
+    const frameMat = new THREE.MeshStandardMaterial({ color: 0x12cbe5, metalness: .7, roughness: .22, emissive: 0x032f3a });
+    const rubber = new THREE.MeshStandardMaterial({ color: 0x050608, roughness: .72 });
+    const chrome = new THREE.MeshStandardMaterial({ color: 0xb9d6df, metalness: 1, roughness: .13 });
+    const rustproof = new THREE.MeshStandardMaterial({ color: 0xbfeaf2, metalness: 1, roughness: .12, emissive: 0x062f36 });
+
+    function tubeBetween(a, b, radius, material) {
+      const dir = new THREE.Vector3().subVectors(b, a);
+      const mesh = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, dir.length(), 16), material);
+      mesh.position.copy(a).add(b).multiplyScalar(.5);
+      mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().normalize());
+      mesh.castShadow = true;
+      bike.add(mesh);
+      return mesh;
+    }
+
+    const wheels = [];
+    function makeWheel(x) {
+      const g = new THREE.Group();
+      g.position.set(x, 1.05, 0);
+      const tire = new THREE.Mesh(new THREE.TorusGeometry(1.02, .085, 16, 64), rubber);
+      tire.castShadow = true;
+      g.add(tire);
+      const rimMesh = new THREE.Mesh(new THREE.TorusGeometry(.88, .022, 10, 64), chrome);
+      g.add(rimMesh);
+      for (let i = 0; i < 16; i++) {
+        const a = i / 16 * Math.PI * 2;
+        const spoke = new THREE.Mesh(new THREE.CylinderGeometry(.008, .008, .86, 5), chrome);
+        spoke.rotation.z = a;
+        spoke.position.set(Math.cos(a) * .43, Math.sin(a) * .43, 0);
+        g.add(spoke);
+      }
+      const hub = new THREE.Mesh(new THREE.CylinderGeometry(.09, .09, .22, 16), dark);
+      hub.rotation.x = Math.PI / 2;
+      g.add(hub);
+      bike.add(g);
+      wheels.push(g);
+      return g;
+    }
+    makeWheel(-2.05);
+    makeWheel(2.05);
+
+    const rear = new THREE.Vector3(-2.05, 1.05, 0);
+    const front = new THREE.Vector3(2.05, 1.05, 0);
+    const crank = new THREE.Vector3(-.25, 1.08, 0);
+    const seat = new THREE.Vector3(-.78, 2.55, 0);
+    const steer = new THREE.Vector3(1.45, 2.55, 0);
+    tubeBetween(rear, seat, .075, frameMat);
+    tubeBetween(seat, crank, .085, frameMat);
+    tubeBetween(crank, rear, .065, frameMat);
+    tubeBetween(seat, steer, .08, frameMat);
+    tubeBetween(steer, crank, .085, frameMat);
+    tubeBetween(steer, front, .065, chrome);
+    tubeBetween(steer, new THREE.Vector3(1.65, 3.12, 0), .055, dark);
+    tubeBetween(seat, new THREE.Vector3(-.86, 2.88, 0), .05, dark);
+
+    const saddle = new THREE.Mesh(new THREE.BoxGeometry(.72, .11, .34), dark);
+    saddle.position.set(-.92, 2.92, 0);
+    saddle.rotation.z = -.05;
+    saddle.geometry.translate(0, .02, 0);
+    bike.add(saddle);
+    const handlebar = new THREE.Mesh(new THREE.CylinderGeometry(.04, .04, 1.02, 14), chrome);
+    handlebar.position.set(1.65, 3.13, 0);
+    handlebar.rotation.x = Math.PI / 2;
+    bike.add(handlebar);
+
+    const crankGroup = new THREE.Group();
+    crankGroup.position.copy(crank);
+    bike.add(crankGroup);
+    const gear = new THREE.Mesh(new THREE.TorusGeometry(.3, .035, 10, 32), rustproof);
+    crankGroup.add(gear);
+    const pedalBar = new THREE.Mesh(new THREE.BoxGeometry(.76, .045, .045), chrome);
+    crankGroup.add(pedalBar);
+    const rearGear = new THREE.Mesh(new THREE.TorusGeometry(.15, .025, 8, 24), rustproof);
+    rearGear.position.copy(rear);
+    bike.add(rearGear);
+
+    const chainCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-2.05, .90, .03), new THREE.Vector3(-.25, .78, .03),
+      new THREE.Vector3(.05, 1.08, .03), new THREE.Vector3(-.25, 1.38, .03),
+      new THREE.Vector3(-2.05, 1.20, .03), new THREE.Vector3(-2.20, 1.05, .03)
+    ], true, 'catmullrom', .1);
+    const chain = new THREE.Mesh(new THREE.TubeGeometry(chainCurve, 90, .025, 8, true), rustproof);
+    bike.add(chain);
+
+    const canopy = new THREE.Group();
+    bike.add(canopy);
+    const supports = [
+      tubeBetween(new THREE.Vector3(-1.25, 2.55, -.4), new THREE.Vector3(-1.25, 4.0, -.4), .025, chrome),
+      tubeBetween(new THREE.Vector3(-1.25, 2.55, .4), new THREE.Vector3(-1.25, 4.0, .4), .025, chrome),
+      tubeBetween(new THREE.Vector3(1.35, 2.4, -.4), new THREE.Vector3(1.35, 4.0, -.4), .025, chrome),
+      tubeBetween(new THREE.Vector3(1.35, 2.4, .4), new THREE.Vector3(1.35, 4.0, .4), .025, chrome)
+    ];
+    supports.forEach(s => { bike.remove(s); canopy.add(s); });
+    const roofMat = new THREE.MeshPhysicalMaterial({ color: 0x2de4ff, transparent: true, opacity: .5, roughness: .12, metalness: .1, transmission: .28, side: THREE.DoubleSide });
+    const roof = new THREE.Mesh(new THREE.BoxGeometry(3.25, .09, 1.35), roofMat);
+    roof.position.set(.05, 4.02, 0);
+    roof.rotation.z = -.02;
+    canopy.add(roof);
+    canopy.scale.set(.03, .03, .03);
+
+    const rainCount = 300;
+    const rainPos = new Float32Array(rainCount * 6);
+    for (let i = 0; i < rainCount; i++) resetDrop(i, true);
+    function resetDrop(i, first = false) {
+      const x = (Math.random() - .5) * 12;
+      const y = first ? Math.random() * 8 : 7 + Math.random() * 2;
+      const z = (Math.random() - .5) * 8;
+      rainPos[i * 6] = x; rainPos[i * 6 + 1] = y; rainPos[i * 6 + 2] = z;
+      rainPos[i * 6 + 3] = x - .08; rainPos[i * 6 + 4] = y - .34; rainPos[i * 6 + 5] = z;
+    }
+    const rainGeo = new THREE.BufferGeometry();
+    rainGeo.setAttribute('position', new THREE.BufferAttribute(rainPos, 3));
+    const rain = new THREE.LineSegments(rainGeo, new THREE.LineBasicMaterial({ color: 0x70dfff, transparent: true, opacity: .44 }));
+    rain.visible = true;
+    scene.add(rain);
+
+    const labels = [
+      ['FEATURE 01', '全天候防晒 · 防雨', '智能顶棚自动展开，晴天隔离强光，雨天形成骑行保护舱。'],
+      ['FEATURE 02', '防生锈合金链条', '密封防锈链条持续运转，减少雨水与潮湿环境造成的腐蚀。'],
+      ['FEATURE 03', '前进 · 停止 · 倒退', '双向驱动系统可随时切换方向，车轮、链条与车身运动同步响应。']
+    ];
+    let selected = 0;
+    let targetCanopy = 1;
+    let driveTarget = .72;
+    let driveSpeed = .72;
+    let chainGlow = 0;
+    let autoTimer = 0;
+    let autoMode = true;
+
+    function selectFeature(index, manual = true) {
+      selected = index;
+      if (manual) autoMode = false;
+      document.querySelectorAll('.feature').forEach((b, i) => b.classList.toggle('active', i === index));
+      document.getElementById('featureNo').textContent = labels[index][0];
+      document.getElementById('featureTitle').textContent = labels[index][1];
+      document.getElementById('featureCopy').textContent = labels[index][2];
+      document.getElementById('modeLabel').textContent = autoMode ? '自动巡演' : '手动演示';
+      targetCanopy = index === 0 ? 1 : .03;
+      rain.visible = index === 0;
+      chainGlow = index === 1 ? 1 : 0;
+      if (index === 2 && Math.abs(driveTarget) < .1) driveTarget = .72;
+    }
+    document.querySelectorAll('.feature').forEach((b, i) => b.addEventListener('click', () => selectFeature(i)));
+    document.getElementById('forward').addEventListener('click', () => { autoMode = false; selectFeature(2, false); driveTarget = .9; });
+    document.getElementById('backward').addEventListener('click', () => { autoMode = false; selectFeature(2, false); driveTarget = -.9; });
+    document.getElementById('stop').addEventListener('click', () => { autoMode = false; driveTarget = 0; document.getElementById('modeLabel').textContent = '已暂停'; });
+
+    const clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const dt = Math.min(clock.getDelta(), .04);
+      const t = clock.elapsedTime;
+      controls.update();
+
+      if (autoMode) {
+        autoTimer += dt;
+        if (autoTimer > 5.2) {
+          autoTimer = 0;
+          selectFeature((selected + 1) % 3, false);
+          if (selected === 2) driveTarget *= -1;
+        }
+      }
+
+      const s = canopy.scale.x + (targetCanopy - canopy.scale.x) * Math.min(1, dt * 3.4);
+      canopy.scale.set(s, s, s);
+      driveSpeed += (driveTarget - driveSpeed) * Math.min(1, dt * 2.8);
+      wheels.forEach(w => w.rotation.z -= driveSpeed * dt * 3.1);
+      crankGroup.rotation.z -= driveSpeed * dt * 3.1;
+      rearGear.rotation.z -= driveSpeed * dt * 3.1;
+      bike.position.x = Math.sin(t * Math.max(.22, Math.abs(driveSpeed)) * .45) * .24 * Math.sign(driveSpeed || 1);
+      grid.position.x = (grid.position.x - driveSpeed * dt * .8) % 1;
+
+      rustproof.emissiveIntensity += ((chainGlow ? 2.8 : .35) - rustproof.emissiveIntensity) * dt * 4;
+      if (chainGlow) {
+        chain.scale.setScalar(1 + Math.sin(t * 5) * .012);
+        rim.intensity = 35 + Math.sin(t * 4) * 12;
+      } else chain.scale.setScalar(1);
+
+      if (rain.visible) {
+        const p = rain.geometry.attributes.position.array;
+        for (let i = 0; i < rainCount; i++) {
+          p[i * 6 + 1] -= dt * 7.5;
+          p[i * 6 + 4] -= dt * 7.5;
+          if (p[i * 6 + 4] < 0) resetDrop(i);
+        }
+        rain.geometry.attributes.position.needsUpdate = true;
+        roofMat.opacity = .45 + Math.sin(t * 2.2) * .08;
+      }
+      renderer.render(scene, camera);
+    }
+    selectFeature(0, false);
+    animate();
+
+    addEventListener('resize', () => {
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+  </script>
+<a href="../../index.html" class="kids-lab-back-float" style="position:fixed;bottom:20px;left:20px;z-index:999999;background:rgba(15,23,42,0.88);backdrop-filter:blur(10px);color:#f8fafc;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);display:inline-flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.background='#6366f1'" onmouseout="this.style.transform='none';this.style.background='rgba(15,23,42,0.88)'">🏠 返回实验展馆</a>
+</body>
+</html>

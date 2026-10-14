@@ -1,0 +1,504 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智能单词记忆卡片</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      color: #203047;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 214, 102, 0.42), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(70, 180, 255, 0.32), transparent 25%),
+        linear-gradient(135deg, #f7fbff 0%, #edf5ef 46%, #fff8e7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 18px;
+    }
+
+    .app {
+      width: min(92vw, 560px);
+      text-align: center;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      color: #3b516f;
+      font-weight: 700;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 38px);
+      letter-spacing: 0;
+      color: #1d3048;
+    }
+
+    .counter {
+      min-width: 82px;
+      padding: 8px 12px;
+      border: 1px solid rgba(42, 76, 112, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: 0 8px 20px rgba(31, 55, 86, 0.08);
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .card-stage {
+      perspective: 1300px;
+      margin: 0 auto;
+      width: min(88vw, 480px);
+      aspect-ratio: 1.45 / 1;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 720ms cubic-bezier(0.2, 0.75, 0.2, 1);
+      filter: drop-shadow(0 24px 34px rgba(35, 58, 89, 0.2));
+    }
+
+    .card.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 34px;
+      border-radius: 28px;
+      backface-visibility: hidden;
+      background:
+        linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(255, 252, 241, 0.98)),
+        repeating-linear-gradient(0deg, transparent 0, transparent 38px, rgba(72, 105, 140, 0.055) 39px);
+      border: 1px solid rgba(255, 255, 255, 0.92);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 18px 46px rgba(31, 54, 83, 0.18);
+      overflow: hidden;
+    }
+
+    .card-face::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 26px;
+      width: 3px;
+      height: 100%;
+      background: rgba(255, 111, 97, 0.2);
+    }
+
+    .card-face::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 21px;
+      border: 1px dashed rgba(51, 82, 116, 0.12);
+      pointer-events: none;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background:
+        linear-gradient(155deg, rgba(255, 255, 255, 0.98), rgba(238, 248, 243, 0.98)),
+        repeating-linear-gradient(0deg, transparent 0, transparent 38px, rgba(72, 105, 140, 0.055) 39px);
+    }
+
+    .label {
+      position: relative;
+      margin-bottom: 14px;
+      color: #6b7d91;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .word {
+      position: relative;
+      margin: 0;
+      font-size: clamp(46px, 10vw, 76px);
+      line-height: 1;
+      font-weight: 900;
+      color: #172b45;
+      overflow-wrap: anywhere;
+    }
+
+    .meaning {
+      position: relative;
+      margin: 0;
+      font-size: clamp(38px, 8vw, 64px);
+      line-height: 1.12;
+      font-weight: 900;
+      color: #14645a;
+      overflow-wrap: anywhere;
+    }
+
+    .hint {
+      position: relative;
+      margin: 22px 0 0;
+      color: #718093;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      width: min(88vw, 420px);
+      margin: 28px auto 0;
+    }
+
+    .action-btn {
+      height: 58px;
+      border: 0;
+      border-radius: 18px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 13px 24px rgba(28, 47, 70, 0.16);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 17px 28px rgba(28, 47, 70, 0.2);
+    }
+
+    .known {
+      background: linear-gradient(135deg, #1aa37a, #26c281);
+    }
+
+    .unknown {
+      background: linear-gradient(135deg, #ff7a59, #f5a623);
+    }
+
+    .celebration {
+      display: none;
+      min-height: 420px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 18px;
+      padding: 42px 28px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 24px 52px rgba(31, 54, 83, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .celebration.show {
+      display: flex;
+      animation: popIn 640ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .celebration-mark {
+      width: 116px;
+      height: 116px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 64px;
+      font-weight: 900;
+      background: conic-gradient(from 20deg, #1aa37a, #36cfc9, #ffd166, #ff7a59, #1aa37a);
+      box-shadow: 0 18px 34px rgba(22, 122, 102, 0.24);
+    }
+
+    .celebration h2 {
+      margin: 0;
+      font-size: clamp(30px, 6vw, 52px);
+      line-height: 1.12;
+      color: #172b45;
+    }
+
+    .celebration p {
+      margin: 0;
+      color: #607087;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -18px;
+      width: 10px;
+      height: 18px;
+      border-radius: 3px;
+      animation: fall 2200ms linear forwards;
+      pointer-events: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.94);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(520deg);
+        opacity: 0.7;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .topbar {
+        flex-direction: column;
+        margin-bottom: 18px;
+      }
+
+      .card-stage {
+        aspect-ratio: 1.05 / 1;
+      }
+
+      .card-face {
+        border-radius: 24px;
+        padding: 28px;
+      }
+
+      .actions {
+        gap: 12px;
+      }
+
+      .action-btn {
+        height: 54px;
+        font-size: 18px;
+        border-radius: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section id="studyView">
+      <div class="topbar">
+        <h1 class="title">智能单词记忆卡片</h1>
+        <div class="counter" id="counter">1 / 100</div>
+      </div>
+
+      <div class="card-stage">
+        <button class="card" id="card" type="button" aria-label="点击翻转单词卡片">
+          <div class="card-face card-front">
+            <div class="label">English Word</div>
+            <p class="word" id="wordText">apple</p>
+            <p class="hint">点击卡片查看中文意思</p>
+          </div>
+          <div class="card-face card-back">
+            <div class="label">中文意思</div>
+            <p class="meaning" id="meaningText">苹果</p>
+            <p class="hint">选择你的掌握情况，进入下一张</p>
+          </div>
+        </button>
+      </div>
+
+      <div class="actions">
+        <button class="action-btn known" id="knownBtn" type="button">认识</button>
+        <button class="action-btn unknown" id="unknownBtn" type="button">不认识</button>
+      </div>
+    </section>
+
+    <section class="celebration" id="celebrationView" aria-live="polite">
+      <div class="celebration-mark">✓</div>
+      <h2>恭喜你完成今天的学习！</h2>
+      <p id="finishText">100 个初中偏难单词已经复习完成。</p>
+    </section>
+  </main>
+
+  <script>
+    const words = [
+      { en: "abroad", zh: "在国外" },
+      { en: "absent", zh: "缺席的" },
+      { en: "accident", zh: "事故" },
+      { en: "address", zh: "地址" },
+      { en: "admire", zh: "钦佩" },
+      { en: "advice", zh: "建议" },
+      { en: "afford", zh: "买得起" },
+      { en: "against", zh: "反对；倚着" },
+      { en: "airport", zh: "机场" },
+      { en: "allow", zh: "允许" },
+      { en: "ancient", zh: "古代的" },
+      { en: "appear", zh: "出现" },
+      { en: "article", zh: "文章" },
+      { en: "attention", zh: "注意" },
+      { en: "avoid", zh: "避免" },
+      { en: "awful", zh: "糟糕的" },
+      { en: "bamboo", zh: "竹子" },
+      { en: "behave", zh: "表现；举止" },
+      { en: "believe", zh: "相信" },
+      { en: "beside", zh: "在旁边" },
+      { en: "breathe", zh: "呼吸" },
+      { en: "bridge", zh: "桥" },
+      { en: "bright", zh: "明亮的" },
+      { en: "business", zh: "生意；事务" },
+      { en: "calendar", zh: "日历" },
+      { en: "careless", zh: "粗心的" },
+      { en: "certain", zh: "确定的" },
+      { en: "challenge", zh: "挑战" },
+      { en: "chance", zh: "机会" },
+      { en: "cheerful", zh: "高兴的" },
+      { en: "college", zh: "学院；大学" },
+      { en: "common", zh: "普通的" },
+      { en: "compare", zh: "比较" },
+      { en: "complete", zh: "完成；完整的" },
+      { en: "condition", zh: "条件；状况" },
+      { en: "consider", zh: "考虑" },
+      { en: "continue", zh: "继续" },
+      { en: "control", zh: "控制" },
+      { en: "conversation", zh: "谈话" },
+      { en: "courage", zh: "勇气" },
+      { en: "custom", zh: "风俗" },
+      { en: "dangerous", zh: "危险的" },
+      { en: "decision", zh: "决定" },
+      { en: "degree", zh: "程度；度数" },
+      { en: "describe", zh: "描述" },
+      { en: "develop", zh: "发展" },
+      { en: "direction", zh: "方向" },
+      { en: "discover", zh: "发现" },
+      { en: "distance", zh: "距离" },
+      { en: "divide", zh: "分开；除以" },
+      { en: "education", zh: "教育" },
+      { en: "effort", zh: "努力" },
+      { en: "either", zh: "也；任一" },
+      { en: "elder", zh: "年长的" },
+      { en: "empty", zh: "空的" },
+      { en: "encourage", zh: "鼓励" },
+      { en: "energy", zh: "精力；能量" },
+      { en: "environment", zh: "环境" },
+      { en: "especially", zh: "尤其" },
+      { en: "excellent", zh: "优秀的" },
+      { en: "except", zh: "除……之外" },
+      { en: "explain", zh: "解释" },
+      { en: "familiar", zh: "熟悉的" },
+      { en: "famous", zh: "著名的" },
+      { en: "festival", zh: "节日" },
+      { en: "foreign", zh: "外国的" },
+      { en: "friendly", zh: "友好的" },
+      { en: "future", zh: "未来" },
+      { en: "gesture", zh: "手势" },
+      { en: "government", zh: "政府" },
+      { en: "habit", zh: "习惯" },
+      { en: "healthy", zh: "健康的" },
+      { en: "hometown", zh: "家乡" },
+      { en: "however", zh: "然而" },
+      { en: "imagine", zh: "想象" },
+      { en: "improve", zh: "提高；改善" },
+      { en: "include", zh: "包括" },
+      { en: "increase", zh: "增加" },
+      { en: "instead", zh: "代替；反而" },
+      { en: "introduce", zh: "介绍" },
+      { en: "journey", zh: "旅行；旅程" },
+      { en: "knowledge", zh: "知识" },
+      { en: "language", zh: "语言" },
+      { en: "library", zh: "图书馆" },
+      { en: "local", zh: "当地的" },
+      { en: "lonely", zh: "孤独的" },
+      { en: "magazine", zh: "杂志" },
+      { en: "manage", zh: "管理；设法做到" },
+      { en: "medicine", zh: "药；医学" },
+      { en: "mention", zh: "提到" },
+      { en: "message", zh: "消息" },
+      { en: "mistake", zh: "错误" },
+      { en: "modern", zh: "现代的" },
+      { en: "necessary", zh: "必要的" },
+      { en: "notice", zh: "注意；通知" },
+      { en: "ordinary", zh: "普通的" },
+      { en: "patient", zh: "有耐心的；病人" },
+      { en: "perhaps", zh: "也许" },
+      { en: "pleasant", zh: "令人愉快的" },
+      { en: "popular", zh: "受欢迎的" }
+    ];
+
+    let index = 0;
+    const card = document.getElementById("card");
+    const wordText = document.getElementById("wordText");
+    const meaningText = document.getElementById("meaningText");
+    const counter = document.getElementById("counter");
+    const knownBtn = document.getElementById("knownBtn");
+    const unknownBtn = document.getElementById("unknownBtn");
+    const studyView = document.getElementById("studyView");
+    const celebrationView = document.getElementById("celebrationView");
+    const finishText = document.getElementById("finishText");
+
+    function renderCard() {
+      const current = words[index];
+      card.classList.remove("is-flipped");
+      wordText.textContent = current.en;
+      meaningText.textContent = current.zh;
+      counter.textContent = `${index + 1} / ${words.length}`;
+    }
+
+    function nextWord() {
+      index += 1;
+      if (index >= words.length) {
+        finishStudy();
+        return;
+      }
+      renderCard();
+    }
+
+    function finishStudy() {
+      studyView.classList.add("hidden");
+      finishText.textContent = `${words.length} 个初中偏难单词已经复习完成。`;
+      celebrationView.classList.add("show");
+      launchConfetti();
+    }
+
+    function launchConfetti() {
+      const colors = ["#1aa37a", "#36cfc9", "#ffd166", "#ff7a59", "#5b8def"];
+      for (let i = 0; i < 70; i += 1) {
+        const piece = document.createElement("span");
+        piece.className = "confetti";
+        piece.style.left = `${Math.random() * 100}vw`;
+        piece.style.background = colors[i % colors.length];
+        piece.style.animationDelay = `${Math.random() * 700}ms`;
+        piece.style.transform = `rotate(${Math.random() * 180}deg)`;
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 3100);
+      }
+    }
+
+    card.addEventListener("click", () => {
+      card.classList.toggle("is-flipped");
+    });
+
+    knownBtn.addEventListener("click", nextWord);
+    unknownBtn.addEventListener("click", nextWord);
+
+    renderCard();
+  </script>
+<a href="../../index.html" class="kids-lab-back-float" style="position:fixed;bottom:20px;left:20px;z-index:999999;background:rgba(15,23,42,0.88);backdrop-filter:blur(10px);color:#f8fafc;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);display:inline-flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.background='#6366f1'" onmouseout="this.style.transform='none';this.style.background='rgba(15,23,42,0.88)'">🏠 返回实验展馆</a>
+</body>
+</html>

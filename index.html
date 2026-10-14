@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>少儿科学互动实验室 | Kids Science Lab</title>
+  <meta name="description" content="面向中小学生的 46 个趣味物理、数学曲线、三角函数、太空 3D 与前沿粒子动态科普交互实验，免安装即开即玩。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --bg-card: rgba(18, 25, 43, 0.72);
+      --bg-card-hover: rgba(26, 36, 61, 0.88);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(99, 102, 241, 0.45);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --indigo: #6366f1;
+      --violet: #8b5cf6;
+      --glow-blue: rgba(56, 189, 248, 0.15);
+      --glow-purple: rgba(168, 85, 247, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.10) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(244, 63, 94, 0.08) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    /* 顶部装饰条 */
+    .top-glow-line {
+      height: 3px;
+      background: linear-gradient(90deg, #06b6d4, #6366f1, #a855f7, #f43f5e);
+      width: 100%;
+    }
+
+    header {
+      padding: 40px 24px 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.28);
+      color: #a5b4fc;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .badge-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      color: var(--text-muted);
+      font-size: clamp(15px, 2vw, 18px);
+      max-width: 680px;
+      margin: 0 auto 28px;
+    }
+
+    /* 统计指示牌 */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .stat-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-item strong {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    /* 搜索与随机按钮区 */
+    .action-panel {
+      max-width: 900px;
+      margin: 0 auto 24px;
+      display: flex;
+      gap: 12px;
+      padding: 0 12px;
+    }
+
+    .search-box {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0 20px 0 46px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-box input:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--indigo);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.5;
+      font-size: 16px;
+    }
+
+    .btn-surprise {
+      height: 48px;
+      padding: 0 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-surprise:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+
+    /* 标签导航栏 */
+    .filter-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 15, 25, 0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      margin-bottom: 32px;
+    }
+
+    .filter-pills {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .filter-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .filter-btn .count {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+    }
+
+    .filter-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .filter-btn.active {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .filter-btn.active .count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    /* 主网格 */
+    main {
+      max-width: 1280px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    .demo-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: transparent;
+      transition: background 0.2s;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    .demo-card:hover::before {
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+    }
+
+    .card-top {
+      margin-bottom: 16px;
+    }
+
+    .card-header-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .card-icon {
+      font-size: 28px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .cat-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .cat-physics { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .cat-math { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .cat-trig { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
+    .cat-nature { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .cat-space { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+    .cat-quantum { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+
+    .card-sub {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tag-item {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .card-action {
+      margin-top: auto;
+    }
+
+    .btn-launch {
+      width: 100%;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .demo-card:hover .btn-launch {
+      background: #6366f1;
+      border-color: #6366f1;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state h3 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    /* 页脚 */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+
+    /* 移动端微调 */
+    @media (max-width: 640px) {
+      header {
+        padding: 28px 16px 16px;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      .action-panel {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-glow-line"></div>
+
+  <header>
+    <div class="badge-pill">
+      <span class="dot"></span> 46 个互动科学实验 · 零门槛免安装
+    </div>
+    <h1>少儿科学互动实验室</h1>
+    <p class="lead">专为中小学生设计的趣味科学动画。点击任意卡片，动手调节速度、旋转三维视角、改变重力与光线，探索真实的科学规律！</p>
+    
+    <div class="stats-bar">
+      <div class="stat-item">🎯 物理实验 <strong>8</strong></div>
+      <div class="stat-item">🚲 数学轨迹 <strong>6</strong></div>
+      <div class="stat-item">🎡 三角函数 <strong>6</strong></div>
+      <div class="stat-item">🌍 自然工程 <strong>7</strong></div>
+      <div class="stat-item">🚀 3D 宇宙 <strong>10</strong></div>
+      <div class="stat-item">🌌 量子智能 <strong>9</strong></div>
+    </div>
+
+    <div class="action-panel">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索实验（例如：重力、无人机、齿轮、黑洞、水波...）" oninput="handleSearch()">
+      </div>
+      <button class="btn-surprise" onclick="openRandomDemo()">
+        <span>🎲</span> 随机探索一个
+      </button>
+    </div>
+  </header>
+
+  <nav class="filter-wrapper">
+    <div class="filter-pills" id="filterPills">
+      <button class="filter-btn active" data-category="all" onclick="filterCategory('all', this)">
+        🌟 全部实验 <span class="count" id="countAll">46</span>
+      </button>
+      <button class="filter-btn" data-category="physics" onclick="filterCategory('physics', this)">
+        🎯 物理实验 <span class="count">8</span>
+      </button>
+      <button class="filter-btn" data-category="math" onclick="filterCategory('math', this)">
+        🚲 数学轨迹 <span class="count">6</span>
+      </button>
+      <button class="filter-btn" data-category="trig" onclick="filterCategory('trig', this)">
+        🎡 三角函数 <span class="count">6</span>
+      </button>
+      <button class="filter-btn" data-category="nature" onclick="filterCategory('nature', this)">
+        🌍 自然与工程 <span class="count">7</span>
+      </button>
+      <button class="filter-btn" data-category="space" onclick="filterCategory('space', this)">
+        🚀 3D宇宙探索 <span class="count">10</span>
+      </button>
+      <button class="filter-btn" data-category="quantum" onclick="filterCategory('quantum', this)">
+        🌌 量子与智能 <span class="count">9</span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="card-grid" id="cardGrid"></div>
+  </main>
+
+  <footer>
+    <p>少儿科学互动实验室 · Kids Science Lab · 乔瑞 AI Coding 启发系列</p>
+    <p style="margin-top:6px; font-size:12px; color:#64748b;">所有实验均采用 HTML5 / SVG / Canvas / Three.js 实时渲染 · 适配手机、平板与电脑</p>
+  </footer>
+
+  <script>
+    const DEMOS = [
+      /* ==================== 物理实验 (8) ==================== */
+      {
+        id: "p1",
+        category: "physics",
+        categoryLabel: "经典物理",
+        icon: "🎯",
+        title: "子弹与小球同时落地",
+        subtitle: "平抛运动与运动独立性实验",
+        desc: "探究水平高速发射的子弹与垂直自然下落的小球，在重力作用下为何会完全同时触地！",
+        tags: ["平抛运动", "自由落体", "竖直独立性"],
+        url: "demos/physics/01-projectile-independence.html"
+      },
+      {
+        id: "p2",
+        category: "physics",
+        categoryLabel: "经典物理",
+        icon: "🪐",
+        title: "行星轨道等面积定律",
+        subtitle: "开普勒第二定律动态演示",
+        desc: "观察行星在椭圆轨道靠近太阳时加速飞奔、远离时从容慢行的等时间扫过等面积原理。",
+        tags: ["天体引力", "椭圆轨道", "角动量"],
+        url: "demos/physics/02-kepler-second-law.html"
+      },
+      {
+        id: "p3",
+        category: "physics",
+        categoryLabel: "经典物理",
+        icon: "⏱️",
+        title: "单摆机械能守恒",
+        subtitle: "动能与重力势能实时互转",
+        desc: "实时柱状图对比摆锤摆动中的动能与势能，看能量总和如何在无阻力状态下永恒守恒。",
+        tags: ["单摆", "机械能守恒", "能量转化"],
+        url: "demos/physics/03-pendulum-energy.html"
+      },
+      {
+        id: "p4",
+        category: "physics",
+        categoryLabel: "经典物理",
+        icon: "🚑",
+        title: "救护车的声音变化",
+        subtitle: "多普勒效应波形可视化",
+        desc: "当鸣笛救护车向你飞驰而来时，波纹为何被压缩得更密集？声音为何由高尖变低沉？",
+        tags: ["声波", "多普勒效应", "波前压缩"],
+        url: "demos/physics/04-doppler-effect.html"
+      },
+      {
+        id: "p5",
+        category: "physics",
+        categoryLabel: "经典物理",
+        icon: "💡",
+        title: "光纤传光的秘密",
+        subtitle: "光的全反射与临界角实验",
+        desc: "拖动入射角滑块，看光线如何从穿透水面折射，瞬间转变为100%锁在介质内的全反射。",
+        tags: ["光学", "全反射", "光纤通信"],
+        url: "demos/physics/05-total-internal-reflection.html"
+      },
+      {
+        id: "p6",
+        category: "physics",
+        categoryLabel: "经典物理",
+        icon: "🌊",
+        title: "双水波相遇干涉",
+        subtitle: "波的叠加增强与相消",
+        desc: "两个水波振动源同时荡开水纹，波峰与波峰相遇激起双倍巨浪，波峰与波谷相遇水面静止！",
+        tags: ["波动学", "波的干涉", "振幅叠加"],
+        url: "demos/physics/06-wave-interference.html"
+      },
+      {
+        id: "p7",
+        category: "physics",
+        categoryLabel: "经典物理",
+        icon: "🧲",
+        title: "磁铁穿过线圈生电",
+        subtitle: "法拉第电磁感应实验",
+        desc: "拖拽强磁铁穿入金属闭合线圈，看磁场的变化如何像魔术般产生感应电流并点亮指针。",
+        tags: ["电磁学", "感应电流", "磁通量变化"],
+        url: "demos/physics/07-electromagnetic-induction.html"
+      },
+      {
+        id: "p8",
+        category: "physics",
+        categoryLabel: "经典物理",
+        icon: "⚡",
+        title: "粒子在磁场中画圆圈",
+        subtitle: "洛伦兹力偏转与回旋加速",
+        desc: "高速带电粒子飞入垂直磁场后，被一只看不见的侧向之手持续偏转，画出完美正圆轨道。",
+        tags: ["带电粒子", "洛伦兹力", "回旋加速"],
+        url: "demos/physics/08-lorentz-force.html"
+      },
+
+      /* ==================== 数学轨迹与曲线 (6) ==================== */
+      {
+        id: "m1",
+        category: "math",
+        categoryLabel: "数学轨迹",
+        icon: "🚲",
+        title: "自行车轮与神奇拱门",
+        subtitle: "旋轮线（摆线）与最速降线",
+        desc: "车轮上的闪光点在地面滚出连绵拱门；沿这条独特曲线下滑，滑梯用时天下第一快！",
+        tags: ["旋轮线", "最速降线", "等时曲线"],
+        url: "demos/math-motion/01-cycloid.html"
+      },
+      {
+        id: "m2",
+        category: "math",
+        categoryLabel: "数学轨迹",
+        icon: "✨",
+        title: "四角尖尖的星形",
+        subtitle: "星形线 Astroid 几何探秘",
+        desc: "小硬币在大圆硬币内侧滚动时，边缘点画出的梦幻四角星，数学与几何艺术的完美交织。",
+        tags: ["内摆线", "星形线", "几何轨迹"],
+        url: "demos/math-motion/02-astroid.html"
+      },
+      {
+        id: "m3",
+        category: "math",
+        categoryLabel: "数学轨迹",
+        icon: "🌀",
+        title: "蚊香与黑胶唱片",
+        subtitle: "阿基米德螺线 Archimedes",
+        desc: "射线匀速转动、小点沿射线匀速向外爬行，留下的最经典均匀螺旋线条。",
+        tags: ["极坐标", "等距螺线", "自然螺旋"],
+        url: "demos/math-motion/03-archimedean-spiral.html"
+      },
+      {
+        id: "m4",
+        category: "math",
+        categoryLabel: "数学轨迹",
+        icon: "⚙️",
+        title: "不会卡住的齿轮轮廓",
+        subtitle: "圆的渐开线 Involute",
+        desc: "从圆筒上解开紧绷的棉线，线头划过的曲线让所有现代机械齿轮啮合平稳、永不卡滞。",
+        tags: ["渐开线", "齿轮工程", "机械传动"],
+        url: "demos/math-motion/04-circle-involute.html"
+      },
+      {
+        id: "m5",
+        category: "math",
+        categoryLabel: "数学轨迹",
+        icon: "🎻",
+        title: "示波器上的神秘舞蹈",
+        subtitle: "李萨如图形 Lissajous",
+        desc: "两个垂直方向的摆锤同时振动，只要频率成整数比，就能在屏幕上绣出复杂的对称丝带结。",
+        tags: ["简谐振动", "正交合成", "声学相位"],
+        url: "demos/math-motion/05-lissajous.html"
+      },
+      {
+        id: "m6",
+        category: "math",
+        categoryLabel: "数学轨迹",
+        icon: "🌉",
+        title: "悬索桥与挂绳的曲线",
+        subtitle: "悬链线 Catenary",
+        desc: "两根柱子间自然下垂的绳索不是抛物线！大自然在纯粹重力作用下雕琢出的最佳平衡曲线。",
+        tags: ["悬链线", "自然重力", "建筑力学"],
+        url: "demos/math-motion/06-catenary.html"
+      },
+
+      /* ==================== 三角函数 (6) ==================== */
+      {
+        id: "t1",
+        category: "trig",
+        categoryLabel: "三角函数",
+        icon: "🎡",
+        title: "摩天轮与波浪线",
+        subtitle: "正弦函数 sin 动态投影",
+        desc: "观察摩天轮旋转时你的高度变化，向右拉开时间轴，就留下了一条优美绵延的周期波浪！",
+        tags: ["正弦sin", "摩天轮模型", "周期振动"],
+        url: "demos/trigonometry/01-sine.html"
+      },
+      {
+        id: "t2",
+        category: "trig",
+        categoryLabel: "三角函数",
+        icon: "↔️",
+        title: "横向影子的左右节拍",
+        subtitle: "余弦函数 cos 动态演示",
+        desc: "余弦是正弦的孪生兄弟！观察转轮水平位置在地面上的影子，相位比正弦刚好超前四分之一周。",
+        tags: ["余弦cos", "水平投影", "波形移动"],
+        url: "demos/trigonometry/02-cosine.html"
+      },
+      {
+        id: "t3",
+        category: "trig",
+        categoryLabel: "三角函数",
+        icon: "📐",
+        title: "冲向无穷高的天梯",
+        subtitle: "正切函数 tan 动态演示",
+        desc: "当角度逐渐逼近90度直角时，切线的延长线为何会穿透天际，奔向无法估量的无限大？",
+        tags: ["正切tan", "切线割线", "渐近线"],
+        url: "demos/trigonometry/03-tangent.html"
+      },
+      {
+        id: "t4",
+        category: "trig",
+        categoryLabel: "三角函数",
+        icon: "📏",
+        title: "余切函数演化",
+        subtitle: "余切 cot 动态演示",
+        desc: "探索正切的反向互余伙伴，观察水平切线与旋转射线交点的奇妙位移。",
+        tags: ["余切cot", "互余三角", "函数图像"],
+        url: "demos/trigonometry/04-cotangent.html"
+      },
+      {
+        id: "t5",
+        category: "trig",
+        categoryLabel: "三角函数",
+        icon: "📈",
+        title: "正割函数演化",
+        subtitle: "正割 sec 动态演示",
+        desc: "直角三角形斜边与邻边的比值变化，观察割线随圆周转动的呼吸起伏。",
+        tags: ["正割sec", "倒数关系", "极值变化"],
+        url: "demos/trigonometry/05-secant.html"
+      },
+      {
+        id: "t6",
+        category: "trig",
+        categoryLabel: "三角函数",
+        icon: "📉",
+        title: "余割函数演化",
+        subtitle: "余割 csc 动态演示",
+        desc: "直角三角形斜边与对边的比值演变，带孩子完整认识六大三角函数的几何身世。",
+        tags: ["余割csc", "倒数三角", "函数对称"],
+        url: "demos/trigonometry/06-cosecant.html"
+      },
+
+      /* ==================== 自然与工程系统 (7) ==================== */
+      {
+        id: "n1",
+        category: "nature",
+        categoryLabel: "自然工程",
+        icon: "☀️",
+        title: "太阳·地球·月亮与24节气",
+        subtitle: "天体运动与四季冷暖 3D 演示",
+        desc: "3D呈现地轴倾斜23.5度引起的阳光直射点转移，看春分夏至秋分冬至昼夜长短如何形成。",
+        tags: ["Three.js", "二十四节气", "地轴公转"],
+        url: "demos/nature-engineering/太阳地球月亮-四季与24节气动态图.html"
+      },
+      {
+        id: "n2",
+        category: "nature",
+        categoryLabel: "自然工程",
+        icon: "🚝",
+        title: "比亚迪云巴基地动态图",
+        subtitle: "立体空中交通轨道系统",
+        desc: "俯瞰智能云巴高架列车多线路调度、进站与无人驾驶信号交互。",
+        tags: ["轨道交通", "智能调度", "立体交通"],
+        url: "demos/nature-engineering/比亚迪云巴基地动态图.html"
+      },
+      {
+        id: "n3",
+        category: "nature",
+        categoryLabel: "自然工程",
+        icon: "🦌",
+        title: "野生动物保护智能巡航",
+        subtitle: "森林无人机 AI 巡检系统",
+        desc: "模拟高空生态巡护无人机识别珍稀野生动物，动态标注坐标并发出防盗猎保护警报。",
+        tags: ["无人机巡航", "AI识别", "生态保护"],
+        url: "demos/nature-engineering/动物保护智能巡航监控系统.html"
+      },
+      {
+        id: "n4",
+        category: "nature",
+        categoryLabel: "自然工程",
+        icon: "🤖",
+        title: "智能 AI 助眠机器人",
+        subtitle: "拟人呼吸节律与情绪反馈",
+        desc: "体验助眠机器人利用慢节奏暖光波与白噪音律动引导大脑脑电波放松。",
+        tags: ["智能硬件", "呼吸光效", "情绪交互"],
+        url: "demos/nature-engineering/智能AI助眠机器人.html"
+      },
+      {
+        id: "n5",
+        category: "nature",
+        categoryLabel: "自然工程",
+        icon: "🚴",
+        title: "全天候智能安全自行车",
+        subtitle: "光感车灯与行车仪表盘",
+        desc: "集成环境光敏自动车灯、后方超声波防追尾预警与刹车动能反馈的少儿极客自行车。",
+        tags: ["智能硬件", "环境感应", "安全交互"],
+        url: "demos/nature-engineering/智能全天候自行车.html"
+      },
+      {
+        id: "n6",
+        category: "nature",
+        categoryLabel: "自然工程",
+        icon: "🗂️",
+        title: "智能单词记忆翻转卡",
+        subtitle: "艾宾浩斯记忆与交互动画",
+        desc: "动效翻转卡片结合记忆复习周期，点击翻转并按熟练度智能归类。",
+        tags: ["记忆科学", "翻转动画", "学习工具"],
+        url: "demos/nature-engineering/智能单词记忆卡片.html"
+      },
+      {
+        id: "n7",
+        category: "nature",
+        categoryLabel: "自然工程",
+        icon: "🪙",
+        title: "疯狂接金币物理小游戏",
+        subtitle: "重力加速度与刚体碰撞",
+        desc: "键盘左右操控接金币，实时体验重力加速度跌落与物体边界弹性碰撞算法。",
+        tags: ["物理引擎", "重力加速度", "小游戏"],
+        url: "demos/nature-engineering/疯狂接金币.html"
+      },
+
+      /* ==================== 3D 宇宙与空间 (10) ==================== */
+      {
+        id: "s1",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🏛️",
+        title: "中华十大古天文遗址 3D 探索馆",
+        subtitle: "圭表、观星台与古代历法",
+        desc: "沉浸式漫游登封观星台、陶寺古观象台，看古人如何用日影测定冬至与一年365天。",
+        tags: ["Three.js", "古天文", "中华文明"],
+        url: "demos/space-3d/chinese-ancient-astronomy-sites.html"
+      },
+      {
+        id: "s2",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🚀",
+        title: "太阳系航行时间模拟器",
+        subtitle: "宇宙宏大尺度与光速旅行",
+        desc: "乘坐光速飞船从水星飞向海王星，亲身体验宇宙空间到底有多空旷、光走得有多慢！",
+        tags: ["太阳系", "光速航行", "宇宙尺度"],
+        url: "demos/space-3d/solar-system-voyage-time.html"
+      },
+      {
+        id: "s3",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🛰️",
+        title: "远地轨道卫星群仿真",
+        subtitle: "近地与同步卫星空间编队",
+        desc: "观察数百颗人造卫星如何在不同高度轨道上交织成紧密的太空通信天网。",
+        tags: ["卫星轨道", "空间站", "复杂建模"],
+        url: "demos/space-3d/satellite-orbit-simulation.html"
+      },
+      {
+        id: "s4",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🕳️",
+        title: "深空黑洞引力漩涡",
+        subtitle: "引力透镜与吸积盘 3D 交互",
+        desc: "鼠标拖拽360度观察黑洞事件视界，体验引力坍缩、星云环绕与反转排斥。",
+        tags: ["黑洞视界", "引力透镜", "吸积盘"],
+        url: "demos/space-3d/deep-space-black-hole.html"
+      },
+      {
+        id: "s5",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🌌",
+        title: "星际跃迁 3D 全息视界",
+        subtitle: "曲速航行与时空折叠",
+        desc: "切换常规巡航、光速跃迁与虫洞折叠模式，领略星光拉伸成流光的视觉奇观。",
+        tags: ["光速跃迁", "时空折叠", "科幻特效"],
+        url: "demos/space-3d/interstellar-jump-hologram.html"
+      },
+      {
+        id: "s6",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🌃",
+        title: "粤港澳大湾区夜航 3D",
+        subtitle: "低空飞行与城市夜景光影",
+        desc: "模拟无人机飞跃广州塔与珠江两岸，俯瞰万家灯火与现代湾区城市群。",
+        tags: ["低空飞行", "夜景光影", "城市地理"],
+        url: "demos/space-3d/greater-bay-night-flight.html"
+      },
+      {
+        id: "s7",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🌲",
+        title: "森林救援无人机 3D",
+        subtitle: "三维低空搜索与救援闭环",
+        desc: "驾驶三维搜救无人机在茂密树林中雷达扫描，救援受伤的小动物并安全返航。",
+        tags: ["无人机", "森林救援", "关卡任务"],
+        url: "demos/space-3d/forest-rescue-drone.html"
+      },
+      {
+        id: "s8",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🤖",
+        title: "机器人校园巡逻 3D",
+        subtitle: "自主导航与路标检查点",
+        desc: "机器人沿校园步道自动巡检，遇到障碍避障并点亮各个安全哨点。",
+        tags: ["自主导航", "路径规划", "机器人"],
+        url: "demos/space-3d/robot-campus-patrol.html"
+      },
+      {
+        id: "s9",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🐠",
+        title: "梦幻海底世界 3D",
+        subtitle: "深海生态与昼夜水下光影",
+        desc: "徜徉在阳光穿透的蔚蓝深海，观察小鱼群摆尾穿行、水母浮动与昼夜切换。",
+        tags: ["海洋生态", "水下光影", "鱼群运动"],
+        url: "demos/space-3d/dream-underwater-world.html"
+      },
+      {
+        id: "s10",
+        category: "space",
+        categoryLabel: "3D宇宙",
+        icon: "🦖",
+        title: "侏罗纪 3D 巡游",
+        subtitle: "远古恐龙生态岛与火山",
+        desc: "走进数亿年前的恐龙大陆，跟随霸王龙与翼龙的视角探索原始森林与喷发火山。",
+        tags: ["恐龙生态", "火山岛屿", "全景巡游"],
+        url: "demos/space-3d/jurassic-3d-parade.html"
+      },
+
+      /* ==================== 量子与智能 (9) ==================== */
+      {
+        id: "q1",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        icon: "🦅",
+        title: "群智涌现 Agent 鸟群",
+        subtitle: "Boids 算法：个体到群体智能",
+        desc: "每只小鸟只遵循对齐、凝聚、分离3条极简规则，为何能涌现出壮观的雁阵风暴？",
+        tags: ["Boids算法", "群体智能", "自组织涌现"],
+        url: "demos/quantum/agent-flocking-emergence.html"
+      },
+      {
+        id: "q2",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        icon: "💫",
+        title: "量子交互流场",
+        subtitle: "粒子动力学与流体扰动",
+        desc: "鼠标划过屏幕即可掀起绚丽的量子暗流，看万千发光粒子在引力场中如流沙般穿梭。",
+        tags: ["向量场", "粒子系统", "流体动力"],
+        url: "demos/quantum/quantum-flow-field.html"
+      },
+      {
+        id: "q3",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        icon: "🌠",
+        title: "量子星轨引力场",
+        subtitle: "多轨道引力缠绕与共振",
+        desc: "拨动引力质量滑块，观察数千颗发光小粒子如何在多重引力源下绘制出对称星轨。",
+        tags: ["引力场", "星轨共振", "粒子吸附"],
+        url: "demos/quantum/quantum-star-orbit.html"
+      },
+      {
+        id: "q4",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        icon: "🧠",
+        title: "神经涌现向量流场",
+        subtitle: "心流巡航与混沌演化",
+        desc: "模拟大脑神经网络中的思维脉冲，从无序的混沌微扰自发形成稳定的神经通路。",
+        tags: ["心流巡航", "混沌演化", "神经突触"],
+        url: "demos/quantum/neural-emergence-vector-field.html"
+      },
+      {
+        id: "q5",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        icon: "🌐",
+        title: "赛博神经突触网络",
+        subtitle: "索敌漫游与突触电位放电",
+        desc: "点击任意神经元，瞬间激活电脉冲沿突触网络如闪电般传导至整个神经群。",
+        tags: ["突触放电", "动作电位", "神经网络"],
+        url: "demos/quantum/cyber-neural-network.html"
+      },
+      {
+        id: "q6",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        icon: "🕸️",
+        title: "高维折叠拓扑织网",
+        subtitle: "高维空间几何切割与牵引",
+        desc: "突破三维空间束缚，拖动几何节点感受高维空间超立方体投影的翻转与重构。",
+        tags: ["高维几何", "拓扑折叠", "超立方体"],
+        url: "demos/quantum/higher-dimensional-topology.html"
+      },
+      {
+        id: "q7",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        icon: "💧",
+        title: "液态金属拓扑融合",
+        subtitle: "表面张力与聚变裂变",
+        desc: "模拟具有超强表面张力的液态金属微粒，分散时如水银珠，相遇时瞬间聚变成巨核。",
+        tags: ["液态金属", "表面张力", "聚变裂变"],
+        url: "demos/quantum/liquid-metal-fusion.html"
+      },
+      {
+        id: "q8",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        icon: "🦋",
+        title: "混沌边缘奇异吸引子",
+        subtitle: "洛伦兹吸引子与蝴蝶效应",
+        desc: "“一只南美洲蝴蝶扇动翅膀...”在这对著名的双翼轨迹中，轨迹永不重复却永远收敛！",
+        tags: ["混沌理论", "蝴蝶效应", "洛伦兹系统"],
+        url: "demos/quantum/strange-attractor-flow.html"
+      },
+      {
+        id: "q9",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        icon: "🔠",
+        title: "语义粒子重构",
+        subtitle: "万千粒子凝聚为思维词汇",
+        desc: "发光粒子在空中解散、重组、流转，根据你的指令凝聚成一个个代表未来的闪亮词汇。",
+        tags: ["文字重构", "粒子凝聚", "思维表达"],
+        url: "demos/quantum/semantic-particle-reconstruction.html"
+      }
+    ];
+
+    let currentCategory = "all";
+    let searchQuery = "";
+
+    function renderCards() {
+      const grid = document.getElementById("cardGrid");
+      const filtered = DEMOS.filter(item => {
+        const matchCat = (currentCategory === "all") || (item.category === currentCategory);
+        if (!matchCat) return false;
+        if (!searchQuery) return true;
+        const q = searchQuery.toLowerCase();
+        return item.title.toLowerCase().includes(q) ||
+               item.subtitle.toLowerCase().includes(q) ||
+               item.desc.toLowerCase().includes(q) ||
+               item.tags.some(t => t.toLowerCase().includes(q));
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <h3>没有找到符合条件的实验 🔍</h3>
+            <p>试着换个词搜搜看，例如“重力”、“粒子”、“齿轮”、“宇宙”</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => {
+        return `
+          <article class="demo-card" data-cat="${item.category}">
+            <div class="card-top">
+              <div class="card-header-line">
+                <div class="card-icon">${item.icon}</div>
+                <span class="cat-tag cat-${item.category}">${item.categoryLabel}</span>
+              </div>
+              <h2 class="card-title">${item.title}</h2>
+              <div class="card-sub">${item.subtitle}</div>
+              <p class="card-desc">${item.desc}</p>
+              <div class="card-tags">
+                ${item.tags.map(t => `<span class="tag-item">#${t}</span>`).join('')}
+              </div>
+            </div>
+            <div class="card-action">
+              <a href="${item.url}" class="btn-launch" target="_blank" rel="noopener">
+                立即探索 <span>➔</span>
+              </a>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      renderCards();
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById("searchInput").value.trim();
+      renderCards();
+    }
+
+    function openRandomDemo() {
+      const idx = Math.floor(Math.random() * DEMOS.length);
+      const chosen = DEMOS[idx];
+      window.open(chosen.url, '_blank');
+    }
+
+    // 初始化渲染
+    renderCards();
+  </script>
+</body>
+</html>

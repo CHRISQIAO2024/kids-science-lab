@@ -1,0 +1,1489 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>比亚迪云巴基地动态图</title>
+<style>:root{color-scheme:dark;background:#07101b}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{box-sizing:border-box;background:#07101b}iframe{display:block;width:100%;height:100vh;margin:0;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="比亚迪云巴基地动态图" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Byd Skyrail Base&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(--background) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: light-dark(rgb(255 255 255), rgb(24 24 24));
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 12.5px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--viz-font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed=&quot;true&quot;],
+    [aria-selected=&quot;true&quot;],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;section id=&quot;byd-skyrail-vis&quot; aria-label=&quot;比亚迪云巴基地环形轨道动态三维示意图&quot;&gt;
+  &lt;style&gt;
+    #byd-skyrail-vis {
+      --skyrail-red: #e31b23;
+      --skyrail-red-soft: rgba(227, 27, 35, 0.18);
+      --skyrail-cyan: #4de5ff;
+      --skyrail-green: #54e6a0;
+      position: relative;
+      min-height: 720px;
+      height: 100vh;
+      overflow: hidden;
+      color: #f6f8fb;
+      background:
+        radial-gradient(circle at 50% 52%, rgba(77, 229, 255, 0.11), transparent 34%),
+        radial-gradient(circle at 12% 10%, rgba(227, 27, 35, 0.16), transparent 30%),
+        linear-gradient(145deg, #07101b 0%, #0a1825 48%, #050b12 100%);
+      font-family: &quot;Microsoft YaHei&quot;, &quot;PingFang SC&quot;, system-ui, sans-serif;
+      isolation: isolate;
+    }
+    #byd-skyrail-vis * { box-sizing: border-box; }
+    #byd-skyrail-vis .skyrail-head {
+      position: absolute;
+      z-index: 5;
+      inset: 22px 26px auto 26px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      pointer-events: none;
+    }
+    #byd-skyrail-vis .skyrail-title { max-width: 580px; }
+    #byd-skyrail-vis .skyrail-kicker {
+      margin: 0 0 8px;
+      color: var(--skyrail-cyan);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+    }
+    #byd-skyrail-vis h2 {
+      margin: 0;
+      font-size: clamp(25px, 4vw, 46px);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+    #byd-skyrail-vis .skyrail-subtitle {
+      margin: 10px 0 0;
+      color: rgba(246, 248, 251, 0.68);
+      font-size: 13px;
+    }
+    #byd-skyrail-vis .skyrail-badge {
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      background: rgba(8, 18, 29, .58);
+      backdrop-filter: blur(12px);
+      color: rgba(246,248,251,.76);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    #byd-skyrail-vis .skyrail-badge b { color: #fff; font-weight: 500; }
+    #byd-skyrail-vis .skyrail-canvas { position: absolute; inset: 0; }
+    #byd-skyrail-vis canvas { display: block; width: 100%; height: 100%; }
+    #byd-skyrail-vis .skyrail-labels { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+    #byd-skyrail-vis .station-label {
+      position: absolute;
+      transform: translate(-50%, -118%);
+      min-width: 76px;
+      padding: 5px 8px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 7px;
+      background: rgba(7, 16, 27, .82);
+      color: rgba(246,248,251,.88);
+      font-size: 11px;
+      text-align: center;
+      white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0,0,0,.22);
+      backdrop-filter: blur(8px);
+      transition: border-color .2s ease, color .2s ease, opacity .2s ease;
+    }
+    #byd-skyrail-vis .station-label::after {
+      content: &quot;&quot;;
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      width: 1px;
+      height: 13px;
+      background: rgba(255,255,255,.28);
+    }
+    #byd-skyrail-vis .station-label.is-active { border-color: var(--skyrail-cyan); color: #fff; }
+    #byd-skyrail-vis .skyrail-controls {
+      position: absolute;
+      z-index: 6;
+      left: 26px;
+      right: 26px;
+      bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    #byd-skyrail-vis .control-group,
+    #byd-skyrail-vis .status-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    #byd-skyrail-vis button {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 9px;
+      padding: 8px 12px;
+      color: #f6f8fb;
+      background: rgba(7,16,27,.72);
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+    #byd-skyrail-vis button:hover { border-color: rgba(77,229,255,.7); }
+    #byd-skyrail-vis button[aria-pressed=&quot;true&quot;] { background: var(--skyrail-red); border-color: var(--skyrail-red); }
+    #byd-skyrail-vis .status-chip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(7,16,27,.62);
+      color: rgba(246,248,251,.72);
+      font-size: 11px;
+      backdrop-filter: blur(10px);
+    }
+    #byd-skyrail-vis .status-chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--skyrail-green); box-shadow: 0 0 12px var(--skyrail-green); }
+    #byd-skyrail-vis .skyrail-note {
+      position: absolute;
+      z-index: 5;
+      right: 26px;
+      top: 105px;
+      color: rgba(246,248,251,.48);
+      font-size: 11px;
+      pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      #byd-skyrail-vis { min-height: 660px; }
+      #byd-skyrail-vis .skyrail-head { inset: 18px 18px auto; }
+      #byd-skyrail-vis .skyrail-badge, #byd-skyrail-vis .skyrail-note { display: none; }
+      #byd-skyrail-vis .skyrail-controls { left: 18px; right: 18px; bottom: 18px; align-items: flex-start; flex-direction: column; }
+      #byd-skyrail-vis .station-label { min-width: 0; padding: 4px 6px; font-size: 10px; }
+    }
+  &lt;/style&gt;
+
+  &lt;header class=&quot;skyrail-head&quot;&gt;
+    &lt;div class=&quot;skyrail-title&quot;&gt;
+      &lt;p class=&quot;skyrail-kicker&quot;&gt;SHENZHEN · SMART TRANSIT&lt;/p&gt;
+      &lt;h2&gt;比亚迪云巴基地&lt;/h2&gt;
+      &lt;p class=&quot;skyrail-subtitle&quot;&gt;环形轨道 · 智能调度 · 多站点协同运行&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;skyrail-badge&quot;&gt;&lt;b&gt;8&lt;/b&gt; 个站点 · &lt;b&gt;3&lt;/b&gt; 列云巴&lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;div class=&quot;skyrail-note&quot;&gt;拖动旋转 · 滚轮缩放 · 点击站点聚焦&lt;/div&gt;
+  &lt;div class=&quot;skyrail-canvas&quot; role=&quot;img&quot; aria-label=&quot;三列云巴沿环形高架轨道经过基地入口站、智造中心站、研发中心站等八个站点&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;skyrail-labels&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+
+  &lt;div class=&quot;skyrail-controls&quot;&gt;
+    &lt;div class=&quot;control-group&quot;&gt;
+      &lt;button type=&quot;button&quot; data-action=&quot;toggle&quot; aria-pressed=&quot;true&quot;&gt;暂停运行&lt;/button&gt;
+      &lt;button type=&quot;button&quot; data-action=&quot;reset&quot;&gt;重置视角&lt;/button&gt;
+      &lt;button type=&quot;button&quot; data-action=&quot;view&quot;&gt;切换俯视&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;status-group&quot;&gt;
+      &lt;span class=&quot;status-chip&quot;&gt;&lt;i&gt;&lt;/i&gt;系统运行正常&lt;/span&gt;
+      &lt;span class=&quot;status-chip&quot; data-next&gt;下一站：智造中心站&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script type=&quot;module&quot;&gt;
+    import * as THREE from &#x27;https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js&#x27;;
+
+    const root = document.getElementById(&#x27;byd-skyrail-vis&#x27;);
+    const mount = root.querySelector(&#x27;.skyrail-canvas&#x27;);
+    const labelLayer = root.querySelector(&#x27;.skyrail-labels&#x27;);
+    const nextLabel = root.querySelector(&#x27;[data-next]&#x27;);
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x07101b, 0.016);
+
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 300);
+    const defaultCamera = new THREE.Vector3(36, 29, 38);
+    camera.position.copy(defaultCamera);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(mount.clientWidth, mount.clientHeight, false);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    mount.appendChild(renderer.domElement);
+
+    scene.add(new THREE.HemisphereLight(0xbfefff, 0x101620, 2.1));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
+    keyLight.position.set(18, 32, 20);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.set(1024, 1024);
+    scene.add(keyLight);
+    const redLight = new THREE.PointLight(0xe31b23, 120, 55, 2);
+    redLight.position.set(-19, 10, -14);
+    scene.add(redLight);
+
+    const world = new THREE.Group();
+    scene.add(world);
+
+    const ground = new THREE.Mesh(
+      new THREE.CircleGeometry(34, 96),
+      new THREE.MeshStandardMaterial({ color: 0x0a1520, roughness: 0.92, metalness: 0.08 })
+    );
+    ground.rotation.x = -Math.PI / 2;
+    ground.receiveShadow = true;
+    world.add(ground);
+
+    const grid = new THREE.GridHelper(64, 32, 0x21445a, 0x142a38);
+    grid.position.y = 0.025;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.34;
+    world.add(grid);
+
+    const ringRadius = 20;
+    const trackHeight = 6.1;
+    const trackMaterial = new THREE.MeshStandardMaterial({ color: 0xb8c0c8, metalness: 0.72, roughness: 0.32 });
+    const darkTrackMaterial = new THREE.MeshStandardMaterial({ color: 0x303b45, metalness: 0.55, roughness: 0.5 });
+    [ringRadius - 0.72, ringRadius + 0.72].forEach(radius =&gt; {
+      const rail = new THREE.Mesh(new THREE.TorusGeometry(radius, 0.16, 10, 160), trackMaterial);
+      rail.rotation.x = Math.PI / 2;
+      rail.position.y = trackHeight;
+      rail.castShadow = true;
+      world.add(rail);
+    });
+    const beam = new THREE.Mesh(new THREE.TorusGeometry(ringRadius, 0.62, 12, 160), darkTrackMaterial);
+    beam.rotation.x = Math.PI / 2;
+    beam.position.y = trackHeight - 0.5;
+    world.add(beam);
+
+    for (let i = 0; i &lt; 32; i++) {
+      const a = i / 32 * Math.PI * 2;
+      const sleeper = new THREE.Mesh(new THREE.BoxGeometry(2.25, 0.16, 0.34), trackMaterial);
+      sleeper.position.set(Math.cos(a) * ringRadius, trackHeight, Math.sin(a) * ringRadius);
+      sleeper.rotation.y = -a;
+      world.add(sleeper);
+    }
+
+    for (let i = 0; i &lt; 16; i++) {
+      const a = i / 16 * Math.PI * 2;
+      const pillar = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.34, 0.5, trackHeight - 0.45, 10),
+        new THREE.MeshStandardMaterial({ color: 0x66727d, metalness: 0.35, roughness: 0.65 })
+      );
+      pillar.position.set(Math.cos(a) * ringRadius, (trackHeight - 0.45) / 2, Math.sin(a) * ringRadius);
+      pillar.castShadow = true;
+      pillar.receiveShadow = true;
+      world.add(pillar);
+    }
+
+    const centralBuilding = new THREE.Group();
+    const podium = new THREE.Mesh(
+      new THREE.CylinderGeometry(8.3, 9.2, 1.1, 8),
+      new THREE.MeshStandardMaterial({ color: 0x142637, roughness: 0.72, metalness: 0.15 })
+    );
+    podium.position.y = 0.55;
+    podium.receiveShadow = true;
+    centralBuilding.add(podium);
+    const tower = new THREE.Mesh(
+      new THREE.CylinderGeometry(5.4, 6.5, 4.2, 8),
+      new THREE.MeshStandardMaterial({ color: 0x263b4b, roughness: 0.35, metalness: 0.5 })
+    );
+    tower.position.y = 2.75;
+    tower.castShadow = true;
+    centralBuilding.add(tower);
+    const crown = new THREE.Mesh(
+      new THREE.TorusGeometry(5.45, 0.17, 8, 48),
+      new THREE.MeshBasicMaterial({ color: 0xe31b23 })
+    );
+    crown.rotation.x = Math.PI / 2;
+    crown.position.y = 4.88;
+    centralBuilding.add(crown);
+    world.add(centralBuilding);
+
+    const stationNames = [&#x27;基地入口站&#x27;,&#x27;智造中心站&#x27;,&#x27;研发中心站&#x27;,&#x27;试验线站&#x27;,&#x27;生态公园站&#x27;,&#x27;云巴展厅站&#x27;,&#x27;能源中心站&#x27;,&#x27;综合服务站&#x27;];
+    const stations = [];
+    const stationGeo = new THREE.BoxGeometry(4.7, 0.46, 2.45);
+    const canopyGeo = new THREE.BoxGeometry(4.9, 0.14, 2.7);
+    const stationMaterial = new THREE.MeshStandardMaterial({ color: 0xd8e0e6, metalness: 0.38, roughness: 0.35 });
+    const canopyMaterial = new THREE.MeshStandardMaterial({ color: 0x213b4d, metalness: 0.65, roughness: 0.25 });
+
+    stationNames.forEach((name, index) =&gt; {
+      const angle = index / stationNames.length * Math.PI * 2;
+      const group = new THREE.Group();
+      group.position.set(Math.cos(angle) * ringRadius, trackHeight + 0.28, Math.sin(angle) * ringRadius);
+      group.rotation.y = -angle;
+      const platform = new THREE.Mesh(stationGeo, stationMaterial);
+      platform.castShadow = true;
+      group.add(platform);
+      const canopy = new THREE.Mesh(canopyGeo, canopyMaterial);
+      canopy.position.y = 1.45;
+      group.add(canopy);
+      [-1.75, 1.75].forEach(x =&gt; {
+        [-0.82, 0.82].forEach(z =&gt; {
+          const post = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.45, 6), trackMaterial);
+          post.position.set(x, 0.72, z);
+          group.add(post);
+        });
+      });
+      const light = new THREE.PointLight(0x4de5ff, 15, 7, 2);
+      light.position.y = 1.05;
+      group.add(light);
+      world.add(group);
+
+      const label = document.createElement(&#x27;span&#x27;);
+      label.className = &#x27;station-label&#x27;;
+      label.textContent = name;
+      labelLayer.appendChild(label);
+      stations.push({ name, angle, group, label, worldPoint: new THREE.Vector3() });
+    });
+
+    function createTrain() {
+      const train = new THREE.Group();
+      const body = new THREE.Mesh(
+        new THREE.BoxGeometry(4.2, 1.28, 1.78),
+        new THREE.MeshStandardMaterial({ color: 0xf1f3f5, metalness: 0.32, roughness: 0.3 })
+      );
+      body.position.y = 0.72;
+      body.castShadow = true;
+      train.add(body);
+      const nose = new THREE.Mesh(
+        new THREE.BoxGeometry(0.55, 1.05, 1.65),
+        new THREE.MeshStandardMaterial({ color: 0xe31b23, metalness: 0.25, roughness: 0.28 })
+      );
+      nose.position.set(2.25, 0.72, 0);
+      train.add(nose);
+      const windows = new THREE.Mesh(
+        new THREE.BoxGeometry(2.7, 0.5, 1.84),
+        new THREE.MeshStandardMaterial({ color: 0x153446, emissive: 0x0d2638, emissiveIntensity: 0.8, metalness: 0.7, roughness: 0.18 })
+      );
+      windows.position.set(-0.25, 0.86, 0);
+      train.add(windows);
+      const undercarriage = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.34, 1.2), darkTrackMaterial);
+      undercarriage.position.y = -0.08;
+      train.add(undercarriage);
+      return train;
+    }
+
+    const trains = [0.03, 0.36, 0.69].map((progress, index) =&gt; {
+      const train = createTrain();
+      train.userData.progress = progress;
+      train.userData.speed = 0.017 + index * 0.0015;
+      world.add(train);
+      return train;
+    });
+
+    let running = true;
+    let topView = false;
+    let yaw = 0;
+    let pitch = 0.52;
+    let distance = 54;
+    let dragging = false;
+    let lastX = 0;
+    let lastY = 0;
+    const target = new THREE.Vector3(0, 3.6, 0);
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    const clock = new THREE.Clock();
+
+    function updateCamera() {
+      if (topView) {
+        camera.position.lerp(new THREE.Vector3(0.01, 62, 0.01), 0.12);
+      } else {
+        const cp = Math.cos(pitch);
+        const desired = new THREE.Vector3(
+          target.x + Math.sin(yaw) * cp * distance,
+          target.y + Math.sin(pitch) * distance,
+          target.z + Math.cos(yaw) * cp * distance
+        );
+        camera.position.lerp(desired, 0.16);
+      }
+      camera.lookAt(target);
+    }
+
+    function placeTrain(train) {
+      const angle = train.userData.progress * Math.PI * 2;
+      train.position.set(Math.cos(angle) * ringRadius, trackHeight + 0.65, Math.sin(angle) * ringRadius);
+      train.rotation.y = -angle;
+    }
+    trains.forEach(placeTrain);
+
+    function updateLabels() {
+      const width = mount.clientWidth;
+      const height = mount.clientHeight;
+      stations.forEach(station =&gt; {
+        station.group.getWorldPosition(station.worldPoint);
+        station.worldPoint.y += 2.35;
+        const projected = station.worldPoint.clone().project(camera);
+        const visible = projected.z &gt; -1 &amp;&amp; projected.z &lt; 1;
+        station.label.style.left = `${(projected.x * 0.5 + 0.5) * width}px`;
+        station.label.style.top = `${(-projected.y * 0.5 + 0.5) * height}px`;
+        station.label.style.opacity = visible ? &#x27;1&#x27; : &#x27;0&#x27;;
+      });
+    }
+
+    function animate() {
+      const dt = Math.min(clock.getDelta(), 0.05);
+      if (running) {
+        trains.forEach(train =&gt; {
+          train.userData.progress = (train.userData.progress + train.userData.speed * dt) % 1;
+          placeTrain(train);
+        });
+      }
+      const leadIndex = Math.ceil(trains[0].userData.progress * stationNames.length) % stationNames.length;
+      nextLabel.textContent = `下一站：${stationNames[leadIndex]}`;
+      stations.forEach((station, index) =&gt; station.label.classList.toggle(&#x27;is-active&#x27;, index === leadIndex));
+      updateCamera();
+      updateLabels();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    function resize() {
+      const width = mount.clientWidth;
+      const height = mount.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height, false);
+    }
+    new ResizeObserver(resize).observe(root);
+
+    renderer.domElement.addEventListener(&#x27;pointerdown&#x27;, event =&gt; {
+      dragging = true;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      renderer.domElement.setPointerCapture(event.pointerId);
+    });
+    renderer.domElement.addEventListener(&#x27;pointermove&#x27;, event =&gt; {
+      if (!dragging || topView) return;
+      yaw -= (event.clientX - lastX) * 0.008;
+      pitch = THREE.MathUtils.clamp(pitch + (event.clientY - lastY) * 0.006, 0.18, 1.15);
+      lastX = event.clientX;
+      lastY = event.clientY;
+    });
+    renderer.domElement.addEventListener(&#x27;pointerup&#x27;, () =&gt; { dragging = false; });
+    renderer.domElement.addEventListener(&#x27;wheel&#x27;, event =&gt; {
+      event.preventDefault();
+      distance = THREE.MathUtils.clamp(distance + event.deltaY * 0.025, 34, 78);
+    }, { passive: false });
+
+    renderer.domElement.addEventListener(&#x27;click&#x27;, event =&gt; {
+      if (Math.abs(event.clientX - lastX) &gt; 5 || Math.abs(event.clientY - lastY) &gt; 5) return;
+      const rect = renderer.domElement.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(stations.map(s =&gt; s.group), true);
+      if (!hits.length) return;
+      const station = stations.find(s =&gt; {
+        let obj = hits[0].object;
+        while (obj) { if (obj === s.group) return true; obj = obj.parent; }
+        return false;
+      });
+      if (station) {
+        target.set(station.group.position.x * 0.45, 4.8, station.group.position.z * 0.45);
+        stations.forEach(s =&gt; s.label.classList.toggle(&#x27;is-active&#x27;, s === station));
+      }
+    });
+
+    root.querySelector(&#x27;[data-action=&quot;toggle&quot;]&#x27;).addEventListener(&#x27;click&#x27;, event =&gt; {
+      running = !running;
+      event.currentTarget.setAttribute(&#x27;aria-pressed&#x27;, String(running));
+      event.currentTarget.textContent = running ? &#x27;暂停运行&#x27; : &#x27;继续运行&#x27;;
+    });
+    root.querySelector(&#x27;[data-action=&quot;reset&quot;]&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+      topView = false;
+      yaw = 0;
+      pitch = 0.52;
+      distance = 54;
+      target.set(0, 3.6, 0);
+      root.querySelector(&#x27;[data-action=&quot;view&quot;]&#x27;).textContent = &#x27;切换俯视&#x27;;
+    });
+    root.querySelector(&#x27;[data-action=&quot;view&quot;]&#x27;).addEventListener(&#x27;click&#x27;, event =&gt; {
+      topView = !topView;
+      target.set(0, 3.6, 0);
+      event.currentTarget.textContent = topView ? &#x27;切换斜视&#x27; : &#x27;切换俯视&#x27;;
+    });
+
+    resize();
+    animate();
+  &lt;/script&gt;
+&lt;/section&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+<a href="../../index.html" class="kids-lab-back-float" style="position:fixed;bottom:20px;left:20px;z-index:999999;background:rgba(15,23,42,0.88);backdrop-filter:blur(10px);color:#f8fafc;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);display:inline-flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.background='#6366f1'" onmouseout="this.style.transform='none';this.style.background='rgba(15,23,42,0.88)'">🏠 返回实验展馆</a>
+</body>
+</html>

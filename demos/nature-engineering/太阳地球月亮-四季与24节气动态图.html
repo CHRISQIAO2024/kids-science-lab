@@ -1,0 +1,508 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="太阳、地球、月球运动与一年四季、24节气的 Three.js 互动教学演示">
+  <title>太阳·地球·月亮｜四季与24节气动态图</title>
+  <style>
+    :root {
+      --bg: #020711;
+      --panel: rgba(7, 16, 32, .78);
+      --line: rgba(139, 189, 255, .18);
+      --text: #eef6ff;
+      --muted: #91a8c4;
+      --blue: #5ec8ff;
+      --gold: #ffc85a;
+      --spring: #65dda1;
+      --summer: #ffd166;
+      --autumn: #ff9b62;
+      --winter: #82b9ff;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    body {
+      color: var(--text);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(25, 69, 125, .18), transparent 36%),
+        linear-gradient(160deg, #040c19, var(--bg) 55%);
+      font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+    }
+
+    button, input, select { font: inherit; }
+    button, select {
+      color: var(--text);
+      border: 1px solid rgba(146, 190, 242, .24);
+      background: rgba(18, 37, 62, .76);
+      border-radius: 9px;
+    }
+    button { cursor: pointer; padding: 8px 13px; }
+    button:hover { background: rgba(32, 63, 100, .9); }
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+    }
+
+    #app { position: relative; width: 100%; height: 100%; }
+    #scene { position: absolute; inset: 0; }
+    #scene canvas { display: block; width: 100%; height: 100%; }
+
+    .topbar {
+      position: absolute;
+      top: 18px;
+      left: 22px;
+      right: 22px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .brand { max-width: 720px; text-shadow: 0 2px 18px #000; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 6px 0 4px; font-size: clamp(22px, 3vw, 38px); font-weight: 600; }
+    .subtitle { color: var(--muted); font-size: 13px; }
+    .drag-hint {
+      color: #a9bad0;
+      font-size: 12px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(4, 12, 25, .58);
+      backdrop-filter: blur(8px);
+    }
+
+    .info-panel {
+      position: absolute;
+      z-index: 6;
+      top: 100px;
+      right: 22px;
+      width: min(310px, calc(100vw - 44px));
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, .28);
+      backdrop-filter: blur(14px);
+    }
+    .date-row { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 12px; }
+    .term-row { display: flex; align-items: center; gap: 12px; margin: 9px 0 13px; }
+    .season-dot { width: 12px; height: 12px; flex: 0 0 auto; border-radius: 50%; box-shadow: 0 0 18px currentColor; }
+    #term-name { font-size: 30px; line-height: 1; font-weight: 600; letter-spacing: .08em; }
+    #season-name { color: var(--muted); font-size: 13px; margin-top: 5px; }
+    .term-desc { min-height: 40px; margin: 0; color: #c9d7e8; font-size: 13px; line-height: 1.55; }
+    .progress-track { height: 4px; margin-top: 13px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.1); }
+    .progress-bar { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--gold)); }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 13px; }
+    .fact { padding: 9px 6px; text-align: center; border-top: 1px solid var(--line); }
+    .fact strong { display: block; font-size: 14px; font-weight: 500; }
+    .fact span { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+
+    .season-legend {
+      position: absolute;
+      left: 22px;
+      bottom: 102px;
+      z-index: 5;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 15px;
+      color: #b6c7db;
+      font-size: 12px;
+      pointer-events: none;
+    }
+    .season-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .swatch { width: 8px; height: 8px; border-radius: 50%; }
+
+    .controls {
+      position: absolute;
+      z-index: 7;
+      left: 22px;
+      right: 22px;
+      bottom: 18px;
+      display: grid;
+      grid-template-columns: auto minmax(220px, 1fr) auto auto;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(5, 14, 28, .84);
+      box-shadow: 0 12px 44px rgba(0, 0, 0, .3);
+      backdrop-filter: blur(14px);
+    }
+    .play { min-width: 92px; color: #07101f; background: var(--gold); border-color: transparent; font-weight: 600; }
+    .play:hover { background: #ffda88; }
+    .timeline-wrap { display: grid; grid-template-columns: 70px 1fr 48px; align-items: center; gap: 10px; }
+    .timeline-wrap label, .timeline-wrap output { color: var(--muted); font-size: 12px; }
+    input[type="range"] { width: 100%; accent-color: var(--gold); cursor: pointer; }
+    select { min-width: 112px; padding: 8px 10px; }
+    .toggles { display: flex; gap: 11px; white-space: nowrap; color: #bccbe0; font-size: 12px; }
+    .toggles label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+    .toggles input { accent-color: var(--blue); }
+
+    .space-label {
+      position: absolute;
+      z-index: 4;
+      transform: translate(-50%, -50%);
+      color: #aec1d9;
+      font-size: 10px;
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+      text-shadow: 0 1px 5px #000, 0 0 10px #000;
+      transition: opacity .15s;
+    }
+    .space-label.major { color: #fff1bd; font-size: 12px; font-weight: 600; }
+    .space-label.current { color: #fff; font-size: 13px; font-weight: 600; }
+    .loading-error {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      place-items: center;
+      padding: 30px;
+      color: #ffd4d4;
+      text-align: center;
+      background: #07101f;
+    }
+    .note {
+      position: absolute;
+      left: 22px;
+      top: 88px;
+      z-index: 4;
+      max-width: 255px;
+      color: rgba(185, 204, 228, .72);
+      font-size: 11px;
+      line-height: 1.5;
+      pointer-events: none;
+    }
+
+    @media (max-width: 760px) {
+      .drag-hint, .note, .season-legend { display: none; }
+      .topbar { top: 12px; left: 14px; right: 14px; }
+      .info-panel { top: 86px; right: 14px; width: 225px; padding: 13px; }
+      #term-name { font-size: 24px; }
+      .term-desc { display: none; }
+      .facts { gap: 3px; }
+      .controls { left: 10px; right: 10px; bottom: 10px; grid-template-columns: auto 1fr; gap: 9px; }
+      .timeline-wrap { grid-column: 1 / -1; grid-row: 1; grid-template-columns: 55px 1fr 38px; }
+      .play { grid-column: 1; grid-row: 2; }
+      .controls select { grid-column: 2; grid-row: 2; width: 100%; }
+      .toggles { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main id="app">
+    <div id="scene" role="img" aria-label="太阳、地球与月球运动的三维模拟，地球轨道标注一年四季和二十四节气"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="eyebrow">Sun · Earth · Moon</div>
+        <h1>一年四季与二十四节气</h1>
+        <div class="subtitle">地轴倾斜 × 地球公转 × 太阳直射点变化</div>
+      </div>
+      <div class="drag-hint">拖动旋转 · 滚轮缩放</div>
+    </header>
+
+    <div class="note">教学演示：天体大小、距离与转速经过视觉强化，并非真实比例。四季的主要成因是地轴倾斜，不是日地距离。</div>
+
+    <aside class="info-panel" aria-live="polite">
+      <div class="date-row"><span id="date-text">2026年1月1日</span><span id="day-count">第1天</span></div>
+      <div class="term-row">
+        <span id="season-dot" class="season-dot"></span>
+        <div><div id="term-name">冬至</div><div id="season-name">冬季 · 阳光斜射北半球</div></div>
+      </div>
+      <p id="term-desc" class="term-desc"></p>
+      <div class="progress-track" aria-hidden="true"><div id="progress" class="progress-bar"></div></div>
+      <div class="facts">
+        <div class="fact"><strong>23.4°</strong><span>地轴倾角</span></div>
+        <div class="fact"><strong>365.24天</strong><span>公转周期</span></div>
+        <div class="fact"><strong>27.3天</strong><span>月球公转</span></div>
+      </div>
+    </aside>
+
+    <div class="season-legend" aria-label="季节颜色图例">
+      <span><i class="swatch" style="background:var(--spring)"></i>春</span>
+      <span><i class="swatch" style="background:var(--summer)"></i>夏</span>
+      <span><i class="swatch" style="background:var(--autumn)"></i>秋</span>
+      <span><i class="swatch" style="background:var(--winter)"></i>冬</span>
+      <span>● 二分二至</span>
+    </div>
+
+    <section class="controls" aria-label="动画控制">
+      <button id="play" class="play" type="button" aria-pressed="true">❚❚ 暂停</button>
+      <div class="timeline-wrap">
+        <label for="timeline">时间轴</label>
+        <input id="timeline" type="range" min="0" max="364" step="0.05" value="0" aria-label="一年中的日期">
+        <output id="percent" for="timeline">0%</output>
+      </div>
+      <select id="view" aria-label="观察视角">
+        <option value="perspective">三维视角</option>
+        <option value="top">俯视轨道</option>
+        <option value="earth">跟随地球</option>
+      </select>
+      <div class="toggles">
+        <label><input id="labels-toggle" type="checkbox" checked> 节气标签</label>
+        <label><input id="axis-toggle" type="checkbox" checked> 地轴</label>
+        <label>速度 <select id="speed" aria-label="播放速度"><option value="3">慢</option><option value="10" selected>中</option><option value="28">快</option></select></label>
+      </div>
+    </section>
+
+    <div id="loading-error" class="loading-error">三维引擎加载失败。请检查网络连接后重新打开本文件。</div>
+  </main>
+
+  <script>
+    window.addEventListener('error', function (event) {
+      if (String(event.message || '').toLowerCase().includes('module') || String(event.filename || '').includes('three')) {
+        document.getElementById('loading-error').style.display = 'grid';
+      }
+    });
+    window.addEventListener('unhandledrejection', function () {
+      document.getElementById('loading-error').style.display = 'grid';
+    });
+  </script>
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js';
+
+    const YEAR = 365.2422;
+    const ORBIT_R = 24;
+    const TILT = THREE.MathUtils.degToRad(23.44);
+    const sceneHost = document.getElementById('scene');
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x020711, 0.0065);
+
+    const camera = new THREE.PerspectiveCamera(43, innerWidth / innerHeight, 0.1, 400);
+    camera.position.set(34, 24, 38);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.08;
+    sceneHost.appendChild(renderer.domElement);
+
+    scene.add(new THREE.AmbientLight(0x49627c, 0.32));
+    const sunlight = new THREE.PointLight(0xfff1c1, 1250, 100, 1.35);
+    sunlight.position.set(0, 0, 0);
+    scene.add(sunlight);
+
+    function radialTexture(inner, middle, outer) {
+      const c = document.createElement('canvas'); c.width = c.height = 256;
+      const x = c.getContext('2d');
+      const g = x.createRadialGradient(128, 128, 4, 128, 128, 128);
+      g.addColorStop(0, inner); g.addColorStop(.28, middle); g.addColorStop(1, outer);
+      x.fillStyle = g; x.fillRect(0, 0, 256, 256);
+      return new THREE.CanvasTexture(c);
+    }
+
+    function earthTexture() {
+      const c = document.createElement('canvas'); c.width = 1024; c.height = 512;
+      const x = c.getContext('2d');
+      const ocean = x.createLinearGradient(0, 0, 0, 512);
+      ocean.addColorStop(0, '#176aab'); ocean.addColorStop(.5, '#0b4f8e'); ocean.addColorStop(1, '#083968');
+      x.fillStyle = ocean; x.fillRect(0, 0, 1024, 512);
+      x.fillStyle = '#5fae70';
+      const lands = [
+        [[90,120],[170,78],[245,102],[270,155],[220,185],[188,260],[130,232],[102,175]],
+        [[280,275],[345,250],[386,302],[360,410],[313,454],[285,365]],
+        [[475,105],[570,78],[658,112],[700,180],[650,220],[590,198],[550,245],[500,205]],
+        [[650,225],[725,210],[800,265],[770,325],[690,304]],
+        [[830,330],[900,308],[945,350],[920,405],[850,402]]
+      ];
+      lands.forEach(points => { x.beginPath(); points.forEach((p,i) => i ? x.lineTo(...p) : x.moveTo(...p)); x.closePath(); x.fill(); });
+      x.strokeStyle = 'rgba(255,255,255,.24)'; x.lineWidth = 3;
+      for (let i=0;i<18;i++) { x.beginPath(); x.arc((i*149)%1024, 50+(i*83)%400, 24+(i%4)*11, 0, Math.PI*1.35); x.stroke(); }
+      const texture = new THREE.CanvasTexture(c); texture.colorSpace = THREE.SRGBColorSpace; return texture;
+    }
+
+    function lineLoop(points, color, opacity=1) {
+      const geo = new THREE.BufferGeometry().setFromPoints(points);
+      return new THREE.LineLoop(geo, new THREE.LineBasicMaterial({ color, transparent: opacity < 1, opacity }));
+    }
+
+    const sun = new THREE.Mesh(
+      new THREE.SphereGeometry(3.25, 64, 64),
+      new THREE.MeshBasicMaterial({ color: 0xffb52e })
+    );
+    scene.add(sun);
+    const sunGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map: radialTexture('rgba(255,250,190,1)','rgba(255,166,35,.42)','rgba(255,120,0,0)'), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    sunGlow.scale.set(12.5, 12.5, 1); scene.add(sunGlow);
+
+    const orbitPts = Array.from({length: 256}, (_,i) => {
+      const a = i / 256 * Math.PI * 2; return new THREE.Vector3(Math.cos(a)*ORBIT_R, 0, Math.sin(a)*ORBIT_R);
+    });
+    scene.add(lineLoop(orbitPts, 0x557aa5, .38));
+
+    const seasonColors = [0x65dda1, 0xffd166, 0xff9b62, 0x82b9ff];
+    for (let s=0;s<4;s++) {
+      const pts=[];
+      for(let i=0;i<=64;i++) {
+        const a = Math.PI + (s*90 + i/64*90) * Math.PI/180;
+        pts.push(new THREE.Vector3(Math.cos(a)*ORBIT_R, -.08, Math.sin(a)*ORBIT_R));
+      }
+      scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: seasonColors[s], transparent:true, opacity:.32 })));
+    }
+
+    const earthSystem = new THREE.Group(); scene.add(earthSystem);
+    const earthTilt = new THREE.Group(); earthTilt.rotation.x = TILT; earthSystem.add(earthTilt);
+    const earth = new THREE.Mesh(
+      new THREE.SphereGeometry(1.65, 48, 48),
+      new THREE.MeshPhongMaterial({ map: earthTexture(), shininess: 18, specular: 0x335577 })
+    );
+    earthTilt.add(earth);
+    const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(1.72, 48, 48), new THREE.MeshBasicMaterial({ color:0x63cfff, transparent:true, opacity:.12, side:THREE.BackSide }));
+    earthTilt.add(atmosphere);
+
+    const equatorPts = Array.from({length:96},(_,i)=>{const a=i/96*Math.PI*2;return new THREE.Vector3(Math.cos(a)*1.82,0,Math.sin(a)*1.82)});
+    const equator = lineLoop(equatorPts, 0x7ad9ff, .55); earthTilt.add(equator);
+    const axisGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,-3.2,0),new THREE.Vector3(0,3.2,0)]);
+    const axis = new THREE.Line(axisGeo, new THREE.LineBasicMaterial({color:0x9cddff, transparent:true, opacity:.9})); earthTilt.add(axis);
+
+    const moonOrbitGroup = new THREE.Group(); earthSystem.add(moonOrbitGroup);
+    const moonOrbitPts = Array.from({length:96},(_,i)=>{const a=i/96*Math.PI*2;return new THREE.Vector3(Math.cos(a)*3.9, Math.sin(a)*.34, Math.sin(a)*3.9)});
+    moonOrbitGroup.add(lineLoop(moonOrbitPts, 0x879bb1, .34));
+    const moon = new THREE.Mesh(new THREE.SphereGeometry(.48, 32, 32), new THREE.MeshPhongMaterial({color:0xb9bec5, shininess:5}));
+    moonOrbitGroup.add(moon);
+
+    const starGeo = new THREE.BufferGeometry();
+    const stars = [];
+    for(let i=0;i<1500;i++) {
+      const r=70+Math.random()*100, u=Math.random()*2-1, a=Math.random()*Math.PI*2, q=Math.sqrt(1-u*u);
+      stars.push(r*q*Math.cos(a), r*u, r*q*Math.sin(a));
+    }
+    starGeo.setAttribute('position',new THREE.Float32BufferAttribute(stars,3));
+    scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xb8d7ff,size:.22,transparent:true,opacity:.7,sizeAttenuation:true})));
+
+    const terms = [
+      ['小寒',4,'寒气渐盛，太阳直射点仍在南半球。'],['大寒',19,'一年中寒冷程度较高的时段。'],
+      ['立春',34,'春季开始，北半球获得的太阳辐射逐渐增加。'],['雨水',49,'气温回升，降水形式与物候开始变化。'],
+      ['惊蛰',64,'春雷渐起，蛰伏生物开始活动。'],['春分',79,'昼夜接近等长，太阳直射赤道附近。'],
+      ['清明',94,'气候温和，草木生长明显。'],['谷雨',109,'春季最后一个节气，雨水利于谷物生长。'],
+      ['立夏',125,'夏季开始，北半球日照继续增强。'],['小满',140,'夏熟作物籽粒渐满，尚未完全成熟。'],
+      ['芒种',156,'有芒作物进入适宜播种与收获期。'],['夏至',171,'北半球白昼最长，太阳直射北回归线附近。'],
+      ['小暑',187,'天气开始炎热，但通常未到最热。'],['大暑',203,'一年中炎热程度较高的时段。'],
+      ['立秋',219,'秋季开始，北半球获得的太阳辐射逐渐减少。'],['处暑',234,'暑热渐退，昼夜温差开始增大。'],
+      ['白露',250,'空气转凉，清晨水汽易凝结。'],['秋分',265,'昼夜接近等长，太阳再次直射赤道附近。'],
+      ['寒露',281,'气温继续降低，露水更冷。'],['霜降',296,'秋季最后一个节气，部分地区出现初霜。'],
+      ['立冬',311,'冬季开始，北半球日照继续减弱。'],['小雪',326,'气温下降，部分地区开始出现降雪。'],
+      ['大雪',341,'降雪可能增多，冬意更浓。'],['冬至',356,'北半球白昼最短，太阳直射南回归线附近。']
+    ];
+    const major = new Set(['春分','夏至','秋分','冬至']);
+    const termObjects=[];
+
+    terms.forEach((term,index)=>{
+      const theta = Math.PI + (term[1]-79)/YEAR*Math.PI*2;
+      const p = new THREE.Vector3(Math.cos(theta)*ORBIT_R,0,Math.sin(theta)*ORBIT_R);
+      const dir=p.clone().normalize();
+      const tick=new THREE.Line(new THREE.BufferGeometry().setFromPoints([dir.clone().multiplyScalar(ORBIT_R-.35),dir.clone().multiplyScalar(ORBIT_R+.5)]),new THREE.LineBasicMaterial({color:major.has(term[0])?0xffdc7d:0x6f91b8,transparent:true,opacity:major.has(term[0])?.95:.48}));
+      scene.add(tick);
+      const dot=new THREE.Mesh(new THREE.SphereGeometry(major.has(term[0])?.18:.1,12,12),new THREE.MeshBasicMaterial({color:major.has(term[0])?0xffd166:0x81a7cb}));
+      dot.position.copy(p); scene.add(dot);
+      const el=document.createElement('span'); el.className='space-label'+(major.has(term[0])?' major':''); el.textContent=term[0]; el.setAttribute('aria-hidden','true'); document.getElementById('app').appendChild(el);
+      termObjects.push({el,pos:dir.multiplyScalar(ORBIT_R+1.3),dot});
+    });
+
+    const dateText=document.getElementById('date-text'), dayCount=document.getElementById('day-count');
+    const termName=document.getElementById('term-name'), seasonName=document.getElementById('season-name'), termDesc=document.getElementById('term-desc');
+    const seasonDot=document.getElementById('season-dot'), progress=document.getElementById('progress'), percent=document.getElementById('percent');
+    const timeline=document.getElementById('timeline'), playBtn=document.getElementById('play'), speedSelect=document.getElementById('speed');
+    const labelsToggle=document.getElementById('labels-toggle'), axisToggle=document.getElementById('axis-toggle'), viewSelect=document.getElementById('view');
+    const seasonMeta = {
+      spring:['春季','北半球日照增强','#65dda1'], summer:['夏季','北半球日照较强','#ffd166'],
+      autumn:['秋季','北半球日照减弱','#ff9b62'], winter:['冬季','北半球日照较弱','#82b9ff']
+    };
+
+    let day=0, playing=true, last=performance.now(), currentIndex=-1;
+    let yaw=.72, pitch=.42, distance=57, dragging=false, px=0, py=0;
+    const target=new THREE.Vector3();
+
+    function termIndexForDay(d) {
+      let idx=23;
+      for(let i=0;i<terms.length;i++) { if(d>=terms[i][1]) idx=i; else break; }
+      return idx;
+    }
+    function seasonForIndex(i) {
+      if(i>=2&&i<8) return 'spring'; if(i>=8&&i<14) return 'summer'; if(i>=14&&i<20) return 'autumn'; return 'winter';
+    }
+    function setDay(value) {
+      day=(value+YEAR)%YEAR;
+      const theta=Math.PI+(day-79)/YEAR*Math.PI*2;
+      earthSystem.position.set(Math.cos(theta)*ORBIT_R,0,Math.sin(theta)*ORBIT_R);
+      earth.rotation.y=day*Math.PI*2;
+      const moonA=day/27.3217*Math.PI*2;
+      moon.position.set(Math.cos(moonA)*3.9,Math.sin(moonA)*.34,Math.sin(moonA)*3.9);
+      moon.rotation.y=moonA;
+      const idx=termIndexForDay(day), meta=seasonMeta[seasonForIndex(idx)];
+      const date=new Date(Date.UTC(2026,0,1)); date.setUTCDate(1+Math.floor(day));
+      dateText.textContent=`${date.getUTCFullYear()}年${date.getUTCMonth()+1}月${date.getUTCDate()}日`;
+      dayCount.textContent=`第${Math.floor(day)+1}天`;
+      termName.textContent=terms[idx][0]; seasonName.textContent=`${meta[0]} · ${meta[1]}`; termDesc.textContent=terms[idx][2];
+      seasonDot.style.background=meta[2]; seasonDot.style.color=meta[2];
+      progress.style.width=`${day/YEAR*100}%`; timeline.value=Math.min(day,364); percent.textContent=`${Math.round(day/YEAR*100)}%`;
+      if(currentIndex!==idx) {
+        termObjects.forEach((o,i)=>o.el.classList.toggle('current',i===idx));
+        currentIndex=idx;
+      }
+    }
+
+    function updateCamera() {
+      if(viewSelect.value==='top') {
+        target.set(0,0,0); camera.position.lerp(new THREE.Vector3(0,58,.01),.1); camera.up.set(0,0,-1); camera.lookAt(target); return;
+      }
+      camera.up.set(0,1,0);
+      if(viewSelect.value==='earth') {
+        target.copy(earthSystem.position);
+        const sunward=earthSystem.position.clone().normalize();
+        camera.position.lerp(target.clone().add(new THREE.Vector3(sunward.x*8,6,sunward.z*8)),.1);
+        camera.lookAt(target); return;
+      }
+      target.set(0,0,0);
+      const cp=Math.cos(pitch);
+      camera.position.set(Math.sin(yaw)*cp*distance,Math.sin(pitch)*distance,Math.cos(yaw)*cp*distance);
+      camera.lookAt(target);
+    }
+
+    function updateLabels() {
+      const visible=labelsToggle.checked && viewSelect.value!=='earth';
+      const w=innerWidth,h=innerHeight;
+      termObjects.forEach(o=>{
+        if(!visible){o.el.style.opacity='0';return;}
+        const p=o.pos.clone().project(camera);
+        const inView=p.z>-1&&p.z<1&&Math.abs(p.x)<1.08&&Math.abs(p.y)<1.08;
+        o.el.style.opacity=inView?'1':'0';
+        o.el.style.left=`${(p.x*.5+.5)*w}px`; o.el.style.top=`${(-p.y*.5+.5)*h}px`;
+      });
+    }
+
+    playBtn.addEventListener('click',()=>{playing=!playing;playBtn.textContent=playing?'❚❚ 暂停':'▶ 播放';playBtn.setAttribute('aria-pressed',String(playing));});
+    timeline.addEventListener('input',()=>{setDay(Number(timeline.value));});
+    axisToggle.addEventListener('change',()=>{axis.visible=axisToggle.checked;equator.visible=axisToggle.checked;});
+    viewSelect.addEventListener('change',()=>{ if(viewSelect.value==='perspective'){yaw=.72;pitch=.42;distance=57;} });
+    renderer.domElement.addEventListener('pointerdown',e=>{if(viewSelect.value!=='perspective')return;dragging=true;px=e.clientX;py=e.clientY;renderer.domElement.setPointerCapture(e.pointerId);});
+    renderer.domElement.addEventListener('pointermove',e=>{if(!dragging)return;yaw-=(e.clientX-px)*.006;pitch=Math.max(-1.2,Math.min(1.2,pitch+(e.clientY-py)*.006));px=e.clientX;py=e.clientY;});
+    renderer.domElement.addEventListener('pointerup',()=>dragging=false);
+    renderer.domElement.addEventListener('wheel',e=>{if(viewSelect.value!=='perspective')return;e.preventDefault();distance=Math.max(34,Math.min(90,distance+e.deltaY*.035));},{passive:false});
+    addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+
+    function animate(now) {
+      requestAnimationFrame(animate);
+      const dt=Math.min((now-last)/1000,.05); last=now;
+      if(playing) setDay(day+dt*Number(speedSelect.value));
+      sun.rotation.y+=dt*.08;
+      updateCamera(); updateLabels(); renderer.render(scene,camera);
+    }
+    setDay(0); requestAnimationFrame(animate);
+  </script>
+<a href="../../index.html" class="kids-lab-back-float" style="position:fixed;bottom:20px;left:20px;z-index:999999;background:rgba(15,23,42,0.88);backdrop-filter:blur(10px);color:#f8fafc;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);display:inline-flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.background='#6366f1'" onmouseout="this.style.transform='none';this.style.background='rgba(15,23,42,0.88)'">🏠 返回实验展馆</a>
+</body>
+</html>
