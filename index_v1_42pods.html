@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>薪钰AI CODING梦工厂 | 乔薪钰的 42 个自然语言互动宇宙</title>
+  <meta name="description" content="薪钰AI CODING梦工厂：小学四年级学生乔薪钰在教练 Chris Qiao 协同下，基于《AI进化十步法》少儿实战训练营打造的 42 个自然语言科学互动程序。">
+  
+  <!-- 免费开源可商用字体（零版权隐患） -->
+  <!-- 中文：思源宋体 (Noto Serif SC) -->
+  <!-- 英文/IDE等宽：JetBrains Mono（代码/遥测）+ Inter（界面标准） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --space-black: #000000;
+      --space-deep: #05070d;
+      --card-bg: rgba(10, 14, 24, 0.75);
+      --card-bg-hover: rgba(16, 22, 38, 0.92);
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-highlight: rgba(56, 189, 248, 0.6);
+      --text-pure: #ffffff;
+      --text-muted: #8b9bb4;
+      --text-dim: #55657e;
+      --cyan-telemetry: #38bdf8;
+      --green-status: #22c55e;
+      --amber-warning: #f59e0b;
+      --purple-quantum: #a855f7;
+      
+      /* 字体体系 */
+      --font-serif: 'Noto Serif SC', "Source Han Serif SC", "Songti SC", "SimSun", serif;
+      --font-mono: 'JetBrains Mono', "SF Mono", Consolas, Menlo, monospace;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--space-black);
+      color: var(--text-pure);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.15) 0%, transparent 55%),
+        radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 15% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #020408 0%, #000000 100%);
+      background-attachment: fixed;
+    }
+
+    /* 顶部遥测状态栏 (SpaceX Telemetry Bar) */
+    .telemetry-ticker {
+      background: rgba(0, 0, 0, 0.85);
+      border-bottom: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: var(--text-dim);
+      padding: 8px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .ticker-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green-status);
+      box-shadow: 0 0 10px var(--green-status);
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .ticker-right {
+      display: flex;
+      gap: 20px;
+    }
+
+    .ticker-highlight {
+      color: var(--cyan-telemetry);
+    }
+
+    /* 主视觉区 (Hero Section) 双栏黄金布局 */
+    .hero {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 44px 24px 24px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .hero-left {
+      text-align: left;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--cyan-telemetry);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.06);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    /* 中文主标题：思源宋体精细调整，告别粗大，呈现高级探索质感 */
+    h1.hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3.2vw, 38px);
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 25px rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-sub {
+      font-family: var(--font-serif);
+      font-size: 14.5px;
+      color: #94a3b8;
+      margin-bottom: 16px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* 造梦三步方程式 (The Dream Formula) */
+    .dream-formula {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 6px;
+      padding: 9px 12px;
+      margin-bottom: 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .formula-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .formula-step strong {
+      color: var(--cyan-telemetry);
+    }
+
+    .formula-arrow {
+      color: #64748b;
+    }
+
+    /* 方法论引导小横条 */
+    .methodology-link-bar {
+      margin-bottom: 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .methodology-link-bar a {
+      color: #38bdf8;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 5px 12px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .methodology-link-bar a:hover {
+      background: #38bdf8;
+      color: #000;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+    }
+
+    /* 遥测参数仪表板 (SpaceX Telemetry Stats) - 调小更精致 */
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .telemetry-stat {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 8px 10px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .telemetry-stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background: var(--cyan-telemetry);
+      opacity: 0.8;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* 操作控制台 (Search & Surprise) */
+    .console-bar {
+      display: flex;
+      gap: 10px;
+    }
+
+    .console-search {
+      flex: 1;
+      position: relative;
+    }
+
+    .console-search input {
+      width: 100%;
+      height: 44px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 0 16px 0 42px;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .console-search input:focus {
+      border-color: var(--cyan-telemetry);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .search-glyph {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--cyan-telemetry);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .btn-launch-random {
+      height: 44px;
+      padding: 0 20px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-launch-random:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.55);
+      background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+    }
+
+    /* 右侧：纽约客封面风父子乘组科技海报卡片 (Crew Dossier) */
+    .crew-dossier-card {
+      background: rgba(10, 15, 26, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(56, 189, 248, 0.12);
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      text-align: left;
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .crew-dossier-card:hover {
+      border-color: rgba(56, 189, 248, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .crew-dossier-card::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid var(--cyan-telemetry);
+      border-left: 2px solid var(--cyan-telemetry);
+      pointer-events: none;
+    }
+
+    .crew-dossier-card::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      border-bottom: 2px solid var(--cyan-telemetry);
+      border-right: 2px solid var(--cyan-telemetry);
+      pointer-events: none;
+    }
+
+    .dossier-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cyan-telemetry);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .dossier-img-wrap {
+      width: 100%;
+      aspect-ratio: 764 / 1024;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+
+    .dossier-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .crew-dossier-card:hover .dossier-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .dossier-footer {
+      margin-top: 12px;
+      font-family: var(--font-serif);
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .dossier-names {
+      font-family: var(--font-serif);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .dossier-role {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--cyan-telemetry);
+      letter-spacing: 1px;
+    }
+
+    /* 测控舱段切换栏 (Flight Stage Navigation) */
+    .filter-dock {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 14px 20px;
+      margin-bottom: 40px;
+    }
+
+    .filter-track {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .filter-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .dock-pill {
+      padding: 8px 18px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.6);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .dock-pill .pill-count {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+    }
+
+    .dock-pill:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .dock-pill.active {
+      background: #0f172a;
+      border-color: var(--cyan-telemetry);
+      color: var(--cyan-telemetry);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+    }
+
+    .dock-pill.active .pill-count {
+      background: var(--cyan-telemetry);
+      color: #000;
+      font-weight: 700;
+    }
+
+    /* 任务舱主网格 (Mission Pods Grid) */
+    main {
+      max-width: 1320px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .pod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 22px;
+    }
+
+    /* 任务舱卡片：SpaceX 测控切角风格 */
+    .mission-pod {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .mission-pod::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      border-top: 1px solid var(--cyan-telemetry);
+      border-right: 1px solid var(--cyan-telemetry);
+      opacity: 0.4;
+      transition: opacity 0.2s;
+    }
+
+    .mission-pod:hover {
+      transform: translateY(-4px);
+      background: var(--card-bg-hover);
+      border-color: var(--border-highlight);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(56, 189, 248, 0.15);
+    }
+
+    .mission-pod:hover::after {
+      opacity: 1;
+    }
+
+    /* 卡片头部 */
+    .pod-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 10px;
+    }
+
+    .pod-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: var(--cyan-telemetry);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pod-domain {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* 卡片标题：思源宋体精细调整，告别傻大粗 */
+    .pod-title {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.4;
+      margin-bottom: 5px;
+      letter-spacing: 0.5px;
+    }
+
+    .pod-concept {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #7dd3fc;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .pod-desc {
+      font-family: var(--font-serif);
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-weight: 400;
+    }
+
+    /* 启发造物工具行 (Tool & Methodology Line) */
+    .pod-tool-meta {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: #64748b;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
+      padding: 6px 9px;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .pod-tool-meta strong {
+      color: #94a3b8;
+    }
+
+    /* 启动按钮：SpaceX 风格 */
+    .pod-launch {
+      margin-top: auto;
+    }
+
+    .btn-engage {
+      width: 100%;
+      height: 42px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .mission-pod:hover .btn-engage {
+      background: var(--cyan-telemetry);
+      border-color: var(--cyan-telemetry);
+      color: #000;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
+    }
+
+    /* 空状态提示 */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .empty-state h3 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    /* 底部声明区 */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      background: #020408;
+      padding: 48px 24px 36px;
+      text-align: center;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .footer-quote {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      color: #94a3b8;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    /* 响应式适配 */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .telemetry-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .telemetry-ticker {
+        font-size: 10px;
+        padding: 6px 12px;
+      }
+      .ticker-right {
+        display: none;
+      }
+      .hero {
+        padding: 30px 16px 16px;
+      }
+      .console-bar {
+        flex-direction: column;
+      }
+      .pod-grid {
+        grid-template-columns: 1fr;
+      }
+      .methodology-banner > div {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部遥测状态栏 -->
+  <div class="telemetry-ticker">
+    <div class="ticker-left">
+      <span><span class="status-dot"></span> XINYU'S AI CODING DREAM FACTORY</span>
+      <span class="ticker-highlight">NODE // STARSHIP-LAB-V2</span>
+    </div>
+    <div class="ticker-right">
+      <a href="book.html" style="color: var(--cyan-telemetry); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+        <span>//</span> 《AI进化十步法》底层引擎 ↗
+      </a>
+      <span>MODULES: 42/42 VERIFIED</span>
+      <span>RUNTIME: CLIENT-SIDE HTML5</span>
+      <span>COORDINATES: GZ-CANTON</span>
+    </div>
+  </div>
+
+  <!-- Hero 英雄主视觉 (双栏黄金布局) -->
+  <header class="hero">
+    <div class="hero-grid">
+      <!-- 左栏：控制台与造梦宣言 -->
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span>//</span> XINYU'S AI CODING DREAM FACTORY · MISSION CONTROL
+        </div>
+
+        <h1 class="hero-title">薪钰AI CODING梦工厂</h1>
+        
+        <p class="hero-sub">
+          四年级少年的 42 个自然语言互动宇宙。只要孩子能把脑中的奇想用语言清晰表达，就能借助 AI 将它变成屏幕上可运行的真实世界。
+        </p>
+
+        <!-- 造梦三步方程式 (启发其他家长与孩子) -->
+        <div class="dream-formula">
+          <span class="formula-step"><strong>① 乔薪钰提出奇想</strong></span>
+          <span class="formula-arrow">➔</span>
+          <span class="formula-step"><strong>② 自然语言描述规则</strong></span>
+          <span class="formula-arrow">➔</span>
+          <span class="formula-step"><strong>③ AI 编译 · 父亲协同成真</strong></span>
+        </div>
+
+        <!-- 底层方法论链接条 -->
+        <div class="methodology-link-bar">
+          <a href="book.html">
+            <span>📖</span> 底层方法论支撑：源自《AI进化十步法》少儿实战训练营 ➔ 查看新书与方法
+          </a>
+        </div>
+
+        <!-- 航天级参数遥测看板 (小巧精致版) -->
+        <div class="telemetry-grid">
+          <div class="telemetry-stat">
+            <div class="stat-label">Active Pods</div>
+            <div class="stat-value">42 任务舱</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="stat-label">Core Sciences</div>
+            <div class="stat-value">6 大前沿领域</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="stat-label">Stack</div>
+            <div class="stat-value">Three.js / SVG</div>
+          </div>
+          <div class="telemetry-stat">
+            <div class="stat-label">Deployment</div>
+            <div class="stat-value">纯端 · 即开即玩</div>
+          </div>
+        </div>
+
+        <!-- 搜索与随机启动控制台 -->
+        <div class="console-bar">
+          <div class="console-search">
+            <span class="search-glyph">&gt;_</span>
+            <input type="text" id="searchInput" placeholder="检索任务指令（例如：重力、无人机、开普勒、黑洞、水波、齿轮...）" oninput="handleSearch()">
+          </div>
+          <button class="btn-launch-random" onclick="openRandomDemo()">
+            <span>🚀</span> 随机启动任务舱
+          </button>
+        </div>
+      </div>
+
+      <!-- 右栏：纽约客封面风父子乘组科技海报卡片 -->
+      <div class="hero-right">
+        <div class="crew-dossier-card">
+          <div class="dossier-header">
+            <span>● CREW ACTIVE // 任务乘组</span>
+            <span>A FATHER-SON JOURNEY</span>
+          </div>
+          <div class="dossier-img-wrap">
+            <img src="assets/father-son-cover.jpg" alt="NEW YORKER PROFILES: A FATHER-SON JOURNEY (乔薪钰与 Chris Qiao)">
+          </div>
+          <div class="dossier-footer">
+            <div class="dossier-names">
+              <span>乔薪钰 (XinYu Qiao)</span>
+              <span class="dossier-role">CREATOR // 小学四年级 · 10岁</span>
+            </div>
+            <div class="dossier-names" style="margin-top: 4px;">
+              <span>Chris Qiao</span>
+              <span class="dossier-role">CO-PILOT // 中小学生 AI CODING 教练</span>
+            </div>
+            <p style="margin-top: 6px; font-size: 11.5px; color: #94a3b8; font-family: var(--font-serif);">
+              “孩子负责无限的奇思与探索，教练负责拆解规则与协同护航。”
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 舱段模式切换导轨 (Docking Navigation) -->
+  <nav class="filter-dock">
+    <div class="filter-track" id="filterTrack">
+      <button class="dock-pill active" data-category="all" onclick="filterCategory('all', this)">
+        <span>//</span> 全部任务舱 <span class="pill-count" id="countAll">42</span>
+      </button>
+      <button class="dock-pill" data-category="physics" onclick="filterCategory('physics', this)">
+        <span>01</span> 经典物理测控 <span class="pill-count">8</span>
+      </button>
+      <button class="dock-pill" data-category="math" onclick="filterCategory('math', this)">
+        <span>02</span> 几何轨道发生器 <span class="pill-count">6</span>
+      </button>
+      <button class="dock-pill" data-category="trig" onclick="filterCategory('trig', this)">
+        <span>03</span> 三角函数周期 <span class="pill-count">6</span>
+      </button>
+      <button class="dock-pill" data-category="nature" onclick="filterCategory('nature', this)">
+        <span>04</span> 自然与工程系统 <span class="pill-count">3</span>
+      </button>
+      <button class="dock-pill" data-category="space" onclick="filterCategory('space', this)">
+        <span>05</span> 深空天体与三维 <span class="pill-count">10</span>
+      </button>
+      <button class="dock-pill" data-category="quantum" onclick="filterCategory('quantum', this)">
+        <span>06</span> 量子态与群体智能 <span class="pill-count">9</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 任务舱列表 -->
+  <main>
+    <div class="pod-grid" id="podGrid"></div>
+  </main>
+
+  <!-- 底层方法论与新书启发横幅 (Methodology Spotlight Banner) -->
+  <section class="methodology-banner" style="max-width: 1320px; margin: 20px auto 40px; padding: 0 24px;">
+    <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(10, 15, 26, 0.95) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 24px 28px; display: grid; grid-template-columns: 110px 1fr auto; gap: 24px; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+      <div style="border-radius: 4px; overflow: hidden; box-shadow: 0 6px 16px rgba(0,0,0,0.7);">
+        <img src="assets/book-front.jpg" alt="AI进化十步法" style="width: 100%; height: auto; display: block;">
+      </div>
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; color: var(--cyan-telemetry); margin-bottom: 4px;">
+          // METHODOLOGY ENGINE · 底层方法论与成长阶梯
+        </div>
+        <h3 style="font-family: var(--font-serif); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px;">
+          《AI进化十步法 —— 从零代码小白到超级个体》
+        </h3>
+        <p style="font-family: var(--font-serif); font-size: 12.5px; color: #94a3b8; line-height: 1.6; margin-bottom: 6px;">
+          著者：乔瑞、刘铭文 著 · 澳門科學出版社 出版。本书及配套的“AI进化十步法实战训练营”，正是乔薪钰能以自然语言跨越编程门槛、独立构建 42 个互动宇宙的方法底座。
+        </p>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: #64748b;">
+          核心哲学：完成比完美更重要 · 让孩子的想象力借 AI 成为现实生产力
+        </div>
+      </div>
+      <div>
+        <a href="book.html" style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 4px; background: rgba(56, 189, 248, 0.15); border: 1px solid var(--cyan-telemetry); color: #fff; text-decoration: none; font-family: var(--font-mono); font-size: 12px; font-weight: 600; white-space: nowrap; transition: all 0.2s;" onmouseover="this.style.background='#38bdf8'; this.style.color='#000';" onmouseout="this.style.background='rgba(56, 189, 248, 0.15)'; this.style.color='#fff';">
+          了解新书与训练营 ➔
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部说明与联合版权 -->
+  <footer>
+    <p class="footer-quote">“每个孩子都是天生的造梦者；自然语言与 AI 是把梦境编译为现实的钥匙。”</p>
+    <p style="color: #cbd5e1; font-weight: 600; margin-bottom: 6px; font-size: 13px;">
+      © 2026 薪钰AI CODING梦工厂 (XinYu's AI Coding Dream Factory) · 乔薪钰 & Chris Qiao 联合版权所有
+    </p>
+    <p style="max-width: 860px; margin: 0 auto 10px; font-family: var(--font-serif); font-size: 12px; color: #94a3b8; line-height: 1.65;">
+      本站展示的 42 个科学互动仿真世界，由小学四年级学生乔薪钰构思、在中小学生 AI Coding 教练 Chris Qiao 协同下，基于《AI进化十步法》少儿实战训练营方法论、通过自然语言 AI Coding 探索完成。未经许可不得商用。
+    </p>
+    <p style="color: #475569; font-size: 11px;">
+      TYPOGRAPHY: 思源宋体 (SOURCE HAN SERIF) & JETBRAINS MONO & INTER · 开源免费商用协议 · GZ-CANTON
+    </p>
+  </footer>
+
+  <script>
+    const MISSIONS = [
+      /* ==================== 01 经典物理 (8) ==================== */
+      {
+        id: "PHYS-01",
+        category: "physics",
+        categoryLabel: "物理测控",
+        code: "POD // PHYS-01",
+        title: "子弹与小球同时落地",
+        concept: "平抛运动与运动独立性实验",
+        desc: "探究水平高速发射的子弹与垂直自然下落的小球，在重力作用下为何会完全同时触地！",
+        tool: "SVG 矢量物理渲染 · 竖直重力加速度独立分解",
+        url: "demos/physics/01-projectile-independence.html"
+      },
+      {
+        id: "PHYS-02",
+        category: "physics",
+        categoryLabel: "物理测控",
+        code: "POD // PHYS-02",
+        title: "行星轨道等面积定律",
+        concept: "开普勒第二定律动态演示",
+        desc: "观察行星在椭圆轨道靠近太阳时加速飞奔、远离时从容慢行的等时间扫过等面积原理。",
+        tool: "Canvas 椭圆天体轨道 · 角动量守恒面积分段",
+        url: "demos/physics/02-kepler-second-law.html"
+      },
+      {
+        id: "PHYS-03",
+        category: "physics",
+        categoryLabel: "物理测控",
+        code: "POD // PHYS-03",
+        title: "单摆机械能守恒",
+        concept: "动能与重力势能实时互转",
+        desc: "实时柱状图对比摆锤摆动中的动能与势能，看能量总和如何在无阻力状态下永恒守恒。",
+        tool: "简谐振动物理模型 · 实时能量柱状遥测图",
+        url: "demos/physics/03-pendulum-energy.html"
+      },
+      {
+        id: "PHYS-04",
+        category: "physics",
+        categoryLabel: "物理测控",
+        code: "POD // PHYS-04",
+        title: "救护车的声音变化",
+        concept: "多普勒效应波形可视化",
+        desc: "当鸣笛救护车向你飞驰而来时，波纹为何被压缩得更密集？声音为何由高尖变低沉？",
+        tool: "波前动态压缩算法 · 相对运动频率偏移演示",
+        url: "demos/physics/04-doppler-effect.html"
+      },
+      {
+        id: "PHYS-05",
+        category: "physics",
+        categoryLabel: "物理测控",
+        code: "POD // PHYS-05",
+        title: "光纤传光的秘密",
+        concept: "光的全反射与临界角实验",
+        desc: "拖动入射角滑块，看光线如何从穿透水面折射，瞬间转变为100%锁在介质内的全反射。",
+        tool: "斯涅尔定律光学折射算法 · 临界角实时判定",
+        url: "demos/physics/05-total-internal-reflection.html"
+      },
+      {
+        id: "PHYS-06",
+        category: "physics",
+        categoryLabel: "物理测控",
+        code: "POD // PHYS-06",
+        title: "双水波相遇干涉",
+        concept: "波的叠加增强与相消",
+        desc: "两个水波振动源同时荡开水纹，波峰相遇激起双倍巨浪，波峰波谷相遇水面静止！",
+        tool: "双点源干涉波前叠加 · 振幅干涉条纹渲染",
+        url: "demos/physics/06-wave-interference.html"
+      },
+      {
+        id: "PHYS-07",
+        category: "physics",
+        categoryLabel: "物理测控",
+        code: "POD // PHYS-07",
+        title: "磁铁穿过线圈生电",
+        concept: "法拉第电磁感应实验",
+        desc: "拖拽强磁铁穿入金属闭合线圈，看磁场的变化如何像魔术般产生感应电流并点亮指针。",
+        tool: "电磁感应磁通量变化率 · 感应电动势方向判定",
+        url: "demos/physics/07-electromagnetic-induction.html"
+      },
+      {
+        id: "PHYS-08",
+        category: "physics",
+        categoryLabel: "物理测控",
+        code: "POD // PHYS-08",
+        title: "粒子在磁场中画圆圈",
+        concept: "洛伦兹力偏转与回旋加速",
+        desc: "高速带电粒子飞入垂直磁场后，被一只看不见的侧向之手持续偏转，画出完美正圆轨道。",
+        tool: "洛伦兹力矢量叉乘计算 · 匀速圆周向心力模型",
+        url: "demos/physics/08-lorentz-force.html"
+      },
+
+      /* ==================== 02 几何轨迹发生器 (6) ==================== */
+      {
+        id: "MATH-01",
+        category: "math",
+        categoryLabel: "几何轨道",
+        code: "POD // MATH-01",
+        title: "自行车轮与神奇拱门",
+        concept: "旋轮线（摆线）与最速降线",
+        desc: "车轮上的闪光点在地面滚出连绵拱门；沿这条独特曲线下滑，滑梯用时天下第一快！",
+        tool: "滚轮几何参数方程 · 伯努利最速降线轨迹追踪",
+        url: "demos/math-motion/01-cycloid.html"
+      },
+      {
+        id: "MATH-02",
+        category: "math",
+        categoryLabel: "几何轨道",
+        code: "POD // MATH-02",
+        title: "四角尖尖的星形",
+        concept: "星形线 Astroid 几何探秘",
+        desc: "小硬币在大圆硬币内侧滚动时，边缘点画出的梦幻四角星，数学与几何艺术的完美交织。",
+        tool: "内摆线 4:1 齿轮滚动算法 · 纯几何实时绘图",
+        url: "demos/math-motion/02-astroid.html"
+      },
+      {
+        id: "MATH-03",
+        category: "math",
+        categoryLabel: "几何轨道",
+        code: "POD // MATH-03",
+        title: "蚊香与黑胶唱片",
+        concept: "阿基米德螺线 Archimedes",
+        desc: "射线匀速转动、小点沿射线匀速向外爬行，留下的最经典均匀螺旋线条。",
+        tool: "极坐标方程 r=a+bθ · 等距旋转扩散模型",
+        url: "demos/math-motion/03-archimedean-spiral.html"
+      },
+      {
+        id: "MATH-04",
+        category: "math",
+        categoryLabel: "几何轨道",
+        code: "POD // MATH-04",
+        title: "不会卡住的齿轮轮廓",
+        concept: "圆的渐开线 Involute",
+        desc: "从圆筒上解开紧绷的棉线，线头划过的曲线让所有现代机械齿轮啮合平稳、永不卡滞。",
+        tool: "圆基圆渐开线微分方程 · 工业级齿形传动设计",
+        url: "demos/math-motion/04-circle-involute.html"
+      },
+      {
+        id: "MATH-05",
+        category: "math",
+        categoryLabel: "几何轨道",
+        code: "POD // MATH-05",
+        title: "示波器上的神秘舞蹈",
+        concept: "李萨如图形 Lissajous",
+        desc: "两个垂直方向的摆锤同时振动，只要频率成整数比，就能在屏幕上绣出复杂的对称丝带结。",
+        tool: "双简谐正交信号叠加 · 相位差参数调制发生器",
+        url: "demos/math-motion/05-lissajous.html"
+      },
+      {
+        id: "MATH-06",
+        category: "math",
+        categoryLabel: "几何轨道",
+        code: "POD // MATH-06",
+        title: "悬索桥与挂绳的曲线",
+        concept: "悬链线 Catenary",
+        desc: "两根柱子间自然下垂的绳索不是抛物线！大自然在纯粹重力作用下雕琢出的最佳平衡曲线。",
+        tool: "双曲余弦方程 y=a·cosh(x/a) · 重力张力静态平衡",
+        url: "demos/math-motion/06-catenary.html"
+      },
+
+      /* ==================== 03 三角函数周期 (6) ==================== */
+      {
+        id: "TRIG-01",
+        category: "trig",
+        categoryLabel: "三角函数",
+        code: "POD // TRIG-01",
+        title: "摩天轮与波浪线",
+        concept: "正弦函数 sin 动态投影",
+        desc: "观察摩天轮旋转时你的高度变化，向右拉开时间轴，就留下了一条优美绵延的周期波浪！",
+        tool: "单位圆垂直高度投影 · 时间轴动态展开波浪",
+        url: "demos/trigonometry/01-sine.html"
+      },
+      {
+        id: "TRIG-02",
+        category: "trig",
+        categoryLabel: "三角函数",
+        code: "POD // TRIG-02",
+        title: "横向影子的左右节拍",
+        concept: "余弦函数 cos 动态演示",
+        desc: "余弦是正弦的孪生兄弟！观察转轮水平位置在地面上的影子，相位比正弦刚好超前四分之一周。",
+        tool: "单位圆水平位移投影 · 正交相位波形移动",
+        url: "demos/trigonometry/02-cosine.html"
+      },
+      {
+        id: "TRIG-03",
+        category: "trig",
+        categoryLabel: "三角函数",
+        code: "POD // TRIG-03",
+        title: "冲向无穷高的天梯",
+        concept: "正切函数 tan 动态演示",
+        desc: "当角度逐渐逼近90度直角时，切线的延长线为何会穿透天际，奔向无法估量的无限大？",
+        tool: "切线割线几何截距 · 渐近线数学奇点演示",
+        url: "demos/trigonometry/03-tangent.html"
+      },
+      {
+        id: "TRIG-04",
+        category: "trig",
+        categoryLabel: "三角函数",
+        code: "POD // TRIG-04",
+        title: "余切函数演化",
+        concept: "余切 cot 动态演示",
+        desc: "探索正切的反向互余伙伴，观察水平切线与旋转射线交点的奇妙位移。",
+        tool: "互余三角几何映射 · 水平割线运动轨迹",
+        url: "demos/trigonometry/04-cotangent.html"
+      },
+      {
+        id: "TRIG-05",
+        category: "trig",
+        categoryLabel: "三角函数",
+        code: "POD // TRIG-05",
+        title: "正割函数演化",
+        concept: "正割 sec 动态演示",
+        desc: "直角三角形斜边与邻边的比值变化，观察割线随圆周转动的呼吸起伏。",
+        tool: "余弦倒数几何模型 · 极限极值动态呼吸曲线",
+        url: "demos/trigonometry/05-secant.html"
+      },
+      {
+        id: "TRIG-06",
+        category: "trig",
+        categoryLabel: "三角函数",
+        code: "POD // TRIG-06",
+        title: "余割函数演化",
+        concept: "余割 csc 动态演示",
+        desc: "直角三角形斜边与对边的比值演变，带孩子完整认识六大三角函数的几何身世。",
+        tool: "正弦倒数几何对称 · 完整六三角函数图谱",
+        url: "demos/trigonometry/06-cosecant.html"
+      },
+
+      /* ==================== 04 自然与工程系统 (3) ==================== */
+      {
+        id: "ENG-01",
+        category: "nature",
+        categoryLabel: "自然工程",
+        code: "POD // ENG-01",
+        title: "太阳·地球·月亮与24节气",
+        concept: "天体运动与四季冷暖 3D 演示",
+        desc: "3D呈现地轴倾斜23.5度引起的阳光直射点转移，看春分夏至秋分冬至昼夜长短如何形成。",
+        tool: "Three.js 太阳系日地月三维天球 · 黄赤交角",
+        url: "demos/nature-engineering/太阳地球月亮-四季与24节气动态图.html"
+      },
+      {
+        id: "ENG-02",
+        category: "nature",
+        categoryLabel: "自然工程",
+        code: "POD // ENG-02",
+        title: "智能单词记忆翻转卡",
+        concept: "艾宾浩斯记忆与交互动画",
+        desc: "动效翻转卡片结合记忆复习周期，点击翻转并按熟练度智能归类。",
+        tool: "CSS 3D 翻转矩阵 · 记忆衰减曲线队列调度",
+        url: "demos/nature-engineering/智能单词记忆卡片.html"
+      },
+      {
+        id: "ENG-03",
+        category: "nature",
+        categoryLabel: "自然工程",
+        code: "POD // ENG-03",
+        title: "疯狂接金币物理小游戏",
+        concept: "重力加速度与刚体碰撞",
+        desc: "键盘左右操控接金币，实时体验重力加速度跌落与物体边界弹性碰撞算法。",
+        tool: "AABB 碰撞检测算法 · 重力瞬时速度积分",
+        url: "demos/nature-engineering/疯狂接金币.html"
+      },
+
+      /* ==================== 05 深空天体与三维 (10) ==================== */
+      {
+        id: "SPACE-01",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-01",
+        title: "中华十大古天文遗址 3D 探索馆",
+        concept: "圭表、观星台与古代历法",
+        desc: "沉浸式漫游登封观星台、陶寺古观象台，看古人如何用日影测定冬至与一年365天。",
+        tool: "Three.js 3D 建筑建模 · 日影太阳高度角光影",
+        url: "demos/space-3d/chinese-ancient-astronomy-sites.html"
+      },
+      {
+        id: "SPACE-02",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-02",
+        title: "太阳系航行时间模拟器",
+        concept: "宇宙宏大尺度与光速旅行",
+        desc: "乘坐光速飞船从水星飞向海王星，亲身体验宇宙空间到底有多空旷、光走得有多慢！",
+        tool: "真实天文尺度三维建模 · 光速旅程实时比例计算",
+        url: "demos/space-3d/solar-system-voyage-time.html"
+      },
+      {
+        id: "SPACE-03",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-03",
+        title: "远地轨道卫星群仿真",
+        concept: "近地与同步卫星空间编队",
+        desc: "观察数百颗人造卫星如何在不同高度轨道上交织成紧密的太空通信天网。",
+        tool: "Three.js 卫星轨道面方程 · 空间天网集群渲染",
+        url: "demos/space-3d/satellite-orbit-simulation.html"
+      },
+      {
+        id: "SPACE-04",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-04",
+        title: "深空黑洞引力漩涡",
+        concept: "引力透镜与吸积盘 3D 交互",
+        desc: "鼠标拖拽360度观察黑洞事件视界，体验引力坍缩、星云环绕与反转排斥。",
+        tool: "着色器引力透镜光线弯曲 · 粒子吸积盘模拟",
+        url: "demos/space-3d/deep-space-black-hole.html"
+      },
+      {
+        id: "SPACE-05",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-05",
+        title: "星际跃迁 3D 全息视界",
+        concept: "曲速航行与时空折叠",
+        desc: "切换常规巡航、光速跃迁与虫洞折叠模式，领略星光拉伸成流光的视觉奇观。",
+        tool: "WebGL 后处理流光辉光特效 · 空间矩阵形变",
+        url: "demos/space-3d/interstellar-jump-hologram.html"
+      },
+      {
+        id: "SPACE-06",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-06",
+        title: "粤港澳大湾区夜航 3D",
+        concept: "低空飞行与城市夜景光影",
+        desc: "模拟无人机飞跃广州塔与珠江两岸，俯瞰万家灯火与现代湾区城市群。",
+        tool: "Three.js 地理高程网格 · 城市夜景光源烘焙",
+        url: "demos/space-3d/greater-bay-night-flight.html"
+      },
+      {
+        id: "SPACE-07",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-07",
+        title: "森林救援无人机 3D",
+        concept: "三维低空搜索与救援闭环",
+        desc: "驾驶三维搜救无人机在茂密树林中雷达扫描，救援受伤的小动物并安全返航。",
+        tool: "无人机飞行控制器 · 三维植被碰撞与雷达扫描",
+        url: "demos/space-3d/forest-rescue-drone.html"
+      },
+      {
+        id: "SPACE-08",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-08",
+        title: "机器人校园巡逻 3D",
+        concept: "自主导航与路标检查点",
+        desc: "机器人沿校园步道自动巡检，遇到障碍避障并点亮各个安全哨点。",
+        tool: "A* 寻路避障算法 · 巡逻航点状态机交互",
+        url: "demos/space-3d/robot-campus-patrol.html"
+      },
+      {
+        id: "SPACE-09",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-09",
+        title: "梦幻海底世界 3D",
+        concept: "深海生态与昼夜水下光影",
+        desc: "徜徉在阳光穿透的蔚蓝深海，观察小鱼群摆尾穿行、水母浮动与昼夜切换。",
+        tool: "水下光斑着色器 (Caustics) · 群体游弋算法",
+        url: "demos/space-3d/dream-underwater-world.html"
+      },
+      {
+        id: "SPACE-10",
+        category: "space",
+        categoryLabel: "深空三维",
+        code: "POD // SPACE-10",
+        title: "侏罗纪 3D 巡游",
+        concept: "远古恐龙生态岛与火山",
+        desc: "走进数亿年前的恐龙大陆，跟随霸王龙与翼龙的视角探索原始森林与喷发火山。",
+        tool: "恐龙骨骼动画控制器 · 火山粒子烟雾系统",
+        url: "demos/space-3d/jurassic-3d-parade.html"
+      },
+
+      /* ==================== 06 量子态与群体智能 (9) ==================== */
+      {
+        id: "QUANTUM-01",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        code: "POD // QUANTUM-01",
+        title: "群智涌现 Agent 鸟群",
+        concept: "Boids 算法：个体到群体智能",
+        desc: "每只小鸟只遵循对齐、凝聚、分离3条极简规则，为何能涌现出壮观的雁阵风暴？",
+        tool: "经典 Boids 鸟群智能算法 · 多 Agent 自组织涌现",
+        url: "demos/quantum/agent-flocking-emergence.html"
+      },
+      {
+        id: "QUANTUM-02",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        code: "POD // QUANTUM-02",
+        title: "量子交互流场",
+        concept: "粒子动力学与流体扰动",
+        desc: "鼠标划过屏幕即可掀起绚丽的量子暗流，看万千发光粒子在引力场中如流沙般穿梭。",
+        tool: "2D 速度向量场 (Vector Field) · 10,000 粒子追踪",
+        url: "demos/quantum/quantum-flow-field.html"
+      },
+      {
+        id: "QUANTUM-03",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        code: "POD // QUANTUM-03",
+        title: "量子星轨引力场",
+        concept: "多轨道引力缠绕与共振",
+        desc: "拨动引力质量滑块，观察数千颗发光小粒子如何在多重引力源下绘制出对称星轨。",
+        tool: "N-Body 万有引力数值积分 · 轨道共振模拟",
+        url: "demos/quantum/quantum-star-orbit.html"
+      },
+      {
+        id: "QUANTUM-04",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        code: "POD // QUANTUM-04",
+        title: "神经涌现向量流场",
+        concept: "心流巡航与混沌演化",
+        desc: "模拟大脑神经网络中的思维脉冲，从无序的混沌微扰自发形成稳定的神经通路。",
+        tool: "非线性动力学偏微分方程 · 向量场相位重构",
+        url: "demos/quantum/neural-emergence-vector-field.html"
+      },
+      {
+        id: "QUANTUM-05",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        code: "POD // QUANTUM-05",
+        title: "赛博神经突触网络",
+        concept: "索敌漫游与突触电位放电",
+        desc: "点击任意神经元，瞬间激活电脉冲沿突触网络如闪电般传导至整个神经群。",
+        tool: "图论网络拓扑 (Graph Network) · 脉冲神经元放电",
+        url: "demos/quantum/cyber-neural-network.html"
+      },
+      {
+        id: "QUANTUM-06",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        code: "POD // QUANTUM-06",
+        title: "高维折叠拓扑织网",
+        concept: "高维空间几何切割与牵引",
+        desc: "突破三维空间束缚，拖动几何节点感受高维空间超立方体投影的翻转与重构。",
+        tool: "4D 超立方体正交投影算法 · 拓扑网格动态形变",
+        url: "demos/quantum/higher-dimensional-topology.html"
+      },
+      {
+        id: "QUANTUM-07",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        code: "POD // QUANTUM-07",
+        title: "液态金属拓扑融合",
+        concept: "表面张力与聚变裂变",
+        desc: "模拟具有超强表面张力的液态金属微粒，分散时如水银珠，相遇时瞬间聚变成巨核。",
+        tool: "元胞自动机 (Metaball) 场强渲染 · 表面张力融合",
+        url: "demos/quantum/liquid-metal-fusion.html"
+      },
+      {
+        id: "QUANTUM-08",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        code: "POD // QUANTUM-08",
+        title: "混沌边缘奇异吸引子",
+        concept: "洛伦兹吸引子与蝴蝶效应",
+        desc: "“一只南美洲蝴蝶扇动翅膀...”在这对著名的双翼轨迹中，轨迹永不重复却永远收敛！",
+        tool: "洛伦兹三维非线性微分方程 · 奇异吸引子相图",
+        url: "demos/quantum/strange-attractor-flow.html"
+      },
+      {
+        id: "QUANTUM-09",
+        category: "quantum",
+        categoryLabel: "量子智能",
+        code: "POD // QUANTUM-09",
+        title: "语义粒子重构",
+        concept: "万千粒子凝聚为思维词汇",
+        desc: "发光粒子在空中解散、重组、流转，根据你的指令凝聚成一个个代表未来的闪亮词汇。",
+        tool: "字符字形栅格化采样 · 目标粒子力场引导算法",
+        url: "demos/quantum/semantic-particle-reconstruction.html"
+      }
+    ];
+
+    let currentCategory = "all";
+    let searchQuery = "";
+
+    function renderPods() {
+      const grid = document.getElementById("podGrid");
+      const filtered = MISSIONS.filter(item => {
+        const matchCat = (currentCategory === "all") || (item.category === currentCategory);
+        if (!matchCat) return false;
+        if (!searchQuery) return true;
+        const q = searchQuery.toLowerCase();
+        return item.title.toLowerCase().includes(q) ||
+               item.concept.toLowerCase().includes(q) ||
+               item.desc.toLowerCase().includes(q) ||
+               item.tool.toLowerCase().includes(q) ||
+               item.code.toLowerCase().includes(q);
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <h3>// NO MISSION MATCHED //</h3>
+            <p style="font-family: var(--font-serif); font-size: 15px; margin-top: 8px;">未检索到对应指令的任务舱，请尝试检索“黑洞”、“重力”、“齿轮”、“无人机”或切换上方舱段。</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => {
+        return `
+          <article class="mission-pod">
+            <div>
+              <div class="pod-header">
+                <span class="pod-code">
+                  <span class="status-dot"></span> ${item.code}
+                </span>
+                <span class="pod-domain">${item.categoryLabel}</span>
+              </div>
+              <h2 class="pod-title">${item.title}</h2>
+              <div class="pod-concept">// ${item.concept}</div>
+              <p class="pod-desc">${item.desc}</p>
+              <div class="pod-tool-meta">
+                <strong>造物工具:</strong> ${item.tool}
+              </div>
+            </div>
+            <div class="pod-launch">
+              <a href="${item.url}" class="btn-engage" target="_blank" rel="noopener">
+                INITIATE MISSION // 立即探索 ➔
+              </a>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll(".dock-pill").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      renderPods();
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById("searchInput").value.trim();
+      renderPods();
+    }
+
+    function openRandomDemo() {
+      const idx = Math.floor(Math.random() * MISSIONS.length);
+      const chosen = MISSIONS[idx];
+      window.open(chosen.url, '_blank');
+    }
+
+    // 初始化渲染
+    renderPods();
+  </script>
+</body>
+</html>
