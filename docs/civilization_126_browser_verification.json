@@ -1,0 +1,3723 @@
+{
+  "pageErrors": [],
+  "failedRequests": [],
+  "checks": [
+    "126 unique records",
+    "IDs match all required prefix ranges",
+    "126 matching renderers",
+    "local CSS loaded",
+    "no external runtime dependencies",
+    "full-size portrait with original proportions",
+    "filter GR 15",
+    "filter EG 5",
+    "filter RO 4",
+    "filter IT 8",
+    "filter DE 14",
+    "filter FR 15",
+    "filter UK 16",
+    "filter NL 7",
+    "filter AT 7",
+    "filter ND 7",
+    "filter EE 6",
+    "filter CN 22",
+    "keyword search",
+    "empty result",
+    "view grid",
+    "view matrix",
+    "view grouped",
+    "#typeSelect 定理",
+    "#typeSelect 定律",
+    "#typeSelect 公式",
+    "#typeSelect 猜想",
+    "#typeSelect 模型",
+    "#typeSelect 发现",
+    "#domainSelect 数学与几何",
+    "#domainSelect 经典力学",
+    "#domainSelect 电磁与光学",
+    "#domainSelect 物理与化学",
+    "#domainSelect 量子与现代物理",
+    "#domainSelect 天文与地球",
+    "#domainSelect 生命与系统",
+    "inline expand",
+    "modal/control sync GR-01",
+    "pause GR-01",
+    "pulse GR-01",
+    "modal/control sync GR-02",
+    "pause GR-02",
+    "pulse GR-02",
+    "modal/control sync GR-03",
+    "pause GR-03",
+    "pulse GR-03",
+    "modal/control sync GR-04",
+    "pause GR-04",
+    "pulse GR-04",
+    "modal/control sync GR-05",
+    "pause GR-05",
+    "pulse GR-05",
+    "modal/control sync GR-06",
+    "pause GR-06",
+    "pulse GR-06",
+    "modal/control sync GR-07",
+    "pause GR-07",
+    "pulse GR-07",
+    "modal/control sync GR-08",
+    "pause GR-08",
+    "pulse GR-08",
+    "modal/control sync GR-09",
+    "pause GR-09",
+    "pulse GR-09",
+    "modal/control sync GR-10",
+    "pause GR-10",
+    "pulse GR-10",
+    "modal/control sync GR-11",
+    "pause GR-11",
+    "pulse GR-11",
+    "modal/control sync GR-12",
+    "pause GR-12",
+    "pulse GR-12",
+    "modal/control sync GR-13",
+    "pause GR-13",
+    "pulse GR-13",
+    "modal/control sync GR-14",
+    "pause GR-14",
+    "pulse GR-14",
+    "modal/control sync GR-15",
+    "pause GR-15",
+    "pulse GR-15",
+    "modal/control sync EG-01",
+    "pause EG-01",
+    "pulse EG-01",
+    "modal/control sync EG-02",
+    "pause EG-02",
+    "pulse EG-02",
+    "modal/control sync EG-03",
+    "pause EG-03",
+    "pulse EG-03",
+    "modal/control sync EG-04",
+    "pause EG-04",
+    "pulse EG-04",
+    "modal/control sync EG-05",
+    "pause EG-05",
+    "pulse EG-05",
+    "modal/control sync RO-01",
+    "pause RO-01",
+    "pulse RO-01",
+    "modal/control sync RO-02",
+    "pause RO-02",
+    "pulse RO-02",
+    "modal/control sync RO-03",
+    "pause RO-03",
+    "pulse RO-03",
+    "modal/control sync RO-04",
+    "pause RO-04",
+    "pulse RO-04",
+    "modal/control sync IT-01",
+    "pause IT-01",
+    "pulse IT-01",
+    "modal/control sync IT-02",
+    "pause IT-02",
+    "pulse IT-02",
+    "modal/control sync IT-03",
+    "pause IT-03",
+    "pulse IT-03",
+    "modal/control sync IT-04",
+    "pause IT-04",
+    "pulse IT-04",
+    "modal/control sync IT-05",
+    "pause IT-05",
+    "pulse IT-05",
+    "modal/control sync IT-06",
+    "pause IT-06",
+    "pulse IT-06",
+    "modal/control sync IT-07",
+    "pause IT-07",
+    "pulse IT-07",
+    "modal/control sync IT-08",
+    "pause IT-08",
+    "pulse IT-08",
+    "modal/control sync DE-01",
+    "pause DE-01",
+    "pulse DE-01",
+    "modal/control sync DE-02",
+    "pause DE-02",
+    "pulse DE-02",
+    "modal/control sync DE-03",
+    "pause DE-03",
+    "pulse DE-03",
+    "modal/control sync DE-04",
+    "pause DE-04",
+    "pulse DE-04",
+    "modal/control sync DE-05",
+    "pause DE-05",
+    "pulse DE-05",
+    "modal/control sync DE-06",
+    "pause DE-06",
+    "pulse DE-06",
+    "modal/control sync DE-07",
+    "pause DE-07",
+    "pulse DE-07",
+    "modal/control sync DE-08",
+    "pause DE-08",
+    "pulse DE-08",
+    "modal/control sync DE-09",
+    "pause DE-09",
+    "pulse DE-09",
+    "modal/control sync DE-10",
+    "pause DE-10",
+    "pulse DE-10",
+    "modal/control sync DE-11",
+    "pause DE-11",
+    "pulse DE-11",
+    "modal/control sync DE-12",
+    "pause DE-12",
+    "pulse DE-12",
+    "modal/control sync DE-13",
+    "pause DE-13",
+    "pulse DE-13",
+    "modal/control sync DE-14",
+    "pause DE-14",
+    "pulse DE-14",
+    "modal/control sync FR-01",
+    "pause FR-01",
+    "pulse FR-01",
+    "modal/control sync FR-02",
+    "pause FR-02",
+    "pulse FR-02",
+    "modal/control sync FR-03",
+    "pause FR-03",
+    "pulse FR-03",
+    "modal/control sync FR-04",
+    "pause FR-04",
+    "pulse FR-04",
+    "modal/control sync FR-05",
+    "pause FR-05",
+    "pulse FR-05",
+    "modal/control sync FR-06",
+    "pause FR-06",
+    "pulse FR-06",
+    "modal/control sync FR-07",
+    "pause FR-07",
+    "pulse FR-07",
+    "modal/control sync FR-08",
+    "pause FR-08",
+    "pulse FR-08",
+    "modal/control sync FR-09",
+    "pause FR-09",
+    "pulse FR-09",
+    "modal/control sync FR-10",
+    "pause FR-10",
+    "pulse FR-10",
+    "modal/control sync FR-11",
+    "pause FR-11",
+    "pulse FR-11",
+    "modal/control sync FR-12",
+    "pause FR-12",
+    "pulse FR-12",
+    "modal/control sync FR-13",
+    "pause FR-13",
+    "pulse FR-13",
+    "modal/control sync FR-14",
+    "pause FR-14",
+    "pulse FR-14",
+    "modal/control sync FR-15",
+    "pause FR-15",
+    "pulse FR-15",
+    "modal/control sync UK-01",
+    "pause UK-01",
+    "pulse UK-01",
+    "modal/control sync UK-02",
+    "pause UK-02",
+    "pulse UK-02",
+    "modal/control sync UK-03",
+    "pause UK-03",
+    "pulse UK-03",
+    "modal/control sync UK-04",
+    "pause UK-04",
+    "pulse UK-04",
+    "modal/control sync UK-05",
+    "pause UK-05",
+    "pulse UK-05",
+    "modal/control sync UK-06",
+    "pause UK-06",
+    "pulse UK-06",
+    "modal/control sync UK-07",
+    "pause UK-07",
+    "pulse UK-07",
+    "modal/control sync UK-08",
+    "pause UK-08",
+    "pulse UK-08",
+    "modal/control sync UK-09",
+    "pause UK-09",
+    "pulse UK-09",
+    "modal/control sync UK-10",
+    "pause UK-10",
+    "pulse UK-10",
+    "modal/control sync UK-11",
+    "pause UK-11",
+    "pulse UK-11",
+    "modal/control sync UK-12",
+    "pause UK-12",
+    "pulse UK-12",
+    "modal/control sync UK-13",
+    "pause UK-13",
+    "pulse UK-13",
+    "modal/control sync UK-14",
+    "pause UK-14",
+    "pulse UK-14",
+    "modal/control sync UK-15",
+    "pause UK-15",
+    "pulse UK-15",
+    "modal/control sync UK-16",
+    "pause UK-16",
+    "pulse UK-16",
+    "modal/control sync NL-01",
+    "pause NL-01",
+    "pulse NL-01",
+    "modal/control sync NL-02",
+    "pause NL-02",
+    "pulse NL-02",
+    "modal/control sync NL-03",
+    "pause NL-03",
+    "pulse NL-03",
+    "modal/control sync NL-04",
+    "pause NL-04",
+    "pulse NL-04",
+    "modal/control sync NL-05",
+    "pause NL-05",
+    "pulse NL-05",
+    "modal/control sync NL-06",
+    "pause NL-06",
+    "pulse NL-06",
+    "modal/control sync NL-07",
+    "pause NL-07",
+    "pulse NL-07",
+    "modal/control sync AT-01",
+    "pause AT-01",
+    "pulse AT-01",
+    "modal/control sync AT-02",
+    "pause AT-02",
+    "pulse AT-02",
+    "modal/control sync AT-03",
+    "pause AT-03",
+    "pulse AT-03",
+    "modal/control sync AT-04",
+    "pause AT-04",
+    "pulse AT-04",
+    "modal/control sync AT-05",
+    "pause AT-05",
+    "pulse AT-05",
+    "modal/control sync AT-06",
+    "pause AT-06",
+    "pulse AT-06",
+    "modal/control sync AT-07",
+    "pause AT-07",
+    "pulse AT-07",
+    "modal/control sync DK-01",
+    "pause DK-01",
+    "pulse DK-01",
+    "modal/control sync DK-02",
+    "pause DK-02",
+    "pulse DK-02",
+    "modal/control sync DK-03",
+    "pause DK-03",
+    "pulse DK-03",
+    "modal/control sync DK-04",
+    "pause DK-04",
+    "pulse DK-04",
+    "modal/control sync SE-01",
+    "pause SE-01",
+    "pulse SE-01",
+    "modal/control sync SE-02",
+    "pause SE-02",
+    "pulse SE-02",
+    "modal/control sync NO-01",
+    "pause NO-01",
+    "pulse NO-01",
+    "modal/control sync PL-01",
+    "pause PL-01",
+    "pulse PL-01",
+    "modal/control sync RU-01",
+    "pause RU-01",
+    "pulse RU-01",
+    "modal/control sync RU-02",
+    "pause RU-02",
+    "pulse RU-02",
+    "modal/control sync RU-03",
+    "pause RU-03",
+    "pulse RU-03",
+    "modal/control sync PL-02",
+    "pause PL-02",
+    "pulse PL-02",
+    "modal/control sync RU-04",
+    "pause RU-04",
+    "pulse RU-04",
+    "modal/control sync CN-01",
+    "pause CN-01",
+    "pulse CN-01",
+    "modal/control sync CN-02",
+    "pause CN-02",
+    "pulse CN-02",
+    "modal/control sync CN-03",
+    "pause CN-03",
+    "pulse CN-03",
+    "modal/control sync CN-04",
+    "pause CN-04",
+    "pulse CN-04",
+    "modal/control sync CN-05",
+    "pause CN-05",
+    "pulse CN-05",
+    "modal/control sync CN-06",
+    "pause CN-06",
+    "pulse CN-06",
+    "modal/control sync CN-07",
+    "pause CN-07",
+    "pulse CN-07",
+    "modal/control sync CN-08",
+    "pause CN-08",
+    "pulse CN-08",
+    "modal/control sync CN-09",
+    "pause CN-09",
+    "pulse CN-09",
+    "modal/control sync CN-10",
+    "pause CN-10",
+    "pulse CN-10",
+    "modal/control sync CN-11",
+    "pause CN-11",
+    "pulse CN-11",
+    "modal/control sync CN-12",
+    "pause CN-12",
+    "pulse CN-12",
+    "modal/control sync CN-13",
+    "pause CN-13",
+    "pulse CN-13",
+    "modal/control sync CN-14",
+    "pause CN-14",
+    "pulse CN-14",
+    "modal/control sync CN-15",
+    "pause CN-15",
+    "pulse CN-15",
+    "modal/control sync CN-16",
+    "pause CN-16",
+    "pulse CN-16",
+    "modal/control sync CN-17",
+    "pause CN-17",
+    "pulse CN-17",
+    "modal/control sync CN-18",
+    "pause CN-18",
+    "pulse CN-18",
+    "modal/control sync CN-19",
+    "pause CN-19",
+    "pulse CN-19",
+    "modal/control sync CN-20",
+    "pause CN-20",
+    "pulse CN-20",
+    "modal/control sync CN-21",
+    "pause CN-21",
+    "pulse CN-21",
+    "modal/control sync CN-22",
+    "pause CN-22",
+    "pulse CN-22",
+    "ESC restores scrolling",
+    "next wraps to first",
+    "previous wraps to last",
+    "arrow keys adjust focused slider without switching pod",
+    "random launch",
+    "no page overflow 1440 grouped",
+    "no page overflow 1440 grid",
+    "no page overflow 1440 matrix",
+    "no modal overflow 1440",
+    "no page overflow 820 grouped",
+    "no page overflow 820 grid",
+    "no page overflow 820 matrix",
+    "no modal overflow 820",
+    "no page overflow 390 grouped",
+    "no page overflow 390 grid",
+    "no page overflow 390 matrix",
+    "no modal overflow 390",
+    "museum return links",
+    "return to 108-pod homepage",
+    "homepage museum link",
+    "zero browser script errors",
+    "zero failed requests"
+  ],
+  "records": [
+    {
+      "id": "GR-01",
+      "values": [
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 115,
+          "state": 115,
+          "disabled": false
+        },
+        {
+          "ui": 35,
+          "state": 35,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "90.00 °",
+        "76.7 °",
+        "143 / 180",
+        "230 px"
+      ]
+    },
+    {
+      "id": "GR-02",
+      "values": [
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "5625",
+        "10000",
+        "15625",
+        "125.00"
+      ]
+    },
+    {
+      "id": "GR-03",
+      "values": [
+        {
+          "ui": 7,
+          "state": 7,
+          "disabled": false
+        },
+        {
+          "ui": 2,
+          "state": 2,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "7 步",
+        "0.99219",
+        "1.00000",
+        "7.81e-3"
+      ]
+    },
+    {
+      "id": "GR-04",
+      "values": [
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 30,
+          "state": 30,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "45 颗",
+        "264 m/s",
+        "30 %",
+        "445.5 THz"
+      ]
+    },
+    {
+      "id": "GR-05",
+      "values": [
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": false
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        },
+        {
+          "ui": 105,
+          "state": 105,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "正二十面体(水)",
+        "12 / 20",
+        "30 条",
+        "2 (恒成立)"
+      ]
+    },
+    {
+      "id": "GR-06",
+      "values": [
+        {
+          "ui": 12,
+          "state": 12,
+          "disabled": false
+        },
+        {
+          "ui": 105,
+          "state": 105,
+          "disabled": false
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "12 边形",
+        "3.000000",
+        "3.215390",
+        "2.15e-1"
+      ]
+    },
+    {
+      "id": "GR-07",
+      "values": [
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        },
+        {
+          "ui": 70,
+          "state": 70,
+          "disabled": false
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "145.0 °",
+        "右侧必相交 (<180°)",
+        "35.0 °",
+        "0 (平坦欧氏)"
+      ]
+    },
+    {
+      "id": "GR-08",
+      "values": [
+        {
+          "ui": 30,
+          "state": 30,
+          "disabled": false
+        },
+        {
+          "ui": 70,
+          "state": 70,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "6.9 N",
+        "2.33 倍",
+        "0.70 L",
+        "F₁L₁ = F₂L₂"
+      ]
+    },
+    {
+      "id": "GR-09",
+      "values": [
+        {
+          "ui": 7,
+          "state": 7,
+          "disabled": false
+        },
+        {
+          "ui": 800,
+          "state": 800,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "7.0 °",
+        "800 km",
+        "41143 km",
+        "6548 km"
+      ]
+    },
+    {
+      "id": "GR-10",
+      "values": [
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "椭圆 (0<e<1)",
+        "0.65",
+        "65 px",
+        "39.6 px"
+      ]
+    },
+    {
+      "id": "GR-11",
+      "values": [
+        {
+          "ui": 6500,
+          "state": 6500,
+          "disabled": false
+        },
+        {
+          "ui": 23,
+          "state": 23,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "98.0 °",
+        "25,772 年",
+        "23.0 °",
+        "50.29 角秒/年"
+      ]
+    },
+    {
+      "id": "GR-12",
+      "values": [
+        {
+          "ui": 90,
+          "state": 90,
+          "disabled": false
+        },
+        {
+          "ui": 8,
+          "state": 8,
+          "disabled": false
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "8.0 倍",
+        "82.84 °",
+        "日心说 (前3世纪)",
+        "19倍 vs 389倍"
+      ]
+    },
+    {
+      "id": "GR-13",
+      "values": [
+        {
+          "ui": 90,
+          "state": 90,
+          "disabled": false
+        },
+        {
+          "ui": 42,
+          "state": 42,
+          "disabled": false
+        },
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "90 px",
+        "42 px",
+        "2 个",
+        "2阶复傅里叶级数"
+      ]
+    },
+    {
+      "id": "GR-14",
+      "values": [
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "60 %",
+        "50 N",
+        "0.83 m/s",
+        "12.50 m/s²"
+      ]
+    },
+    {
+      "id": "GR-15",
+      "values": [
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 9,
+          "state": 9,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "45 %",
+        "50 %",
+        "38.3 %",
+        "布朗运动/热涨落"
+      ]
+    },
+    {
+      "id": "EG-01",
+      "values": [
+        {
+          "ui": 135,
+          "state": 135,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        },
+        {
+          "ui": 9,
+          "state": 9,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "14400.0",
+        "14313.9",
+        "3.16049 (256/81)",
+        "+0.60 %"
+      ]
+    },
+    {
+      "id": "EG-02",
+      "values": [
+        {
+          "ui": 172,
+          "state": 172,
+          "disabled": false
+        },
+        {
+          "ui": 240,
+          "state": 240,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "12×30 + 5 = 365天",
+        "58.1 天",
+        "1,460 年",
+        "夏至偕日升"
+      ]
+    },
+    {
+      "id": "EG-03",
+      "values": [
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 1600,
+          "state": 1600,
+          "disabled": false
+        },
+        {
+          "ui": 85,
+          "state": 85,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "b=60, c=1600",
+        "900.0",
+        "50.00",
+        "20.000"
+      ]
+    },
+    {
+      "id": "EG-04",
+      "values": [
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        },
+        {
+          "ui": 85,
+          "state": 85,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "Row #1",
+        "119 , 120",
+        "169",
+        "1.98340"
+      ]
+    },
+    {
+      "id": "EG-05",
+      "values": [
+        {
+          "ui": 223,
+          "state": 223,
+          "disabled": false
+        },
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": true
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "223 朔望月",
+        "6,585.32 天",
+        "18年 11天 8小时",
+        "77.7 %"
+      ]
+    },
+    {
+      "id": "RO-01",
+      "values": [
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": false
+        },
+        {
+          "ui": 140,
+          "state": 140,
+          "disabled": false
+        },
+        {
+          "ui": 90,
+          "state": 90,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "80 kN",
+        "20.0 kN",
+        "≈ 0 (纯压应力传导)",
+        "坚固·实用·美观"
+      ]
+    },
+    {
+      "id": "RO-02",
+      "values": [
+        {
+          "ui": 0,
+          "state": 0,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        },
+        {
+          "ui": 70,
+          "state": 70,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "朔望大潮 (日月同线)",
+        "1.46 倍",
+        "120.0 ° (六方定角)",
+        "37卷 / 20000条"
+      ]
+    },
+    {
+      "id": "RO-03",
+      "values": [
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 35,
+          "state": 35,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "60 Hz",
+        "35 %",
+        "75 %",
+        "内环境稳态调节"
+      ]
+    },
+    {
+      "id": "RO-04",
+      "values": [
+        {
+          "ui": 35,
+          "state": 35,
+          "disabled": false
+        },
+        {
+          "ui": 0,
+          "state": 0,
+          "disabled": false
+        },
+        {
+          "ui": 90,
+          "state": 90,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "35.0 °N",
+        "温带(Temperate)",
+        "55.0 °",
+        "73.7 %"
+      ]
+    },
+    {
+      "id": "IT-01",
+      "values": [
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        },
+        {
+          "ui": 25,
+          "state": 25,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "25.0 N",
+        "100 N",
+        "0.25",
+        "0 (与面积无关)"
+      ]
+    },
+    {
+      "id": "IT-02",
+      "values": [
+        {
+          "ui": 66,
+          "state": 66,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 18,
+          "state": 18,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "太阳 (Heliocentric)",
+        "0.66",
+        "1.87",
+        "内轨地球超车投影"
+      ]
+    },
+    {
+      "id": "IT-03",
+      "values": [
+        {
+          "ui": -9,
+          "state": -9,
+          "disabled": false
+        },
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "x³ + (-9)x + (4) = 0",
+        "-23.00",
+        "3 个不同实根(需经虚数)",
+        "虚数 i = √-1 诞生"
+      ]
+    },
+    {
+      "id": "IT-04",
+      "values": [
+        {
+          "ui": -3,
+          "state": -3,
+          "disabled": false
+        },
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "2.0",
+        "-15.0",
+        "1.00",
+        "1.0"
+      ]
+    },
+    {
+      "id": "IT-05",
+      "values": [
+        {
+          "ui": 18,
+          "state": 18,
+          "disabled": false
+        },
+        {
+          "ui": 10,
+          "state": 10,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "3.09 m/s²",
+        "1 : 3 : 5 : 7",
+        "1 : 4 : 9 : 16 (∝ t²)",
+        "0.43 m/s"
+      ]
+    },
+    {
+      "id": "IT-06",
+      "values": [
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 760,
+          "state": 760,
+          "disabled": false
+        },
+        {
+          "ui": 10,
+          "state": 10,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "760 mmHg",
+        "101.3 kPa",
+        "10.00 m/s",
+        "h = H/2 (中点最远)"
+      ]
+    },
+    {
+      "id": "IT-07",
+      "values": [
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "45.0 °",
+        "574.0 m",
+        "143.5 m",
+        "45.0 °"
+      ]
+    },
+    {
+      "id": "IT-08",
+      "values": [
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": true
+        },
+        {
+          "ui": 28,
+          "state": 28,
+          "disabled": false
+        },
+        {
+          "ui": 90,
+          "state": 90,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "4,800 km",
+        "2 : 1 轨道共振",
+        "1.40 × 10⁸ km",
+        "1.496 × 10⁸ km"
+      ]
+    },
+    {
+      "id": "DE-01",
+      "values": [
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 110,
+          "state": 110,
+          "disabled": false
+        },
+        {
+          "ui": 8,
+          "state": 8,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "0.55",
+        "110 / 92",
+        "L / (2m) = 恒定",
+        "T² / a³ = 常数"
+      ]
+    },
+    {
+      "id": "DE-02",
+      "values": [
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 18,
+          "state": 18,
+          "disabled": false
+        },
+        {
+          "ui": 15,
+          "state": 15,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "0.715",
+        "18 份",
+        "0.3667",
+        "d(微分) 与 ∫(积分)"
+      ]
+    },
+    {
+      "id": "DE-03",
+      "values": [
+        {
+          "ui": 0,
+          "state": 0,
+          "disabled": false
+        },
+        {
+          "ui": 28,
+          "state": 28,
+          "disabled": false
+        },
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "0.0",
+        "28.0",
+        "68.27 %",
+        "95.45 %"
+      ]
+    },
+    {
+      "id": "DE-04",
+      "values": [
+        {
+          "ui": 12,
+          "state": 12,
+          "disabled": false
+        },
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        },
+        {
+          "ui": 30,
+          "state": 30,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "12.0 V",
+        "6.0 Ω",
+        "2.00 A",
+        "24.0 W"
+      ]
+    },
+    {
+      "id": "DE-05",
+      "values": [
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        },
+        {
+          "ui": 25,
+          "state": 25,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "75.0 J (恒定)",
+        "30.0 %",
+        "45.0 %",
+        "25.0 %"
+      ]
+    },
+    {
+      "id": "DE-06",
+      "values": [
+        {
+          "ui": 600,
+          "state": 600,
+          "disabled": false
+        },
+        {
+          "ui": 200,
+          "state": 200,
+          "disabled": false
+        },
+        {
+          "ui": 70,
+          "state": 70,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "591 K",
+        "209 K",
+        "+0.134 J/K",
+        "ΔS_孤立 ≥ 0 (不可逆)"
+      ]
+    },
+    {
+      "id": "DE-07",
+      "values": [
+        {
+          "ui": 14,
+          "state": 14,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 40,
+          "state": 40,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "0.5000 (1/2)",
+        "14.213",
+        "t₁ ≈ 14.134725",
+        "0.530"
+      ]
+    },
+    {
+      "id": "DE-08",
+      "values": [
+        {
+          "ui": 40,
+          "state": 40,
+          "disabled": false
+        },
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        },
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "40 颗",
+        "4 格",
+        "55.45",
+        "55.45"
+      ]
+    },
+    {
+      "id": "DE-09",
+      "values": [
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        },
+        {
+          "ui": 85,
+          "state": 85,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "75 kV",
+        "0.0165 nm",
+        "∝ Z⁴ (高对比显影)",
+        "1895年 (首届诺奖)"
+      ]
+    },
+    {
+      "id": "DE-10",
+      "values": [
+        {
+          "ui": 4800,
+          "state": 4800,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "4800 K",
+        "604 nm",
+        "ε = h·ν",
+        "指数衰减 (消除无穷大)"
+      ]
+    },
+    {
+      "id": "DE-11",
+      "values": [
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        },
+        {
+          "ui": 70,
+          "state": 70,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "4 阶",
+        "256 点",
+        "D = 2.00 (填满平面)",
+        "希尔伯特 23 问题"
+      ]
+    },
+    {
+      "id": "DE-12",
+      "values": [
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": true
+        },
+        {
+          "ui": 40,
+          "state": 40,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "65 M☉",
+        "2.27 角秒",
+        "9.0 × 10¹⁶ J/kg",
+        "E_k = hν - W₀"
+      ]
+    },
+    {
+      "id": "DE-13",
+      "values": [
+        {
+          "ui": 30,
+          "state": 30,
+          "disabled": false
+        },
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "19.5 nm",
+        "112.8 ℏ/nm",
+        "≥ 0.50 ℏ (恒满足)",
+        "[x̂, p̂] = iℏ"
+      ]
+    },
+    {
+      "id": "DE-14",
+      "values": [
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "ψ(x) → e^(iα(x))ψ(x)",
+        "D_μ = ∂_μ - igA_μ",
+        "U(1)×SU(2)×SU(3)",
+        "0.66"
+      ]
+    },
+    {
+      "id": "FR-01",
+      "values": [
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": false
+        },
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 40,
+          "state": 40,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "笛卡尔直角坐标 (x, y)",
+        "笛卡尔心形线 r=a(1-sinθ)",
+        "28.9 °",
+        "点 ↔ 有序实数对"
+      ]
+    },
+    {
+      "id": "FR-02",
+      "values": [
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 8,
+          "state": 8,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "50 N",
+        "8.0 倍",
+        "400 N",
+        "5000 Pa (处处相等)"
+      ]
+    },
+    {
+      "id": "FR-03",
+      "values": [
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": false
+        },
+        {
+          "ui": 25,
+          "state": 25,
+          "disabled": true
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "3 次 (xⁿ+yⁿ=zⁿ)",
+        "0 组 (怀尔斯1994定理)",
+        "谷山-志村模形式定理",
+        "δ∫ n(s)ds = 0"
+      ]
+    },
+    {
+      "id": "FR-04",
+      "values": [
+        {
+          "ui": 360,
+          "state": 360,
+          "disabled": false
+        },
+        {
+          "ui": 21,
+          "state": 21,
+          "disabled": true
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "360 °C",
+        "65.0 %",
+        "0.0000 g (严格守恒)",
+        "0.00 ° (绝对平衡)"
+      ]
+    },
+    {
+      "id": "FR-05",
+      "values": [
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        },
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": true
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "L = T(动能) - V(势能)",
+        "0 (最小作用量极值)",
+        "75 °",
+        "d/dt(∂L/∂q̇) - ∂L/∂q = 0"
+      ]
+    },
+    {
+      "id": "FR-06",
+      "values": [
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": false
+        },
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 10,
+          "state": 10,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "0 (调和势场)",
+        "80 V",
+        "130 px",
+        "φ(r) = 球面邻居平均值"
+      ]
+    },
+    {
+      "id": "FR-07",
+      "values": [
+        {
+          "ui": 7,
+          "state": 7,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": false
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "7 阶谐波",
+        "方波 (奇次谐波)",
+        "13 ω₀",
+        "97.9 %"
+      ]
+    },
+    {
+      "id": "FR-08",
+      "values": [
+        {
+          "ui": 12,
+          "state": 12,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "12.0 A",
+        "75 mm",
+        "3.20 μT",
+        "15.08 μT·m"
+      ]
+    },
+    {
+      "id": "FR-09",
+      "values": [
+        {
+          "ui": 22,
+          "state": 22,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": true
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "0.220",
+        "0.121",
+        "邻域内 100% 满足",
+        "柯西 ε-δ 极限定义"
+      ]
+    },
+    {
+      "id": "FR-10",
+      "values": [
+        {
+          "ui": 800,
+          "state": 800,
+          "disabled": false
+        },
+        {
+          "ui": 300,
+          "state": 300,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "800 K",
+        "300 K",
+        "62.50 %",
+        "37.50 %"
+      ]
+    },
+    {
+      "id": "FR-11",
+      "values": [
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": false
+        },
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": true
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "120 种置换",
+        "非交换单群 (不可解)",
+        "不存在 (伽罗瓦定理)",
+        "5 次代数方程"
+      ]
+    },
+    {
+      "id": "FR-12",
+      "values": [
+        {
+          "ui": 35,
+          "state": 35,
+          "disabled": false
+        },
+        {
+          "ui": 520,
+          "state": 520,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "明亮光斑 (泊松亮斑)",
+        "520 nm",
+        "Δr = 0 (同相叠加)",
+        "波动光学决定性胜利"
+      ]
+    },
+    {
+      "id": "FR-13",
+      "values": [
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": false
+        },
+        {
+          "ui": 28,
+          "state": 28,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "0.0050",
+        "λ ≈ +0.906 > 0 (混沌)",
+        "指数级发散 (蝴蝶效应)",
+        "π₁(M)=0 ⇒ M ≅ S³"
+      ]
+    },
+    {
+      "id": "FR-14",
+      "values": [
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        },
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "98.6 颗",
+        "6.0 s",
+        "0.115 s⁻¹",
+        "钋 (84Po) 与 镭 (88Ra)"
+      ]
+    },
+    {
+      "id": "FR-15",
+      "values": [
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        },
+        {
+          "ui": 0,
+          "state": 0,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "4.00 个波长",
+        "首尾同相闭合 (稳定能级)",
+        "λ = h / p = h / (mv)",
+        "4"
+      ]
+    },
+    {
+      "id": "UK-01",
+      "values": [
+        {
+          "ui": 11,
+          "state": 11,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": true
+        },
+        {
+          "ui": 30,
+          "state": 30,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "11.0 °",
+        "30 °",
+        "34.6 °",
+        "Terrella 球形磁石"
+      ]
+    },
+    {
+      "id": "UK-02",
+      "values": [
+        {
+          "ui": 28,
+          "state": 28,
+          "disabled": false
+        },
+        {
+          "ui": 85,
+          "state": 85,
+          "disabled": false
+        },
+        {
+          "ui": 2,
+          "state": 2,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "28 组",
+        "85 %",
+        "2 阶幂律",
+        "0.9466"
+      ]
+    },
+    {
+      "id": "UK-03",
+      "values": [
+        {
+          "ui": 72,
+          "state": 72,
+          "disabled": false
+        },
+        {
+          "ui": 70,
+          "state": 70,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "72 次/分",
+        "70 mL",
+        "5.04 L/min",
+        "151.2 L (超体重)"
+      ]
+    },
+    {
+      "id": "UK-04",
+      "values": [
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 300,
+          "state": 300,
+          "disabled": false
+        },
+        {
+          "ui": 2,
+          "state": 2,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "50.0 L",
+        "99.8 kPa",
+        "4988 J (常数)",
+        "300 K"
+      ]
+    },
+    {
+      "id": "UK-05",
+      "values": [
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 8,
+          "state": 8,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "45 N/m",
+        "45.0 mm",
+        "-20.25 N",
+        "4.555 J"
+      ]
+    },
+    {
+      "id": "UK-06",
+      "values": [
+        {
+          "ui": 79,
+          "state": 79,
+          "disabled": false
+        },
+        {
+          "ui": 15,
+          "state": 15,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "7.90 km/s",
+        "第一宇宙速度圆轨道",
+        "7.91 km/s",
+        "F = G·m₁m₂ / r²"
+      ]
+    },
+    {
+      "id": "UK-07",
+      "values": [
+        {
+          "ui": 96,
+          "state": 96,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "0.960",
+        "75.32 年 (1682→1758)",
+        "恒背离太阳 (太阳风压)",
+        "0.59 AU / 35.1 AU"
+      ]
+    },
+    {
+      "id": "UK-08",
+      "values": [
+        {
+          "ui": 20,
+          "state": 20,
+          "disabled": false
+        },
+        {
+          "ui": 15,
+          "state": 15,
+          "disabled": false
+        },
+        {
+          "ui": 10,
+          "state": 10,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "20+15+10 kPa",
+        "45 kPa",
+        "氧质量比 1 : 2",
+        "44.4 %"
+      ]
+    },
+    {
+      "id": "UK-09",
+      "values": [
+        {
+          "ui": 25,
+          "state": 25,
+          "disabled": false
+        },
+        {
+          "ui": 10,
+          "state": 10,
+          "disabled": false
+        },
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "9800 J",
+        "1800 J",
+        "+2.77 °C",
+        "4.186 J / cal"
+      ]
+    },
+    {
+      "id": "UK-10",
+      "values": [
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": false
+        },
+        {
+          "ui": 35,
+          "state": 35,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "1/√(μ₀ε₀) = 2.998×10⁸ m/s",
+        "E ⊥ B ⊥ k (同相横波)",
+        "4.0 GHz",
+        "E × H"
+      ]
+    },
+    {
+      "id": "UK-11",
+      "values": [
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": false
+        },
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "80 %",
+        "52.6 %",
+        "65 %",
+        "变异 + 选择 + 遗传"
+      ]
+    },
+    {
+      "id": "UK-12",
+      "values": [
+        {
+          "ui": 25,
+          "state": 25,
+          "disabled": false
+        },
+        {
+          "ui": 70,
+          "state": 70,
+          "disabled": true
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "25.0 °C",
+        "298.15 K",
+        "6.17 zJ",
+        "0 K (-273.15 °C)"
+      ]
+    },
+    {
+      "id": "UK-13",
+      "values": [
+        {
+          "ui": 150,
+          "state": 150,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": true
+        },
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "1.53 MeV",
+        "2m_e c² = 1.022 MeV",
+        "4分量狄拉克旋量 ψ",
+        "s = 1/2 (自然导出)"
+      ]
+    },
+    {
+      "id": "UK-14",
+      "values": [
+        {
+          "ui": 27,
+          "state": 27,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "00011011",
+        "Cell #0",
+        "State q_0",
+        "邱奇-图灵论题"
+      ]
+    },
+    {
+      "id": "UK-15",
+      "values": [
+        {
+          "ui": 15,
+          "state": 15,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 79,
+          "state": 79,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "15.0 fm",
+        "143.1 °",
+        "dσ/dΩ ∝ sin⁻⁴(θ/2)",
+        "≈ 7.3 fm (体积占10⁻¹⁴)"
+      ]
+    },
+    {
+      "id": "UK-16",
+      "values": [
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "-93.03 V",
+        "50 匝",
+        "2.33 Wb/s",
+        "感应磁场阻碍磁通变化"
+      ]
+    },
+    {
+      "id": "NL-01",
+      "values": [
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": false
+        },
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "80 N / 65 N",
+        "60.0 °",
+        "125.80 N",
+        "奇迹并非奇迹 (静力平衡)"
+      ]
+    },
+    {
+      "id": "NL-02",
+      "values": [
+        {
+          "ui": 9,
+          "state": 9,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "9 个",
+        "17.8 px",
+        "2π√(L/g) (严格等时)",
+        "a_c = v² / r"
+      ]
+    },
+    {
+      "id": "NL-03",
+      "values": [
+        {
+          "ui": 220,
+          "state": 220,
+          "disabled": false
+        },
+        {
+          "ui": 35,
+          "state": 35,
+          "disabled": false
+        },
+        {
+          "ui": 95,
+          "state": 95,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "220 ×",
+        "≈ 1.0 μm",
+        "35 个/视野",
+        "细菌·原生动物·红细胞"
+      ]
+    },
+    {
+      "id": "NL-04",
+      "values": [
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 25,
+          "state": 25,
+          "disabled": false
+        },
+        {
+          "ui": 95,
+          "state": 95,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "0.95",
+        "+a / V_m² (引力修正)",
+        "-b (硬核体积修正)",
+        "气液两相共存区"
+      ]
+    },
+    {
+      "id": "NL-05",
+      "values": [
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        },
+        {
+          "ui": 15,
+          "state": 15,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "0.60",
+        "1.250",
+        "4.4 cm",
+        "F = q(E + v × B)"
+      ]
+    },
+    {
+      "id": "NL-06",
+      "values": [
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": false
+        },
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "3.00 K",
+        "4.00 K (汞4.2K)",
+        "0.000000 Ω (超导态)",
+        "0 T (完全抗磁性)"
+      ]
+    },
+    {
+      "id": "NL-07",
+      "values": [
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": false
+        },
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "5 条",
+        "4 层",
+        "Deus sive Natura (神即自然)",
+        "Q.E.D. (证毕)"
+      ]
+    },
+    {
+      "id": "AT-01",
+      "values": [
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "13.33 Hz",
+        "3.87 Hz",
+        "0.55 v_波",
+        "6.0 Hz"
+      ]
+    },
+    {
+      "id": "AT-02",
+      "values": [
+        {
+          "ui": 160,
+          "state": 160,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "1.0 : 2.0 : 1.0",
+        "3.00 : 1",
+        "160 株",
+        "分离定律·自由组合定律"
+      ]
+    },
+    {
+      "id": "AT-03",
+      "values": [
+        {
+          "ui": 16,
+          "state": 16,
+          "disabled": false
+        },
+        {
+          "ui": 8,
+          "state": 8,
+          "disabled": true
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "1.60",
+        "38.7 °",
+        "超音速激波锥",
+        "惯性源于宇宙全体物质"
+      ]
+    },
+    {
+      "id": "AT-04",
+      "values": [
+        {
+          "ui": 400,
+          "state": 400,
+          "disabled": false
+        },
+        {
+          "ui": 35,
+          "state": 35,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "400 K",
+        "exp(-E_i / k_B T)",
+        "S = k · log W",
+        "dH / dt ≤ 0 (趋向平衡)"
+      ]
+    },
+    {
+      "id": "AT-05",
+      "values": [
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 18,
+          "state": 18,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "50 / 65 eV",
+        "28.51 %",
+        "ρ(x,t) = |ψ(x,t)|²",
+        "iℏ ∂ψ/∂t = Ĥψ"
+      ]
+    },
+    {
+      "id": "AT-06",
+      "values": [
+        {
+          "ui": 11,
+          "state": 11,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": false
+        },
+        {
+          "ui": 20,
+          "state": 20,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "11 个",
+        "费米子 (s=1/2 反对称)",
+        "2 个 (↑↓自旋相反)",
+        "Ψ(1,2) = -Ψ(2,1)"
+      ]
+    },
+    {
+      "id": "AT-07",
+      "values": [
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": true
+        },
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": false
+        },
+        {
+          "ui": 7,
+          "state": 7,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "“本命题在系统 T 中不可证”",
+        "G = 2^x₁ · 3^x₂ · 5^x₃ ···",
+        "相容系统必含不可证真命题",
+        "系统无法自证其无矛盾性"
+      ]
+    },
+    {
+      "id": "DK-01",
+      "values": [
+        {
+          "ui": 48,
+          "state": 48,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 10,
+          "state": 10,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "48.00 °",
+        "< 1 角分 (1/60度)",
+        "8角分残差催生开普勒定律",
+        "第谷折衷体系"
+      ]
+    },
+    {
+      "id": "DK-02",
+      "values": [
+        {
+          "ui": 180,
+          "state": 180,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 70,
+          "state": 70,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "+16.6 分钟",
+        "Δt_max ≈ 16.6 ~ 22 min",
+        "≈ 2.2 × 10⁸ m/s (1676年)",
+        "2.9979 × 10⁸ m/s"
+      ]
+    },
+    {
+      "id": "DK-03",
+      "values": [
+        {
+          "ui": 10,
+          "state": 10,
+          "disabled": false
+        },
+        {
+          "ui": 25,
+          "state": 25,
+          "disabled": false
+        },
+        {
+          "ui": 30,
+          "state": 30,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "10.0 A",
+        "69.4 °",
+        "80.0 μT",
+        "电与磁首次统一"
+      ]
+    },
+    {
+      "id": "DK-04",
+      "values": [
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        },
+        {
+          "ui": 2,
+          "state": 2,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "4 → 2",
+        "2.55 eV",
+        "486.3 nm",
+        "L = n·ℏ"
+      ]
+    },
+    {
+      "id": "SE-01",
+      "values": [
+        {
+          "ui": 37,
+          "state": 37,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "37.0 °C",
+        "100.0 °C",
+        "液态水",
+        "冰点 0° ~ 沸点 100°"
+      ]
+    },
+    {
+      "id": "SE-02",
+      "values": [
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "属 Genus",
+        "Homo sapiens (智人)",
+        "属名(首字母大写) + 种加词",
+        "《自然系统》 (1735/1753)"
+      ]
+    },
+    {
+      "id": "NO-01",
+      "values": [
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": false
+        },
+        {
+          "ui": 180,
+          "state": 180,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "5 次",
+        "无根式通解 (阿贝尔定理)",
+        "非交换不可解群",
+        "a · b = b · a (交换律)"
+      ]
+    },
+    {
+      "id": "PL-01",
+      "values": [
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 0,
+          "state": 0,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "6 颗",
+        "公转 + 自转 + 地轴进动",
+        "《天体运行论》 (1543)",
+        "轨道越大公转周期越长"
+      ]
+    },
+    {
+      "id": "RU-01",
+      "values": [
+        {
+          "ui": 68,
+          "state": 68,
+          "disabled": false
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "81.4 ° (< 180°)",
+        "98.6 ° (正比于面积)",
+        "K < 0 (常负曲率马鞍面)",
+        "无穷多条 (罗氏公设)"
+      ]
+    },
+    {
+      "id": "RU-02",
+      "values": [
+        {
+          "ui": 32,
+          "state": 32,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": true
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "Z = 32",
+        "预言密度5.9 vs 实测5.91",
+        "预言原子量72 vs 实测72.6",
+        "核外价电子周期性排布"
+      ]
+    },
+    {
+      "id": "RU-03",
+      "values": [
+        {
+          "ui": 15,
+          "state": 15,
+          "disabled": false
+        },
+        {
+          "ui": 0,
+          "state": 0,
+          "disabled": false
+        },
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "100.0 %",
+        "15 次",
+        "18.0 滴/分",
+        "赫布定律 (一起激活即连结)"
+      ]
+    },
+    {
+      "id": "PL-02",
+      "values": [
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": false
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": false
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "5.0 s",
+        "0.1386 s⁻¹",
+        "84号 钋 (Polonium)",
+        "物理(1903) + 化学(1911)"
+      ]
+    },
+    {
+      "id": "RU-04",
+      "values": [
+        {
+          "ui": 40,
+          "state": 40,
+          "disabled": false
+        },
+        {
+          "ui": 35,
+          "state": 35,
+          "disabled": false
+        },
+        {
+          "ui": 40,
+          "state": 40,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "0.40 / 0.35",
+        "0.140",
+        "0.610",
+        "P(Ω) = 1.000"
+      ]
+    },
+    {
+      "id": "CN-01",
+      "values": [
+        {
+          "ui": 90,
+          "state": 90,
+          "disabled": false
+        },
+        {
+          "ui": 110,
+          "state": 110,
+          "disabled": false
+        },
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "1.22 倍",
+        "上下颠倒 · 左右相反",
+        "5.0 mm",
+        "“景到，在午有端”"
+      ]
+    },
+    {
+      "id": "CN-02",
+      "values": [
+        {
+          "ui": 2,
+          "state": 2,
+          "disabled": false
+        },
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "上三角阶梯阵",
+        "红筹为正 · 黑筹为负",
+        "9.25 / 4.25 / 2.75 斗",
+        "早约 1,800 年"
+      ]
+    },
+    {
+      "id": "CN-03",
+      "values": [
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "60 / 80",
+        "100.00",
+        "400",
+        "10000"
+      ]
+    },
+    {
+      "id": "CN-04",
+      "values": [
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": false
+        },
+        {
+          "ui": 110,
+          "state": 110,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "正 48 边形",
+        "3.132629",
+        "8.96e-3",
+        "157 / 50 = 3.14"
+      ]
+    },
+    {
+      "id": "CN-05",
+      "values": [
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": false
+        },
+        {
+          "ui": 20,
+          "state": 20,
+          "disabled": true
+        },
+        {
+          "ui": 7,
+          "state": 7,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "祖冲之密率 355/113",
+        "3.14159292",
+        "2.67e-7",
+        "正 24,576 边形"
+      ]
+    },
+    {
+      "id": "CN-06",
+      "values": [
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 95,
+          "state": 95,
+          "disabled": false
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "0.55",
+        "19776 px²",
+        "19776 px² (恒相等)",
+        "V = (4/3)πR³"
+      ]
+    },
+    {
+      "id": "CN-07",
+      "values": [
+        {
+          "ui": 10,
+          "state": 10,
+          "disabled": false
+        },
+        {
+          "ui": 8,
+          "state": 8,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "10 站 (铁尺丈量)",
+        "8.0 °",
+        "351里80步 (≈132.3 km)",
+        "大衍历不等间距二次内插"
+      ]
+    },
+    {
+      "id": "CN-08",
+      "values": [
+        {
+          "ui": -7,
+          "state": -7,
+          "disabled": false
+        },
+        {
+          "ui": 2,
+          "state": 2,
+          "disabled": false
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "-7.0 ° (微偏东)",
+        "蚕丝缕悬法 (最优低摩擦)",
+        "“常微偏东，不全南也”",
+        "400 余年 (1088 vs 1492)"
+      ]
+    },
+    {
+      "id": "CN-09",
+      "values": [
+        {
+          "ui": 7,
+          "state": 7,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "7 层",
+        "64",
+        "相邻两肩相加得下数",
+        "早约 600 年 (约1050年)"
+      ]
+    },
+    {
+      "id": "CN-10",
+      "values": [
+        {
+          "ui": 2,
+          "state": 2,
+          "disabled": false
+        },
+        {
+          "ui": 3,
+          "state": 3,
+          "disabled": false
+        },
+        {
+          "ui": 2,
+          "state": 2,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "余 (2, 3, 2)",
+        "23 (mod 105)",
+        "70, 21, 15",
+        "n次仅需 n 次乘法"
+      ]
+    },
+    {
+      "id": "CN-11",
+      "values": [
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": true
+        },
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "城径 d = 120 步",
+        "15 个相似直角三角形",
+        "《测圆海镜》 (1248)",
+        "早于欧洲符号代数300年"
+      ]
+    },
+    {
+      "id": "CN-12",
+      "values": [
+        {
+          "ui": 6,
+          "state": 6,
+          "disabled": false
+        },
+        {
+          "ui": 1,
+          "state": 1,
+          "disabled": false
+        },
+        {
+          "ui": 45,
+          "state": 45,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "6 层",
+        "四角垛 ∑k²",
+        "1 颗 / 36 颗",
+        "91 颗"
+      ]
+    },
+    {
+      "id": "CN-13",
+      "values": [
+        {
+          "ui": 32,
+          "state": 32,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "32.0 °",
+        "64.01 尺",
+        "365.2425 天 (与现行公历一致)",
+        "仅差 26 秒/年 (1280年)"
+      ]
+    },
+    {
+      "id": "CN-14",
+      "values": [
+        {
+          "ui": 7,
+          "state": 7,
+          "disabled": false
+        },
+        {
+          "ui": 440,
+          "state": 440,
+          "disabled": false
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "¹²√2 ≈ 1.059463094",
+        "第 7 律",
+        "659.26 Hz",
+        "2.00000000 (完美还原)"
+      ]
+    },
+    {
+      "id": "CN-15",
+      "values": [
+        {
+          "ui": 65,
+          "state": 65,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": true
+        },
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "几何·点·线·面·平行线·直角",
+        "界说(23) + 公法(5) + 公论(9)",
+        "1607年 (明万历三十五年)",
+        "65 %"
+      ]
+    },
+    {
+      "id": "CN-16",
+      "values": [
+        {
+          "ui": 18,
+          "state": 18,
+          "disabled": false
+        },
+        {
+          "ui": 550,
+          "state": 550,
+          "disabled": false
+        },
+        {
+          "ui": 70,
+          "state": 70,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "18.0 μm",
+        "550 nm",
+        "1.75 °",
+        "“光常肥而影常瘦”"
+      ]
+    },
+    {
+      "id": "CN-17",
+      "values": [
+        {
+          "ui": 5,
+          "state": 5,
+          "disabled": false
+        },
+        {
+          "ui": 62,
+          "state": 62,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "5 步",
+        "9.02 %",
+        "62.87 %",
+        "62.00 %"
+      ]
+    },
+    {
+      "id": "CN-18",
+      "values": [
+        {
+          "ui": 55,
+          "state": 55,
+          "disabled": false
+        },
+        {
+          "ui": 30,
+          "state": 30,
+          "disabled": true
+        },
+        {
+          "ui": 80,
+          "state": 80,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "66.0 °",
+        "∬ K·dA = 2π·χ(M)",
+        "2 (陈数拓扑不变量)",
+        "c(E) = det(I + iΩ/2π)"
+      ]
+    },
+    {
+      "id": "CN-19",
+      "values": [
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        },
+        {
+          "ui": 4,
+          "state": 4,
+          "disabled": false
+        },
+        {
+          "ui": 60,
+          "state": 60,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "4 步三角化",
+        "prem(g, CS) ≡ 0 (恒成立)",
+        "几何示意，未运行自动证明",
+        "《九章》消元 + 笛卡尔坐标"
+      ]
+    },
+    {
+      "id": "CN-20",
+      "values": [
+        {
+          "ui": 100,
+          "state": 100,
+          "disabled": false
+        },
+        {
+          "ui": 2,
+          "state": 2,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": true
+        }
+      ],
+      "tele": [
+        "100",
+        "12 组",
+        "6 组",
+        "N = p + P₂ (p+q·r)"
+      ]
+    },
+    {
+      "id": "CN-21",
+      "values": [
+        {
+          "ui": 88,
+          "state": 88,
+          "disabled": false
+        },
+        {
+          "ui": 26,
+          "state": 26,
+          "disabled": true
+        },
+        {
+          "ui": 30,
+          "state": 30,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "88 %",
+        "+30.0 %",
+        "不育系A × 保持系B × 恢复系R",
+        "1970海南野生败育株(野败)"
+      ]
+    },
+    {
+      "id": "CN-22",
+      "values": [
+        {
+          "ui": 35,
+          "state": 35,
+          "disabled": false
+        },
+        {
+          "ui": 75,
+          "state": 75,
+          "disabled": true
+        },
+        {
+          "ui": 50,
+          "state": 50,
+          "disabled": false
+        }
+      ],
+      "tele": [
+        "35 °C（示意设定）",
+        "未建立定量模型",
+        "C₁₅H₂₂O₅ (倍半萜内酯)",
+        "葛洪《肘后备急方》绞汁"
+      ]
+    }
+  ],
+  "screenshots": [],
+  "status": "passed"
+}
